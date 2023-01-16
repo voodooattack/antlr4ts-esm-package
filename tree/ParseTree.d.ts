@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Parser } from "../Parser";
-import { ParseTreeVisitor } from "./ParseTreeVisitor";
-import { RuleContext } from "../RuleContext";
-import { SyntaxTree } from "./SyntaxTree";
+import { Parser } from "../Parser.js";
+import { ParseTreeVisitor } from "./ParseTreeVisitor.js";
+import { RuleContext } from "../RuleContext.js";
+import { SyntaxTree } from "./SyntaxTree.js";
 /** An interface to access the tree of {@link RuleContext} objects created
  *  during a parse that makes the data structure look like a simple parse tree.
  *  This node represents both internal nodes, rule invocations,

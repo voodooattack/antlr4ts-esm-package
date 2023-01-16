@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { IntegerList } from "./IntegerList";
-import { Interval } from "./Interval";
-import { IntSet } from "./IntSet";
-import { Vocabulary } from "../Vocabulary";
+import { IntegerList } from "./IntegerList.js";
+import { Interval } from "./Interval.js";
+import { IntSet } from "./IntSet.js";
+import { Vocabulary } from "../Vocabulary.js";
 /**
  * This class implements the {@link IntSet} backed by a sorted array of
  * non-overlapping intervals. It is particularly efficient for representing

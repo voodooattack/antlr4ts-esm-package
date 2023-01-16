@@ -9,10 +9,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // CONVERSTION complete, Burt Harris 10/14/2016
-import { Override } from "../../Decorators";
-import { Trees } from "../Trees";
-import { XPath } from "./XPath";
-import { XPathElement } from "./XPathElement";
+import { Override } from "../../Decorators.js";
+import { Trees } from "../Trees.js";
+import { XPath } from "./XPath.js";
+import { XPathElement } from "./XPathElement.js";
 export class XPathWildcardAnywhereElement extends XPathElement {
     constructor() {
         super(XPath.WILDCARD);

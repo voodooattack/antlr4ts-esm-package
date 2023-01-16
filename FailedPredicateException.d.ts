@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Parser } from "./Parser";
-import { RecognitionException } from "./RecognitionException";
+import { Parser } from "./Parser.js";
+import { RecognitionException } from "./RecognitionException.js";
 /** A semantic predicate failed during validation.  Validation of predicates
  *  occurs when normally parsing the alternative just like matching a token.
  *  Disambiguating predicate evaluation occurs when we test a predicate during

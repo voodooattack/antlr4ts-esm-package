@@ -9,9 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:36.7513856-07:00
-import { ATNState } from "./ATNState";
-import { ATNStateType } from "./ATNStateType";
-import { Override } from "../Decorators";
+import { ATNState } from "./ATNState.js";
+import { ATNStateType } from "./ATNStateType.js";
+import { Override } from "../Decorators.js";
 /** The last node in the ATN for a rule, unless that rule is the start symbol.
  *  In that case, there is one transition to EOF. Later, we might encode
  *  references to all calls to this rule to compute FOLLOW sets for

@@ -11,16 +11,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { ConsoleErrorListener } from "./ConsoleErrorListener";
-import { ProxyErrorListener } from "./ProxyErrorListener";
-import { SuppressWarnings, NotNull } from "./Decorators";
-import { Token } from "./Token";
-import * as Utils from "./misc/Utils";
+import { ConsoleErrorListener } from "./ConsoleErrorListener.js";
+import { ProxyErrorListener } from "./ProxyErrorListener.js";
+import { SuppressWarnings, NotNull } from "./Decorators.js";
+import { Token } from "./Token.js";
+import * as Utils from "./misc/Utils.js";
 export class Recognizer {
-    constructor() {
-        this._listeners = [ConsoleErrorListener.INSTANCE];
-        this._stateNumber = -1;
-    }
+    static EOF = -1;
+    static tokenTypeMapCache = new WeakMap();
+    static ruleIndexMapCache = new WeakMap();
+    _listeners = [ConsoleErrorListener.INSTANCE];
+    _interp;
+    _stateNumber = -1;
     /**
      * Get a map from token names to token types.
      *
@@ -175,9 +177,6 @@ export class Recognizer {
         //		if ( traceATNStates ) _ctx.trace(atnState);
     }
 }
-Recognizer.EOF = -1;
-Recognizer.tokenTypeMapCache = new WeakMap();
-Recognizer.ruleIndexMapCache = new WeakMap();
 __decorate([
     SuppressWarnings("serial"),
     NotNull

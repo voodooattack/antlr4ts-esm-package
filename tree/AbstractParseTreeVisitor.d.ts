@@ -2,11 +2,11 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ErrorNode } from "./ErrorNode";
-import { ParseTree } from "./ParseTree";
-import { ParseTreeVisitor } from "./ParseTreeVisitor";
-import { RuleNode } from "./RuleNode";
-import { TerminalNode } from "./TerminalNode";
+import { ErrorNode } from "./ErrorNode.js";
+import { ParseTree } from "./ParseTree.js";
+import { ParseTreeVisitor } from "./ParseTreeVisitor.js";
+import { RuleNode } from "./RuleNode.js";
+import { TerminalNode } from "./TerminalNode.js";
 export declare abstract class AbstractParseTreeVisitor<Result> implements ParseTreeVisitor<Result> {
     /**
      * {@inheritDoc}

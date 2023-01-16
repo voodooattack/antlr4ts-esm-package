@@ -11,7 +11,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { NotNull } from "../Decorators";
+import { NotNull } from "../Decorators.js";
 /** An ATN transition between any two ATN states.  Subclasses define
  *  atom, set, epsilon, action, predicate, rule transitions.
  *
@@ -25,6 +25,35 @@ import { NotNull } from "../Decorators";
  *  ATN transitions.
  */
 let Transition = class Transition {
+    static serializationNames = [
+        "INVALID",
+        "EPSILON",
+        "RANGE",
+        "RULE",
+        "PREDICATE",
+        "ATOM",
+        "ACTION",
+        "SET",
+        "NOT_SET",
+        "WILDCARD",
+        "PRECEDENCE",
+    ];
+    // @SuppressWarnings("serial")
+    // static serializationTypes: Map<Class<? extends Transition>, number> =
+    // 	Collections.unmodifiableMap(new HashMap<Class<? extends Transition>, Integer>() {{
+    // 		put(EpsilonTransition.class, EPSILON);
+    // 		put(RangeTransition.class, RANGE);
+    // 		put(RuleTransition.class, RULE);
+    // 		put(PredicateTransition.class, PREDICATE);
+    // 		put(AtomTransition.class, ATOM);
+    // 		put(ActionTransition.class, ACTION);
+    // 		put(SetTransition.class, SET);
+    // 		put(NotSetTransition.class, NOT_SET);
+    // 		put(WildcardTransition.class, WILDCARD);
+    // 		put(PrecedencePredicateTransition.class, PRECEDENCE);
+    // 	}});
+    /** The target of this transition. */
+    target;
     constructor(target) {
         if (target == null) {
             throw new Error("target cannot be null.");
@@ -47,19 +76,6 @@ let Transition = class Transition {
         return undefined;
     }
 };
-Transition.serializationNames = [
-    "INVALID",
-    "EPSILON",
-    "RANGE",
-    "RULE",
-    "PREDICATE",
-    "ATOM",
-    "ACTION",
-    "SET",
-    "NOT_SET",
-    "WILDCARD",
-    "PRECEDENCE",
-];
 __decorate([
     NotNull
 ], Transition.prototype, "target", void 0);

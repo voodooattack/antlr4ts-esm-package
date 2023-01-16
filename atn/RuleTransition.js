@@ -11,14 +11,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Override, NotNull } from "../Decorators";
-import { Transition } from "./Transition";
+import { Override, NotNull } from "../Decorators.js";
+import { Transition } from "./Transition.js";
 /** */
 let RuleTransition = class RuleTransition extends Transition {
+    /** Ptr to the rule definition object for this rule ref */
+    ruleIndex; // no Rule object at runtime
+    precedence;
+    /** What node to begin computations following ref to rule */
+    followState;
+    tailCall = false;
+    optimizedTailCall = false;
     constructor(ruleStart, ruleIndex, precedence, followState) {
         super(ruleStart);
-        this.tailCall = false;
-        this.optimizedTailCall = false;
         this.ruleIndex = ruleIndex;
         this.precedence = precedence;
         this.followState = followState;

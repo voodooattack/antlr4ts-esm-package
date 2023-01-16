@@ -2,11 +2,11 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { AcceptStateInfo } from "./AcceptStateInfo";
-import { ATN } from "../atn/ATN";
-import { ATNConfigSet } from "../atn/ATNConfigSet";
-import { LexerActionExecutor } from "../atn/LexerActionExecutor";
-import { SemanticContext } from "../atn/SemanticContext";
+import { AcceptStateInfo } from "./AcceptStateInfo.js";
+import { ATN } from "../atn/ATN.js";
+import { ATNConfigSet } from "../atn/ATNConfigSet.js";
+import { LexerActionExecutor } from "../atn/LexerActionExecutor.js";
+import { SemanticContext } from "../atn/SemanticContext.js";
 /** A DFA state represents a set of possible ATN configurations.
  *  As Aho, Sethi, Ullman p. 117 says "The DFA uses its state
  *  to keep track of all possible states the ATN can be in after

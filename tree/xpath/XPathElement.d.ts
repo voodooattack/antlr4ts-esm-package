@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ParseTree } from "../ParseTree";
+import { ParseTree } from "../ParseTree.js";
 export declare abstract class XPathElement {
     protected nodeName: string;
     invert: boolean;

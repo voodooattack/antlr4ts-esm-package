@@ -2,8 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { MurmurHash } from "./MurmurHash";
+import { MurmurHash } from "./MurmurHash.js";
 export class UUID {
+    data;
     constructor(mostSigBits, moreSigBits, lessSigBits, leastSigBits) {
         this.data = new Uint32Array(4);
         this.data[0] = mostSigBits;

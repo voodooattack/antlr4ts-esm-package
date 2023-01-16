@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Equatable } from "../misc/Stubs";
-import { Lexer } from "../Lexer";
-import { LexerActionType } from "./LexerActionType";
+import { Equatable } from "../misc/Stubs.js";
+import { Lexer } from "../Lexer.js";
+import { LexerActionType } from "./LexerActionType.js";
 /**
  * Represents a single action which can be executed following the successful
  * match of a lexer rule. Lexer actions are used for both embedded action syntax

@@ -11,11 +11,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { RecognitionException } from "./RecognitionException";
-import { NotNull, Override } from "./Decorators";
-import { Interval } from "./misc/Interval";
-import * as Utils from "./misc/Utils";
+import { RecognitionException } from "./RecognitionException.js";
+import { NotNull, Override } from "./Decorators.js";
+import { Interval } from "./misc/Interval.js";
+import * as Utils from "./misc/Utils.js";
 let LexerNoViableAltException = class LexerNoViableAltException extends RecognitionException {
+    //private static serialVersionUID: number =  -730999203913001726L;
+    /** Matching attempted at what input index? */
+    _startIndex;
+    /** Which configurations did we try at input.index that couldn't match input.LA(1)? */
+    _deadEndConfigs;
     constructor(lexer, input, startIndex, deadEndConfigs) {
         super(lexer, input);
         this._startIndex = startIndex;

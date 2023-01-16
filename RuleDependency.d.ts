@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Dependents } from "./Dependents";
-import { Parser } from "./Parser";
+import { Dependents } from "./Dependents.js";
+import { Parser } from "./Parser.js";
 /**
  * Declares a dependency upon a grammar rule, along with a set of zero or more dependent rules.
  *

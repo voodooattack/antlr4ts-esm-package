@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { MultiMap } from "../../misc/MultiMap";
-import { ParseTree } from "../ParseTree";
-import { ParseTreePattern } from "./ParseTreePattern";
+import { MultiMap } from "../../misc/MultiMap.js";
+import { ParseTree } from "../ParseTree.js";
+import { ParseTreePattern } from "./ParseTreePattern.js";
 /**
  * Represents the result of matching a {@link ParseTree} against a tree pattern.
  */

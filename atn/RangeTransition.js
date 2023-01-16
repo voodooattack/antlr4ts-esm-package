@@ -11,10 +11,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { IntervalSet } from "../misc/IntervalSet";
-import { Override, NotNull } from "../Decorators";
-import { Transition } from "./Transition";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { Override, NotNull } from "../Decorators.js";
+import { Transition } from "./Transition.js";
 let RangeTransition = class RangeTransition extends Transition {
+    from;
+    to;
     constructor(target, from, to) {
         super(target);
         this.from = from;

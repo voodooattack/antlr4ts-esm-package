@@ -9,9 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import * as assert from "assert";
-import { IntStream } from "./IntStream";
-import { Interval } from "./misc/Interval";
-import { Override } from "./Decorators";
+import { IntStream } from "./IntStream.js";
+import { Interval } from "./misc/Interval.js";
+import { Override } from "./Decorators.js";
 /**
  * Alternative to {@link ANTLRInputStream} which treats the input
  * as a series of Unicode code points, instead of a series of UTF-16
@@ -21,6 +21,10 @@ import { Override } from "./Decorators";
  * Unicode values > U+FFFF.
  */
 export class CodePointCharStream {
+    _array;
+    _size;
+    _name;
+    _position;
     // Use the factory method {@link #fromBuffer(CodePointBuffer)} to
     // construct instances of this type.
     constructor(array, position, remaining, name) {

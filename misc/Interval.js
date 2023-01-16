@@ -9,13 +9,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:40.7402214-07:00
-import { Override } from "../Decorators";
+import { Override } from "../Decorators.js";
 const INTERVAL_POOL_MAX_VALUE = 1000;
 /** An immutable inclusive interval a..b */
 export class Interval {
+    a;
+    b;
+    static _INVALID = new Interval(-1, -2);
     static get INVALID() {
         return Interval._INVALID;
     }
+    static cache = new Array(INTERVAL_POOL_MAX_VALUE + 1);
     /**
      * @param a The start of the interval
      * @param b The end of the interval (inclusive)
@@ -124,8 +128,6 @@ export class Interval {
         return this.a + ".." + this.b;
     }
 }
-Interval._INVALID = new Interval(-1, -2);
-Interval.cache = new Array(INTERVAL_POOL_MAX_VALUE + 1);
 __decorate([
     Override
 ], Interval.prototype, "equals", null);

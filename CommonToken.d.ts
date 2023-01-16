@@ -2,12 +2,12 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNSimulator } from "./atn/ATNSimulator";
-import { CharStream } from "./CharStream";
-import { Recognizer } from "./Recognizer";
-import { Token } from "./Token";
-import { TokenSource } from "./TokenSource";
-import { WritableToken } from "./WritableToken";
+import { ATNSimulator } from "./atn/ATNSimulator.js";
+import { CharStream } from "./CharStream.js";
+import { Recognizer } from "./Recognizer.js";
+import { Token } from "./Token.js";
+import { TokenSource } from "./TokenSource.js";
+import { WritableToken } from "./WritableToken.js";
 export declare class CommonToken implements WritableToken {
     /**
      * An empty {@link Tuple2} which is used as the default value of

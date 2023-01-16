@@ -10,19 +10,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var _a;
 // ConvertTo-TS run at 2016-10-04T11:26:25.5488013-07:00
-import { Array2DHashMap } from "../misc/Array2DHashMap";
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ArrayEqualityComparator } from "../misc/ArrayEqualityComparator";
-import { ATN } from "./ATN";
-import { ATNConfig } from "./ATNConfig";
-import { BitSet } from "../misc/BitSet";
-import { NotNull, Override } from "../Decorators";
-import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator";
-import { PredictionContext } from "./PredictionContext";
-import { PredictionContextCache } from "./PredictionContextCache";
-import { SemanticContext } from "./SemanticContext";
+import { Array2DHashMap } from "../misc/Array2DHashMap.js";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ArrayEqualityComparator } from "../misc/ArrayEqualityComparator.js";
+import { ATN } from "./ATN.js";
+import { ATNConfig } from "./ATNConfig.js";
+import { BitSet } from "../misc/BitSet.js";
+import { NotNull, Override } from "../Decorators.js";
+import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
+import { PredictionContext } from "./PredictionContext.js";
+import { PredictionContextCache } from "./PredictionContextCache.js";
+import { SemanticContext } from "./SemanticContext.js";
 import * as assert from "assert";
-import * as Utils from "../misc/Utils";
+import * as Utils from "../misc/Utils.js";
 class KeyTypeEqualityComparer {
     hashCode(key) {
         return key.state ^ key.alt;
@@ -30,8 +30,8 @@ class KeyTypeEqualityComparer {
     equals(a, b) {
         return a.state === b.state && a.alt === b.alt;
     }
+    static INSTANCE = new KeyTypeEqualityComparer();
 }
-KeyTypeEqualityComparer.INSTANCE = new KeyTypeEqualityComparer();
 function NewKeyedConfigMap(map) {
     if (map) {
         return new Array2DHashMap(map);
@@ -52,23 +52,49 @@ function NewKeyedConfigMap(map) {
  * @author Sam Harwell
  */
 export class ATNConfigSet {
+    /**
+     * This maps (state, alt) -> merged {@link ATNConfig}. The key does not account for
+     * the {@link ATNConfig#getSemanticContext} of the value, which is only a problem if a single
+     * `ATNConfigSet` contains two configs with the same state and alternative
+     * but different semantic contexts. When this case arises, the first config
+     * added to this map stays, and the remaining configs are placed in {@link #unmerged}.
+     *
+     * This map is only used for optimizing the process of adding configs to the set,
+     * and is `undefined` for read-only sets stored in the DFA.
+     */
+    mergedConfigs;
+    /**
+     * This is an "overflow" list holding configs which cannot be merged with one
+     * of the configs in {@link #mergedConfigs} but have a colliding key. This
+     * occurs when two configs in the set have the same state and alternative but
+     * different semantic contexts.
+     *
+     * This list is only used for optimizing the process of adding configs to the set,
+     * and is `undefined` for read-only sets stored in the DFA.
+     */
+    unmerged;
+    /**
+     * This is a list of all configs in this set.
+     */
+    configs;
+    _uniqueAlt = 0;
+    _conflictInfo;
+    // Used in parser and lexer. In lexer, it indicates we hit a pred
+    // while computing a closure operation.  Don't make a DFA state from this.
+    _hasSemanticContext = false;
+    _dipsIntoOuterContext = false;
+    /**
+     * When `true`, this config set represents configurations where the entire
+     * outer context has been consumed by the ATN interpreter. This prevents the
+     * {@link ParserATNSimulator#closure} from pursuing the global FOLLOW when a
+     * rule stop state is reached with an empty prediction context.
+     *
+     * Note: `outermostConfigSet` and {@link #dipsIntoOuterContext} should never
+     * be true at the same time.
+     */
+    outermostConfigSet = false;
+    cachedHashCode = -1;
     constructor(set, readonly) {
-        this._uniqueAlt = 0;
-        // Used in parser and lexer. In lexer, it indicates we hit a pred
-        // while computing a closure operation.  Don't make a DFA state from this.
-        this._hasSemanticContext = false;
-        this._dipsIntoOuterContext = false;
-        /**
-         * When `true`, this config set represents configurations where the entire
-         * outer context has been consumed by the ATN interpreter. This prevents the
-         * {@link ParserATNSimulator#closure} from pursuing the global FOLLOW when a
-         * rule stop state is reached with an empty prediction context.
-         *
-         * Note: `outermostConfigSet` and {@link #dipsIntoOuterContext} should never
-         * be true at the same time.
-         */
-        this.outermostConfigSet = false;
-        this.cachedHashCode = -1;
         if (!set) {
             this.mergedConfigs = NewKeyedConfigMap();
             this.unmerged = [];

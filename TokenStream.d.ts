@@ -2,11 +2,11 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Interval } from "./misc/Interval";
-import { IntStream } from "./IntStream";
-import { RuleContext } from "./RuleContext";
-import { Token } from "./Token";
-import { TokenSource } from "./TokenSource";
+import { Interval } from "./misc/Interval.js";
+import { IntStream } from "./IntStream.js";
+import { RuleContext } from "./RuleContext.js";
+import { Token } from "./Token.js";
+import { TokenSource } from "./TokenSource.js";
 /**
  * An {@link IntStream} whose symbols are {@link Token} instances.
  */

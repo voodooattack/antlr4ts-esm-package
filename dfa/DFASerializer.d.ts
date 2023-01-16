@@ -2,11 +2,11 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATN } from "../atn/ATN";
-import { DFA } from "./DFA";
-import { DFAState } from "./DFAState";
-import { Recognizer } from "../Recognizer";
-import { Vocabulary } from "../Vocabulary";
+import { ATN } from "../atn/ATN.js";
+import { DFA } from "./DFA.js";
+import { DFAState } from "./DFAState.js";
+import { Recognizer } from "../Recognizer.js";
+import { Vocabulary } from "../Vocabulary.js";
 /** A DFA walker that knows how to dump them to serialized strings. */
 export declare class DFASerializer {
     private dfa;

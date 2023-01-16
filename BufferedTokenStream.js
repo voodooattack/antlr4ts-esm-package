@@ -13,11 +13,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 // ConvertTo-TS run at 2016-10-04T11:26:49.6074365-07:00
 import * as assert from "assert";
-import { CommonToken } from "./CommonToken";
-import { Interval } from "./misc/Interval";
-import { Lexer } from "./Lexer";
-import { NotNull, Override } from "./Decorators";
-import { Token } from "./Token";
+import { CommonToken } from "./CommonToken.js";
+import { Interval } from "./misc/Interval.js";
+import { Lexer } from "./Lexer.js";
+import { NotNull, Override } from "./Decorators.js";
+import { Token } from "./Token.js";
 /**
  * This implementation of {@link TokenStream} loads tokens from a
  * {@link TokenSource} on-demand, and places the tokens in a buffer to provide
@@ -30,37 +30,41 @@ import { Token } from "./Token";
  * {@link CommonTokenStream}.
  */
 let BufferedTokenStream = class BufferedTokenStream {
+    /**
+     * The {@link TokenSource} from which tokens for this stream are fetched.
+     */
+    _tokenSource;
+    /**
+     * A collection of all tokens fetched from the token source. The list is
+     * considered a complete view of the input once {@link #fetchedEOF} is set
+     * to `true`.
+     */
+    tokens = [];
+    /**
+     * The index into {@link #tokens} of the current token (next token to
+     * {@link #consume}). {@link #tokens}`[`{@link #p}`]` should be
+     * {@link #LT LT(1)}.
+     *
+     * This field is set to -1 when the stream is first constructed or when
+     * {@link #setTokenSource} is called, indicating that the first token has
+     * not yet been fetched from the token source. For additional information,
+     * see the documentation of {@link IntStream} for a description of
+     * Initializing Methods.
+     */
+    p = -1;
+    /**
+     * Indicates whether the {@link Token#EOF} token has been fetched from
+     * {@link #tokenSource} and added to {@link #tokens}. This field improves
+     * performance for the following cases:
+     *
+     * * {@link #consume}: The lookahead check in {@link #consume} to prevent
+     *   consuming the EOF symbol is optimized by checking the values of
+     *   {@link #fetchedEOF} and {@link #p} instead of calling {@link #LA}.
+     * * {@link #fetch}: The check to prevent adding multiple EOF symbols into
+     *   {@link #tokens} is trivial with this field.
+     */
+    fetchedEOF = false;
     constructor(tokenSource) {
-        /**
-         * A collection of all tokens fetched from the token source. The list is
-         * considered a complete view of the input once {@link #fetchedEOF} is set
-         * to `true`.
-         */
-        this.tokens = [];
-        /**
-         * The index into {@link #tokens} of the current token (next token to
-         * {@link #consume}). {@link #tokens}`[`{@link #p}`]` should be
-         * {@link #LT LT(1)}.
-         *
-         * This field is set to -1 when the stream is first constructed or when
-         * {@link #setTokenSource} is called, indicating that the first token has
-         * not yet been fetched from the token source. For additional information,
-         * see the documentation of {@link IntStream} for a description of
-         * Initializing Methods.
-         */
-        this.p = -1;
-        /**
-         * Indicates whether the {@link Token#EOF} token has been fetched from
-         * {@link #tokenSource} and added to {@link #tokens}. This field improves
-         * performance for the following cases:
-         *
-         * * {@link #consume}: The lookahead check in {@link #consume} to prevent
-         *   consuming the EOF symbol is optimized by checking the values of
-         *   {@link #fetchedEOF} and {@link #p} instead of calling {@link #LA}.
-         * * {@link #fetch}: The check to prevent adding multiple EOF symbols into
-         *   {@link #tokens} is trivial with this field.
-         */
-        this.fetchedEOF = false;
         if (tokenSource == null) {
             throw new Error("tokenSource cannot be null");
         }

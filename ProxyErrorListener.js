@@ -11,7 +11,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Override, NotNull } from "./Decorators";
+import { Override, NotNull } from "./Decorators.js";
 /**
  * This implementation of {@link ANTLRErrorListener} dispatches all calls to a
  * collection of delegate listeners. This reduces the effort required to support multiple
@@ -20,6 +20,7 @@ import { Override, NotNull } from "./Decorators";
  * @author Sam Harwell
  */
 export class ProxyErrorListener {
+    delegates;
     constructor(delegates) {
         this.delegates = delegates;
         if (!delegates) {

@@ -9,11 +9,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // CONVERSTION complete, Burt Harris 10/14/2016
-import { ParserRuleContext } from "../../ParserRuleContext";
-import { Override } from "../../Decorators";
-import { Trees } from "../Trees";
-import { XPathElement } from "./XPathElement";
+import { ParserRuleContext } from "../../ParserRuleContext.js";
+import { Override } from "../../Decorators.js";
+import { Trees } from "../Trees.js";
+import { XPathElement } from "./XPathElement.js";
 export class XPathRuleElement extends XPathElement {
+    ruleIndex;
     constructor(ruleName, ruleIndex) {
         super(ruleName);
         this.ruleIndex = ruleIndex;

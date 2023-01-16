@@ -11,8 +11,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { DecisionEventInfo } from "./DecisionEventInfo";
-import { NotNull } from "../Decorators";
+import { DecisionEventInfo } from "./DecisionEventInfo.js";
+import { NotNull } from "../Decorators.js";
 /**
  * This class represents profiling event information for an ambiguity.
  * Ambiguities are decisions where a particular input resulted in an SLL
@@ -41,6 +41,8 @@ import { NotNull } from "../Decorators";
  * @since 4.3
  */
 let AmbiguityInfo = class AmbiguityInfo extends DecisionEventInfo {
+    /** The set of alternative numbers for this decision event that lead to a valid parse. */
+    ambigAlts;
     /**
      * Constructs a new instance of the {@link AmbiguityInfo} class with the
      * specified detailed ambiguity information.

@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ErrorNode } from "./ErrorNode";
-import { TerminalNode } from "./TerminalNode";
-import { RuleNode } from "./RuleNode";
+import { ErrorNode } from "./ErrorNode.js";
+import { TerminalNode } from "./TerminalNode.js";
+import { RuleNode } from "./RuleNode.js";
 export class ParseTreeWalker {
     /**
      * Performs a walk on the given parse tree starting at the root and going down recursively

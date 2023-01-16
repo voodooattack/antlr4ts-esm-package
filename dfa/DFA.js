@@ -12,25 +12,40 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:38.3567094-07:00
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ATNConfigSet } from "../atn/ATNConfigSet";
-import { DFASerializer } from "./DFASerializer";
-import { DFAState } from "./DFAState";
-import { LexerDFASerializer } from "./LexerDFASerializer";
-import { NotNull } from "../Decorators";
-import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator";
-import { StarLoopEntryState } from "../atn/StarLoopEntryState";
-import { VocabularyImpl } from "../VocabularyImpl";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ATNConfigSet } from "../atn/ATNConfigSet.js";
+import { DFASerializer } from "./DFASerializer.js";
+import { DFAState } from "./DFAState.js";
+import { LexerDFASerializer } from "./LexerDFASerializer.js";
+import { NotNull } from "../Decorators.js";
+import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
+import { StarLoopEntryState } from "../atn/StarLoopEntryState.js";
+import { VocabularyImpl } from "../VocabularyImpl.js";
 let DFA = class DFA {
+    /**
+     * A set of all states in the `DFA`.
+     *
+     * Note that this collection of states holds the DFA states for both SLL and LL prediction. Only the start state
+     * needs to be differentiated for these cases, which is tracked by the `s0` and `s0full` fields.
+     */
+    states = new Array2DHashSet(ObjectEqualityComparator.INSTANCE);
+    s0;
+    s0full;
+    decision;
+    /** From which ATN state did we create this DFA? */
+    atnStartState;
+    /**
+     * Note: this field is accessed as `atnStartState.atn` in other targets. The TypeScript target keeps a separate copy
+     * to avoid a number of additional null/undefined checks each time the ATN is accessed.
+     */
+    atn;
+    nextStateNumber = 0;
+    /**
+     * `true` if this DFA is for a precedence decision; otherwise,
+     * `false`. This is the backing field for {@link #isPrecedenceDfa}.
+     */
+    precedenceDfa;
     constructor(atnStartState, decision = 0) {
-        /**
-         * A set of all states in the `DFA`.
-         *
-         * Note that this collection of states holds the DFA states for both SLL and LL prediction. Only the start state
-         * needs to be differentiated for these cases, which is tracked by the `s0` and `s0full` fields.
-         */
-        this.states = new Array2DHashSet(ObjectEqualityComparator.INSTANCE);
-        this.nextStateNumber = 0;
         if (!atnStartState.atn) {
             throw new Error("The ATNState must be associated with an ATN");
         }

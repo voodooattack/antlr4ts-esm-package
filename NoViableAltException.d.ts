@@ -2,13 +2,13 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNConfigSet } from "./atn/ATNConfigSet";
-import { Parser } from "./Parser";
-import { ParserRuleContext } from "./ParserRuleContext";
-import { RecognitionException } from "./RecognitionException";
-import { Recognizer } from "./Recognizer";
-import { Token } from "./Token";
-import { TokenStream } from "./TokenStream";
+import { ATNConfigSet } from "./atn/ATNConfigSet.js";
+import { Parser } from "./Parser.js";
+import { ParserRuleContext } from "./ParserRuleContext.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { Recognizer } from "./Recognizer.js";
+import { Token } from "./Token.js";
+import { TokenStream } from "./TokenStream.js";
 /** Indicates that the parser could not decide which of two or more paths
  *  to take based upon the remaining input. It tracks the starting token
  *  of the offending input and also knows where the parser was

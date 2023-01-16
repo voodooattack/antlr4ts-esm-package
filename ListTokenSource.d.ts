@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { Token } from "./Token";
-import { TokenFactory } from "./TokenFactory";
-import { TokenSource } from "./TokenSource";
+import { CharStream } from "./CharStream.js";
+import { Token } from "./Token.js";
+import { TokenFactory } from "./TokenFactory.js";
+import { TokenSource } from "./TokenSource.js";
 /**
  * Provides an implementation of {@link TokenSource} as a wrapper around a list
  * of {@link Token} objects.

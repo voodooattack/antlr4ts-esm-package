@@ -9,14 +9,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:25.8187912-07:00
-import { NotNull } from "../Decorators";
+import { NotNull } from "../Decorators.js";
 /**
  *
  * @author Sam Harwell
  */
 export class ATNDeserializationOptions {
+    static _defaultOptions;
+    readOnly = false;
+    verifyATN;
+    generateRuleBypassTransitions;
+    optimize;
     constructor(options) {
-        this.readOnly = false;
         if (options) {
             this.verifyATN = options.verifyATN;
             this.generateRuleBypassTransitions = options.generateRuleBypassTransitions;

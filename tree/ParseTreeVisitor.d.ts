@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ErrorNode } from "./ErrorNode";
-import { ParseTree } from "./ParseTree";
-import { RuleNode } from "./RuleNode";
-import { TerminalNode } from "./TerminalNode";
+import { ErrorNode } from "./ErrorNode.js";
+import { ParseTree } from "./ParseTree.js";
+import { RuleNode } from "./RuleNode.js";
+import { TerminalNode } from "./TerminalNode.js";
 /**
  * This interface defines the basic notion of a parse tree visitor. Generated
  * visitors implement this interface and the `XVisitor` interface for

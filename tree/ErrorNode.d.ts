@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ParseTreeVisitor } from "./ParseTreeVisitor";
-import { TerminalNode } from "./TerminalNode";
-import { Token } from "../Token";
+import { ParseTreeVisitor } from "./ParseTreeVisitor.js";
+import { TerminalNode } from "./TerminalNode.js";
+import { Token } from "../Token.js";
 /** Represents a token that was consumed during resynchronization
  *  rather than during a valid match operation. For example,
  *  we will create this kind of a node during single token insertion

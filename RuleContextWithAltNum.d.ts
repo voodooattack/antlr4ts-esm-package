@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ParserRuleContext } from "./ParserRuleContext";
+import { ParserRuleContext } from "./ParserRuleContext.js";
 /** A handy class for use with
  *
  *  options {contextSuperClass=org.antlr.v4.runtime.RuleContextWithAltNum;}

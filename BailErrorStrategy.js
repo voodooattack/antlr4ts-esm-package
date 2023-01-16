@@ -9,10 +9,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:49.2855056-07:00
-import { DefaultErrorStrategy } from "./DefaultErrorStrategy";
-import { InputMismatchException } from "./InputMismatchException";
-import { Override } from "./Decorators";
-import { ParseCancellationException } from "./misc/ParseCancellationException";
+import { DefaultErrorStrategy } from "./DefaultErrorStrategy.js";
+import { InputMismatchException } from "./InputMismatchException.js";
+import { Override } from "./Decorators.js";
+import { ParseCancellationException } from "./misc/ParseCancellationException.js";
 /**
  * This implementation of {@link ANTLRErrorStrategy} responds to syntax errors
  * by immediately canceling the parse operation with a

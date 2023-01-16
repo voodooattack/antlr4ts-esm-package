@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { CodePointBuffer } from "./CodePointBuffer";
-import { Interval } from "./misc/Interval";
+import { CharStream } from "./CharStream.js";
+import { CodePointBuffer } from "./CodePointBuffer.js";
+import { Interval } from "./misc/Interval.js";
 /**
  * Alternative to {@link ANTLRInputStream} which treats the input
  * as a series of Unicode code points, instead of a series of UTF-16

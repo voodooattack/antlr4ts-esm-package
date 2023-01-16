@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:28.2401032-07:00
-import { NotNull } from "../Decorators";
+import { NotNull } from "../Decorators.js";
 /**
  * This is the base class for gathering detailed information about prediction
  * events which occur during parsing.
@@ -29,6 +29,36 @@ import { NotNull } from "../Decorators";
  * @since 4.3
  */
 let DecisionEventInfo = class DecisionEventInfo {
+    /**
+     * The invoked decision number which this event is related to.
+     *
+     * @see ATN#decisionToState
+     */
+    decision;
+    /**
+     * The simulator state containing additional information relevant to the
+     * prediction state when the current event occurred, or `undefined` if no
+     * additional information is relevant or available.
+     */
+    state;
+    /**
+     * The input token stream which is being parsed.
+     */
+    input;
+    /**
+     * The token index in the input stream at which the current prediction was
+     * originally invoked.
+     */
+    startIndex;
+    /**
+     * The token index in the input stream at which the current event occurred.
+     */
+    stopIndex;
+    /**
+     * `true` if the current event occurred during LL prediction;
+     * otherwise, `false` if the input occurred during SLL prediction.
+     */
+    fullCtx;
     constructor(decision, state, input, startIndex, stopIndex, fullCtx) {
         this.decision = decision;
         this.fullCtx = fullCtx;

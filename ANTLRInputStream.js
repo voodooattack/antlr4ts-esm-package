@@ -10,8 +10,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import * as assert from "assert";
-import { Override } from "./Decorators";
-import { IntStream } from "./IntStream";
+import { Override } from "./Decorators.js";
+import { IntStream } from "./IntStream.js";
 const READ_BUFFER_SIZE = 1024;
 const INITIAL_BUFFER_SIZE = 1024;
 /**
@@ -24,10 +24,16 @@ const INITIAL_BUFFER_SIZE = 1024;
  * @deprecated as of 4.7, please use `CharStreams` interface.
  */
 export class ANTLRInputStream {
+    /** The data being scanned */
+    data;
+    /** How many characters are actually in the buffer */
+    n;
+    /** 0..n-1 index into string of next char */
+    p = 0;
+    /** What is name or source of this char stream? */
+    name;
     /** Copy data in string to a local char array */
     constructor(input) {
-        /** 0..n-1 index into string of next char */
-        this.p = 0;
         this.data = input;
         this.n = input.length;
     }

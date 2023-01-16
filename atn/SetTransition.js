@@ -11,12 +11,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { IntervalSet } from "../misc/IntervalSet";
-import { Override, NotNull, Nullable } from "../Decorators";
-import { Token } from "../Token";
-import { Transition } from "./Transition";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { Override, NotNull, Nullable } from "../Decorators.js";
+import { Token } from "../Token.js";
+import { Transition } from "./Transition.js";
 /** A transition containing a set of values. */
 let SetTransition = class SetTransition extends Transition {
+    set;
     // TODO (sam): should we really allow undefined here?
     constructor(target, set) {
         super(target);

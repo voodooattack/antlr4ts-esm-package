@@ -11,9 +11,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { BitSet } from "./misc/BitSet";
-import { Override, NotNull } from "./Decorators";
-import { Interval } from "./misc/Interval";
+import { BitSet } from "./misc/BitSet.js";
+import { Override, NotNull } from "./Decorators.js";
+import { Interval } from "./misc/Interval.js";
 /**
  * This implementation of {@link ANTLRErrorListener} can be used to identify
  * certain potential correctness and performance problems in grammars. "Reports"
@@ -34,6 +34,7 @@ import { Interval } from "./misc/Interval";
  * @author Sam Harwell
  */
 export class DiagnosticErrorListener {
+    exactOnly;
     /**
      * Initializes a new instance of {@link DiagnosticErrorListener}, specifying
      * whether all ambiguities or only exact ambiguities are reported.

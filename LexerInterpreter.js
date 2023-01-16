@@ -11,11 +11,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Lexer } from "./Lexer";
-import { LexerATNSimulator } from "./atn/LexerATNSimulator";
-import { NotNull } from "./Decorators";
-import { Override } from "./Decorators";
+import { Lexer } from "./Lexer.js";
+import { LexerATNSimulator } from "./atn/LexerATNSimulator.js";
+import { NotNull } from "./Decorators.js";
+import { Override } from "./Decorators.js";
 let LexerInterpreter = class LexerInterpreter extends Lexer {
+    _grammarFileName;
+    _atn;
+    _ruleNames;
+    _channelNames;
+    _modeNames;
+    _vocabulary;
     constructor(grammarFileName, vocabulary, ruleNames, channelNames, modeNames, atn, input) {
         super(input);
         if (atn.grammarType !== 0 /* ATNType.LEXER */) {

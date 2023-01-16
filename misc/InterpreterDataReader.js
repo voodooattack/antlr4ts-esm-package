@@ -2,19 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import * as fs from "fs";
 import * as util from "util";
-import { VocabularyImpl } from "../VocabularyImpl";
-import { ATNDeserializer } from "../atn/ATNDeserializer";
+import { VocabularyImpl } from "../VocabularyImpl.js";
+import { ATNDeserializer } from "../atn/ATNDeserializer.js";
 function splitToLines(buffer) {
     let lines = [];
     let index = 0;
@@ -68,105 +59,104 @@ export var InterpreterDataReader;
      *
      * Data for a parser does not contain channel and mode names.
      */
-    function parseFile(fileName) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let result = new InterpreterDataReader.InterpreterData();
-            let input = yield util.promisify(fs.readFile)(fileName);
-            let lines = splitToLines(input);
-            try {
-                let line;
-                let lineIndex = 0;
-                let literalNames = [];
-                let symbolicNames = [];
-                line = lines[lineIndex++];
-                if (line !== "token literal names:") {
-                    throw new RangeError("Unexpected data entry");
-                }
-                for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
-                    if (line.length === 0) {
-                        break;
-                    }
-                    literalNames.push(line === "null" ? "" : line);
-                }
-                line = lines[lineIndex++];
-                if (line !== "token symbolic names:") {
-                    throw new RangeError("Unexpected data entry");
-                }
-                for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
-                    if (line.length === 0) {
-                        break;
-                    }
-                    symbolicNames.push(line === "null" ? "" : line);
-                }
-                let displayNames = [];
-                result.vocabulary = new VocabularyImpl(literalNames, symbolicNames, displayNames);
-                line = lines[lineIndex++];
-                if (line !== "rule names:") {
-                    throw new RangeError("Unexpected data entry");
-                }
-                for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
-                    if (line.length === 0) {
-                        break;
-                    }
-                    result.ruleNames.push(line);
-                }
-                line = lines[lineIndex++];
-                if (line === "channel names:") { // Additional lexer data.
-                    result.channels = [];
-                    for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
-                        if (line.length === 0) {
-                            break;
-                        }
-                        result.channels.push(line);
-                    }
-                    line = lines[lineIndex++];
-                    if (line !== "mode names:") {
-                        throw new RangeError("Unexpected data entry");
-                    }
-                    result.modes = [];
-                    for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
-                        if (line.length === 0) {
-                            break;
-                        }
-                        result.modes.push(line);
-                    }
-                }
-                line = lines[lineIndex++];
-                if (line !== "atn:") {
-                    throw new RangeError("Unexpected data entry");
-                }
-                line = lines[lineIndex++];
-                let elements = line.split(",");
-                let serializedATN = new Uint16Array(elements.length);
-                for (let i = 0; i < elements.length; ++i) {
-                    let value;
-                    let element = elements[i];
-                    if (element.startsWith("[")) {
-                        value = parseInt(element.substring(1).trim(), 10);
-                    }
-                    else if (element.endsWith("]")) {
-                        value = parseInt(element.substring(0, element.length - 1).trim(), 10);
-                    }
-                    else {
-                        value = parseInt(element.trim(), 10);
-                    }
-                    serializedATN[i] = value;
-                }
-                let deserializer = new ATNDeserializer();
-                result.atn = deserializer.deserialize(serializedATN);
+    async function parseFile(fileName) {
+        let result = new InterpreterDataReader.InterpreterData();
+        let input = await util.promisify(fs.readFile)(fileName);
+        let lines = splitToLines(input);
+        try {
+            let line;
+            let lineIndex = 0;
+            let literalNames = [];
+            let symbolicNames = [];
+            line = lines[lineIndex++];
+            if (line !== "token literal names:") {
+                throw new RangeError("Unexpected data entry");
             }
-            catch (e) {
-                // We just swallow the error and return empty objects instead.
+            for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
+                if (line.length === 0) {
+                    break;
+                }
+                literalNames.push(line === "null" ? "" : line);
             }
-            return result;
-        });
+            line = lines[lineIndex++];
+            if (line !== "token symbolic names:") {
+                throw new RangeError("Unexpected data entry");
+            }
+            for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
+                if (line.length === 0) {
+                    break;
+                }
+                symbolicNames.push(line === "null" ? "" : line);
+            }
+            let displayNames = [];
+            result.vocabulary = new VocabularyImpl(literalNames, symbolicNames, displayNames);
+            line = lines[lineIndex++];
+            if (line !== "rule names:") {
+                throw new RangeError("Unexpected data entry");
+            }
+            for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
+                if (line.length === 0) {
+                    break;
+                }
+                result.ruleNames.push(line);
+            }
+            line = lines[lineIndex++];
+            if (line === "channel names:") { // Additional lexer data.
+                result.channels = [];
+                for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
+                    if (line.length === 0) {
+                        break;
+                    }
+                    result.channels.push(line);
+                }
+                line = lines[lineIndex++];
+                if (line !== "mode names:") {
+                    throw new RangeError("Unexpected data entry");
+                }
+                result.modes = [];
+                for (line = lines[lineIndex++]; line !== undefined; line = lines[lineIndex++]) {
+                    if (line.length === 0) {
+                        break;
+                    }
+                    result.modes.push(line);
+                }
+            }
+            line = lines[lineIndex++];
+            if (line !== "atn:") {
+                throw new RangeError("Unexpected data entry");
+            }
+            line = lines[lineIndex++];
+            let elements = line.split(",");
+            let serializedATN = new Uint16Array(elements.length);
+            for (let i = 0; i < elements.length; ++i) {
+                let value;
+                let element = elements[i];
+                if (element.startsWith("[")) {
+                    value = parseInt(element.substring(1).trim(), 10);
+                }
+                else if (element.endsWith("]")) {
+                    value = parseInt(element.substring(0, element.length - 1).trim(), 10);
+                }
+                else {
+                    value = parseInt(element.trim(), 10);
+                }
+                serializedATN[i] = value;
+            }
+            let deserializer = new ATNDeserializer();
+            result.atn = deserializer.deserialize(serializedATN);
+        }
+        catch (e) {
+            // We just swallow the error and return empty objects instead.
+        }
+        return result;
     }
     InterpreterDataReader.parseFile = parseFile;
     class InterpreterData {
-        constructor() {
-            this.vocabulary = VocabularyImpl.EMPTY_VOCABULARY;
-            this.ruleNames = [];
-        }
+        atn;
+        vocabulary = VocabularyImpl.EMPTY_VOCABULARY;
+        ruleNames = [];
+        channels; // Only valid for lexer grammars.
+        modes; // ditto
     }
     InterpreterDataReader.InterpreterData = InterpreterData;
 })(InterpreterDataReader || (InterpreterDataReader = {}));

@@ -9,8 +9,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:51.5898546-07:00
-import { Override } from "./Decorators";
-import { ParserRuleContext } from "./ParserRuleContext";
+import { Override } from "./Decorators.js";
+import { ParserRuleContext } from "./ParserRuleContext.js";
 /**
  * This class extends {@link ParserRuleContext} by allowing the value of
  * {@link #getRuleIndex} to be explicitly set for the context.
@@ -23,6 +23,10 @@ import { ParserRuleContext } from "./ParserRuleContext";
  * provide equivalent functionality.
  */
 export class InterpreterRuleContext extends ParserRuleContext {
+    /**
+     * This is the backing field for {@link #getRuleIndex}.
+     */
+    _ruleIndex;
     constructor(ruleIndex, parent, invokingStateNumber) {
         if (invokingStateNumber !== undefined) {
             super(parent, invokingStateNumber);

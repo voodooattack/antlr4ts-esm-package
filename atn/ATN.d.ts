@@ -2,17 +2,17 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNState } from "./ATNState";
-import { ATNType } from "./ATNType";
-import { DecisionState } from "./DecisionState";
-import { DFA } from "../dfa/DFA";
-import { IntervalSet } from "../misc/IntervalSet";
-import { LexerAction } from "./LexerAction";
-import { PredictionContext } from "./PredictionContext";
-import { RuleContext } from "../RuleContext";
-import { RuleStartState } from "./RuleStartState";
-import { RuleStopState } from "./RuleStopState";
-import { TokensStartState } from "./TokensStartState";
+import { ATNState } from "./ATNState.js";
+import { ATNType } from "./ATNType.js";
+import { DecisionState } from "./DecisionState.js";
+import { DFA } from "../dfa/DFA.js";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { LexerAction } from "./LexerAction.js";
+import { PredictionContext } from "./PredictionContext.js";
+import { RuleContext } from "../RuleContext.js";
+import { RuleStartState } from "./RuleStartState.js";
+import { RuleStopState } from "./RuleStopState.js";
+import { TokensStartState } from "./TokensStartState.js";
 /** */
 export declare class ATN {
     readonly states: ATNState[];

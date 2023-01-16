@@ -2,11 +2,11 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Interval } from "./misc/Interval";
-import { RuleContext } from "./RuleContext";
-import { Token } from "./Token";
-import { TokenSource } from "./TokenSource";
-import { TokenStream } from "./TokenStream";
+import { Interval } from "./misc/Interval.js";
+import { RuleContext } from "./RuleContext.js";
+import { Token } from "./Token.js";
+import { TokenSource } from "./TokenSource.js";
+import { TokenStream } from "./TokenStream.js";
 /**
  * This implementation of {@link TokenStream} loads tokens from a
  * {@link TokenSource} on-demand, and places the tokens in a buffer to provide

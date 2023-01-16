@@ -12,10 +12,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:28.8810453-07:00
-import { ArrayEqualityComparator } from "../misc/ArrayEqualityComparator";
-import { LexerIndexedCustomAction } from "./LexerIndexedCustomAction";
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
+import { ArrayEqualityComparator } from "../misc/ArrayEqualityComparator.js";
+import { LexerIndexedCustomAction } from "./LexerIndexedCustomAction.js";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
 /**
  * Represents an executor for a sequence of lexer actions which traversed during
  * the matching operation of a lexer rule (token).
@@ -28,6 +28,12 @@ import { NotNull, Override } from "../Decorators";
  * @since 4.2
  */
 let LexerActionExecutor = class LexerActionExecutor {
+    _lexerActions;
+    /**
+     * Caches the result of {@link #hashCode} since the hash code is an element
+     * of the performance-critical {@link LexerATNConfig#hashCode} operation.
+     */
+    cachedHashCode;
     /**
      * Constructs an executor for a sequence of {@link LexerAction} actions.
      * @param lexerActions The lexer actions to execute.

@@ -2,13 +2,13 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ANTLRErrorListener } from "./ANTLRErrorListener";
-import { ATNConfigSet } from "./atn/ATNConfigSet";
-import { BitSet } from "./misc/BitSet";
-import { DFA } from "./dfa/DFA";
-import { Parser } from "./Parser";
-import { SimulatorState } from "./atn/SimulatorState";
-import { Token } from "./Token";
+import { ANTLRErrorListener } from "./ANTLRErrorListener.js";
+import { ATNConfigSet } from "./atn/ATNConfigSet.js";
+import { BitSet } from "./misc/BitSet.js";
+import { DFA } from "./dfa/DFA.js";
+import { Parser } from "./Parser.js";
+import { SimulatorState } from "./atn/SimulatorState.js";
+import { Token } from "./Token.js";
 /** How to emit recognition errors for parsers.
  */
 export interface ParserErrorListener extends ANTLRErrorListener<Token> {

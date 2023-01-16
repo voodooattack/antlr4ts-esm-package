@@ -11,11 +11,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { ATNConfigSet } from "./ATNConfigSet";
-import { DFAState } from "../dfa/DFAState";
-import { NotNull } from "../Decorators";
-import { PredictionContext } from "./PredictionContext";
+import { ATNConfigSet } from "./ATNConfigSet.js";
+import { DFAState } from "../dfa/DFAState.js";
+import { NotNull } from "../Decorators.js";
+import { PredictionContext } from "./PredictionContext.js";
 let ATNSimulator = class ATNSimulator {
+    /** Must distinguish between missing edge and edge we know leads nowhere */
+    static _ERROR;
     static get ERROR() {
         if (!ATNSimulator._ERROR) {
             ATNSimulator._ERROR = new DFAState(new ATNConfigSet());
@@ -23,6 +25,7 @@ let ATNSimulator = class ATNSimulator {
         }
         return ATNSimulator._ERROR;
     }
+    atn;
     constructor(atn) {
         this.atn = atn;
     }

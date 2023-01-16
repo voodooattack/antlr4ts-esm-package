@@ -8,13 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Override } from "../../Decorators";
-import { Trees } from "../Trees";
-import { XPathElement } from "./XPathElement";
+import { Override } from "../../Decorators.js";
+import { Trees } from "../Trees.js";
+import { XPathElement } from "./XPathElement.js";
 /**
  * Either `ID` at start of path or `...//ID` in middle of path.
  */
 export class XPathRuleAnywhereElement extends XPathElement {
+    ruleIndex;
     constructor(ruleName, ruleIndex) {
         super(ruleName);
         this.ruleIndex = ruleIndex;

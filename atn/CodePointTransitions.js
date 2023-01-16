@@ -2,11 +2,11 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import * as Character from "../misc/Character";
-import { AtomTransition } from "./AtomTransition";
-import { IntervalSet } from "../misc/IntervalSet";
-import { RangeTransition } from "./RangeTransition";
-import { SetTransition } from "./SetTransition";
+import * as Character from "../misc/Character.js";
+import { AtomTransition } from "./AtomTransition.js";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { RangeTransition } from "./RangeTransition.js";
+import { SetTransition } from "./SetTransition.js";
 /**
  * Utility functions to create {@link AtomTransition}, {@link RangeTransition},
  * and {@link SetTransition} appropriately based on the range of the input.

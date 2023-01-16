@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Lexer } from "../Lexer";
-import { LexerAction } from "./LexerAction";
-import { LexerActionType } from "./LexerActionType";
+import { Lexer } from "../Lexer.js";
+import { LexerAction } from "./LexerAction.js";
+import { LexerActionType } from "./LexerActionType.js";
 /**
  * Implements the `channel` lexer action by calling
  * {@link Lexer#setChannel} with the assigned channel.

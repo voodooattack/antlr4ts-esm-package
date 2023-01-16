@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNState } from "./ATNState";
-import { RuleStartState } from "./RuleStartState";
-import { Transition } from "./Transition";
-import { TransitionType } from "./TransitionType";
+import { ATNState } from "./ATNState.js";
+import { RuleStartState } from "./RuleStartState.js";
+import { Transition } from "./Transition.js";
+import { TransitionType } from "./TransitionType.js";
 /** */
 export declare class RuleTransition extends Transition {
     /** Ptr to the rule definition object for this rule ref */

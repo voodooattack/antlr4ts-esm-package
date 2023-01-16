@@ -11,11 +11,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { ATN } from "../atn/ATN";
-import { BitSet } from "../misc/BitSet";
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
-import { PredictionContext } from "../atn/PredictionContext";
+import { ATN } from "../atn/ATN.js";
+import { BitSet } from "../misc/BitSet.js";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
+import { PredictionContext } from "../atn/PredictionContext.js";
 import * as assert from "assert";
 /** A DFA state represents a set of possible ATN configurations.
  *  As Aho, Sethi, Ullman p. 117 says "The DFA uses its state
@@ -42,13 +42,26 @@ import * as assert from "assert";
  *  meaning that state was reached via a different set of rule invocations.
  */
 export class DFAState {
+    stateNumber = -1;
+    configs;
+    /** `edges.get(symbol)` points to target of symbol.
+     */
+    edges;
+    _acceptStateInfo;
+    /** These keys for these edges are the top level element of the global context. */
+    contextEdges;
+    /** Symbols in this set require a global context transition before matching an input symbol. */
+    contextSymbols;
+    /**
+     * This list is computed by {@link ParserATNSimulator#predicateDFAState}.
+     */
+    predicates;
     /**
      * Constructs a new `DFAState`.
      *
      * @param configs The set of ATN configurations defining this state.
      */
     constructor(configs) {
-        this.stateNumber = -1;
         this.configs = configs;
         this.edges = new Map();
         this.contextEdges = new Map();
@@ -204,6 +217,8 @@ __decorate([
 (function (DFAState) {
     /** Map a predicate to a predicted alternative. */
     let PredPrediction = class PredPrediction {
+        pred; // never null; at least SemanticContext.NONE
+        alt;
         constructor(pred, alt) {
             this.alt = alt;
             this.pred = pred;

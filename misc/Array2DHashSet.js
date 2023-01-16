@@ -14,9 +14,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var _a;
 // ConvertTo-TS run at 2016-10-03T02:09:41.7434086-07:00
 import * as assert from "assert";
-import { DefaultEqualityComparator } from "./DefaultEqualityComparator";
-import { NotNull, Nullable, Override, SuppressWarnings } from "../Decorators";
-import { MurmurHash } from "./MurmurHash";
+import { DefaultEqualityComparator } from "./DefaultEqualityComparator.js";
+import { NotNull, Nullable, Override, SuppressWarnings } from "../Decorators.js";
+import { MurmurHash } from "./MurmurHash.js";
 /** {@link Set} implementation with closed hashing (open addressing). */
 // NOTE:  JavaScript's Set interface has on significant different diffrence from Java's:
 // 		  e.g. the return type of add() differs!
@@ -24,10 +24,12 @@ import { MurmurHash } from "./MurmurHash";
 const INITAL_CAPACITY = 16; // must be power of 2
 const LOAD_FACTOR = 0.75;
 export class Array2DHashSet {
+    comparator;
+    buckets;
+    /** How many elements in set */
+    n = 0;
+    threshold = Math.floor(INITAL_CAPACITY * LOAD_FACTOR); // when to expand
     constructor(comparatorOrSet, initialCapacity = INITAL_CAPACITY) {
-        /** How many elements in set */
-        this.n = 0;
-        this.threshold = Math.floor(INITAL_CAPACITY * LOAD_FACTOR); // when to expand
         if (comparatorOrSet instanceof Array2DHashSet) {
             this.comparator = comparatorOrSet.comparator;
             this.buckets = comparatorOrSet.buckets.slice(0);

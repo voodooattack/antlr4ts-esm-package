@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { EqualityComparator } from "./EqualityComparator";
-import { JavaCollection, JavaSet } from "./Stubs";
+import { EqualityComparator } from "./EqualityComparator.js";
+import { JavaCollection, JavaSet } from "./Stubs.js";
 export declare class Array2DHashSet<T extends {
     toString(): string;
 }> implements JavaSet<T> {

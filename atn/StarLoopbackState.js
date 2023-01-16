@@ -9,9 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:37.6368726-07:00
-import { ATNState } from "./ATNState";
-import { ATNStateType } from "./ATNStateType";
-import { Override } from "../Decorators";
+import { ATNState } from "./ATNState.js";
+import { ATNStateType } from "./ATNStateType.js";
+import { Override } from "../Decorators.js";
 export class StarLoopbackState extends ATNState {
     get loopEntryState() {
         return this.transition(0).target;

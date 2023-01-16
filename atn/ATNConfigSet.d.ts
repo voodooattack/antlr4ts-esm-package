@@ -2,14 +2,14 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ATNConfig } from "./ATNConfig";
-import { ATNSimulator } from "./ATNSimulator";
-import { ATNState } from "./ATNState";
-import { BitSet } from "../misc/BitSet";
-import { ConflictInfo } from "./ConflictInfo";
-import { JavaSet } from "../misc/Stubs";
-import { PredictionContextCache } from "./PredictionContextCache";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ATNConfig } from "./ATNConfig.js";
+import { ATNSimulator } from "./ATNSimulator.js";
+import { ATNState } from "./ATNState.js";
+import { BitSet } from "../misc/BitSet.js";
+import { ConflictInfo } from "./ConflictInfo.js";
+import { JavaSet } from "../misc/Stubs.js";
+import { PredictionContextCache } from "./PredictionContextCache.js";
 /**
  * Represents a set of ATN configurations (see `ATNConfig`). As configurations are added to the set, they are merged
  * with other `ATNConfig` instances already in the set when possible using the graph-structured stack.

@@ -2,15 +2,15 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Chunk } from "./Chunk";
-import { Lexer } from "../../Lexer";
-import { MultiMap } from "../../misc/MultiMap";
-import { Parser } from "../../Parser";
-import { ParseTree } from "../ParseTree";
-import { ParseTreeMatch } from "./ParseTreeMatch";
-import { ParseTreePattern } from "./ParseTreePattern";
-import { RuleTagToken } from "./RuleTagToken";
-import { Token } from "../../Token";
+import { Chunk } from "./Chunk.js";
+import { Lexer } from "../../Lexer.js";
+import { MultiMap } from "../../misc/MultiMap.js";
+import { Parser } from "../../Parser.js";
+import { ParseTree } from "../ParseTree.js";
+import { ParseTreeMatch } from "./ParseTreeMatch.js";
+import { ParseTreePattern } from "./ParseTreePattern.js";
+import { RuleTagToken } from "./RuleTagToken.js";
+import { Token } from "../../Token.js";
 /**
  * A tree pattern matching mechanism for ANTLR {@link ParseTree}s.
  *

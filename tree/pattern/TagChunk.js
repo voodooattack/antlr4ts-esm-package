@@ -9,8 +9,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:46.1670669-07:00
-import { Chunk } from "./Chunk";
-import { NotNull, Override } from "../../Decorators";
+import { Chunk } from "./Chunk.js";
+import { NotNull, Override } from "../../Decorators.js";
 /**
  * Represents a placeholder tag in a tree pattern. A tag can have any of the
  * following forms.
@@ -24,6 +24,14 @@ import { NotNull, Override } from "../../Decorators";
  * from ensuring that the tag is a defined, non-empty string.
  */
 export class TagChunk extends Chunk {
+    /**
+     * This is the backing field for `tag`.
+     */
+    _tag;
+    /**
+     * This is the backing field for `label`.
+     */
+    _label;
     /**
      * Construct a new instance of {@link TagChunk} using the specified label
      * and tag.

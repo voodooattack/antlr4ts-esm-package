@@ -2,16 +2,16 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ANTLRErrorStrategy } from "./ANTLRErrorStrategy";
-import { FailedPredicateException } from "./FailedPredicateException";
-import { InputMismatchException } from "./InputMismatchException";
-import { IntervalSet } from "./misc/IntervalSet";
-import { NoViableAltException } from "./NoViableAltException";
-import { Parser } from "./Parser";
-import { ParserRuleContext } from "./ParserRuleContext";
-import { RecognitionException } from "./RecognitionException";
-import { Token } from "./Token";
-import { TokenSource } from "./TokenSource";
+import { ANTLRErrorStrategy } from "./ANTLRErrorStrategy.js";
+import { FailedPredicateException } from "./FailedPredicateException.js";
+import { InputMismatchException } from "./InputMismatchException.js";
+import { IntervalSet } from "./misc/IntervalSet.js";
+import { NoViableAltException } from "./NoViableAltException.js";
+import { Parser } from "./Parser.js";
+import { ParserRuleContext } from "./ParserRuleContext.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { Token } from "./Token.js";
+import { TokenSource } from "./TokenSource.js";
 /**
  * This is the default implementation of {@link ANTLRErrorStrategy} used for
  * error reporting and recovery in ANTLR parsers.

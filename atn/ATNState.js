@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Override } from "../Decorators";
+import { Override } from "../Decorators.js";
 const INITIAL_NUM_TRANSITIONS = 4;
 /**
  * The following images show the relation of states and
@@ -67,14 +67,16 @@ const INITIAL_NUM_TRANSITIONS = 4;
  * <embed src="images/OptionalNonGreedy.svg" type="image/svg+xml"/>
  */
 export class ATNState {
-    constructor() {
-        this.stateNumber = ATNState.INVALID_STATE_NUMBER;
-        this.ruleIndex = 0; // at runtime, we don't have Rule objects
-        this.epsilonOnlyTransitions = false;
-        /** Track the transitions emanating from this ATN state. */
-        this.transitions = [];
-        this.optimizedTransitions = this.transitions;
-    }
+    /** Which ATN are we in? */
+    atn;
+    stateNumber = ATNState.INVALID_STATE_NUMBER;
+    ruleIndex = 0; // at runtime, we don't have Rule objects
+    epsilonOnlyTransitions = false;
+    /** Track the transitions emanating from this ATN state. */
+    transitions = [];
+    optimizedTransitions = this.transitions;
+    /** Used to cache lookahead during parsing, not used during construction */
+    nextTokenWithinRule;
     /**
      * Gets the state number.
      *

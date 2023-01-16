@@ -2,17 +2,17 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATN } from "./ATN";
-import { ATNConfig } from "./ATNConfig";
-import { ATNConfigSet } from "./ATNConfigSet";
-import { ATNSimulator } from "./ATNSimulator";
-import { ATNState } from "./ATNState";
-import { CharStream } from "../CharStream";
-import { DFA } from "../dfa/DFA";
-import { DFAState } from "../dfa/DFAState";
-import { Lexer } from "../Lexer";
-import { LexerActionExecutor } from "./LexerActionExecutor";
-import { Transition } from "./Transition";
+import { ATN } from "./ATN.js";
+import { ATNConfig } from "./ATNConfig.js";
+import { ATNConfigSet } from "./ATNConfigSet.js";
+import { ATNSimulator } from "./ATNSimulator.js";
+import { ATNState } from "./ATNState.js";
+import { CharStream } from "../CharStream.js";
+import { DFA } from "../dfa/DFA.js";
+import { DFAState } from "../dfa/DFAState.js";
+import { Lexer } from "../Lexer.js";
+import { LexerActionExecutor } from "./LexerActionExecutor.js";
+import { Transition } from "./Transition.js";
 /** "dup" of ParserInterpreter */
 export declare class LexerATNSimulator extends ATNSimulator {
     optimize_tail_calls: boolean;

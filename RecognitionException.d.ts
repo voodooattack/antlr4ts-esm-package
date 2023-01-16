@@ -2,14 +2,14 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { IntervalSet } from "./misc/IntervalSet";
-import { IntStream } from "./IntStream";
-import { Lexer } from "./Lexer";
-import { ParserRuleContext } from "./ParserRuleContext";
-import { Recognizer } from "./Recognizer";
-import { RuleContext } from "./RuleContext";
-import { Token } from "./Token";
+import { CharStream } from "./CharStream.js";
+import { IntervalSet } from "./misc/IntervalSet.js";
+import { IntStream } from "./IntStream.js";
+import { Lexer } from "./Lexer.js";
+import { ParserRuleContext } from "./ParserRuleContext.js";
+import { Recognizer } from "./Recognizer.js";
+import { RuleContext } from "./RuleContext.js";
+import { Token } from "./Token.js";
 /** The root of the ANTLR exception hierarchy. In general, ANTLR tracks just
  *  3 kinds of errors: prediction errors, failed predicate errors, and
  *  mismatched input errors. In each case, the parser knows where it is

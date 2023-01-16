@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATN } from "./atn/ATN";
-import { CharStream } from "./CharStream";
-import { Lexer } from "./Lexer";
-import { Vocabulary } from "./Vocabulary";
+import { ATN } from "./atn/ATN.js";
+import { CharStream } from "./CharStream.js";
+import { Lexer } from "./Lexer.js";
+import { Vocabulary } from "./Vocabulary.js";
 export declare class LexerInterpreter extends Lexer {
     protected _grammarFileName: string;
     protected _atn: ATN;

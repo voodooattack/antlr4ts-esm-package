@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ANTLRErrorListener } from "./ANTLRErrorListener";
-import { RecognitionException } from "./RecognitionException";
-import { Recognizer } from "./Recognizer";
+import { ANTLRErrorListener } from "./ANTLRErrorListener.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { Recognizer } from "./Recognizer.js";
 /**
  *
  * @author Sam Harwell

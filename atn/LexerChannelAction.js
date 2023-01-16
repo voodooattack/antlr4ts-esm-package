@@ -11,8 +11,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
 /**
  * Implements the `channel` lexer action by calling
  * {@link Lexer#setChannel} with the assigned channel.
@@ -21,6 +21,7 @@ import { NotNull, Override } from "../Decorators";
  * @since 4.2
  */
 export class LexerChannelAction {
+    _channel;
     /**
      * Constructs a new `channel` action with the specified channel value.
      * @param channel The channel value to pass to {@link Lexer#setChannel}.

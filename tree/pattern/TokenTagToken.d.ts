@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CommonToken } from "../../CommonToken";
+import { CommonToken } from "../../CommonToken.js";
 /**
  * A {@link Token} object representing a token of a particular type; e.g.,
  * `<ID>`. These tokens are created for {@link TagChunk} chunks where the

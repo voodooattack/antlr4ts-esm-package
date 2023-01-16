@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { Interval } from "./misc/Interval";
+import { CharStream } from "./CharStream.js";
+import { Interval } from "./misc/Interval.js";
 /**
  * Vacuum all input from a {@link Reader}/{@link InputStream} and then treat it
  * like a `char[]` buffer. Can also pass in a {@link String} or

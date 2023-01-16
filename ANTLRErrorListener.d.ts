@@ -3,8 +3,8 @@
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
 /** How to emit recognition errors. */
-import { Recognizer } from "./Recognizer";
-import { RecognitionException } from "./RecognitionException";
+import { Recognizer } from "./Recognizer.js";
+import { RecognitionException } from "./RecognitionException.js";
 export interface ANTLRErrorListener<TSymbol> {
     /**
      * Upon syntax error, notify any interested parties. This is not how to

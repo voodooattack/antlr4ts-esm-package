@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Interval } from "./misc/Interval";
-import { Token } from "./Token";
-import { TokenStream } from "./TokenStream";
+import { Interval } from "./misc/Interval.js";
+import { Token } from "./Token.js";
+import { TokenStream } from "./TokenStream.js";
 /**
  * Useful for rewriting out a buffered input token stream after doing some
  * augmentation or other manipulations on it.

@@ -12,6 +12,9 @@
  * @author Sam Harwell
  */
 export class ParseCancellationException extends Error {
+    cause;
+    // private static serialVersionUID: number =  -3529552099366979683L;
+    stack;
     constructor(cause) {
         super(cause.message);
         this.cause = cause;

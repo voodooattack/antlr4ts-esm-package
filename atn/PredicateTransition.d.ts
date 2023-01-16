@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { AbstractPredicateTransition } from "./AbstractPredicateTransition";
-import { ATNState } from "./ATNState";
-import { SemanticContext } from "./SemanticContext";
-import { TransitionType } from "./TransitionType";
+import { AbstractPredicateTransition } from "./AbstractPredicateTransition.js";
+import { ATNState } from "./ATNState.js";
+import { SemanticContext } from "./SemanticContext.js";
+import { TransitionType } from "./TransitionType.js";
 /** TODO: this is old comment:
  *  A tree of semantic predicates from the grammar AST if label==SEMPRED.
  *  In the ATN, labels will always be exactly one predicate, but the DFA

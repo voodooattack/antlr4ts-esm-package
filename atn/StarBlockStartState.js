@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { ATNStateType } from "./ATNStateType";
-import { BlockStartState } from "./BlockStartState";
-import { Override } from "../Decorators";
+import { ATNStateType } from "./ATNStateType.js";
+import { BlockStartState } from "./BlockStartState.js";
+import { Override } from "../Decorators.js";
 /** The block that begins a closure loop. */
 export class StarBlockStartState extends BlockStartState {
     get stateType() {

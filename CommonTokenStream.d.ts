@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { BufferedTokenStream } from "./BufferedTokenStream";
-import { Token } from "./Token";
-import { TokenSource } from "./TokenSource";
+import { BufferedTokenStream } from "./BufferedTokenStream.js";
+import { Token } from "./Token.js";
+import { TokenSource } from "./TokenSource.js";
 /**
  * This class extends {@link BufferedTokenStream} with functionality to filter
  * token streams to tokens on a particular channel (tokens where

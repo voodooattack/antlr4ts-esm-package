@@ -11,9 +11,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Override, NotNull } from "../Decorators";
-import { Transition } from "./Transition";
+import { Override, NotNull } from "../Decorators.js";
+import { Transition } from "./Transition.js";
 let ActionTransition = class ActionTransition extends Transition {
+    ruleIndex;
+    actionIndex;
+    isCtxDependent; // e.g., $i ref in action
     constructor(target, ruleIndex, actionIndex = -1, isCtxDependent = false) {
         super(target);
         this.ruleIndex = ruleIndex;

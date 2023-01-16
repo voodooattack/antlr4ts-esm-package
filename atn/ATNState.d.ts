@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATN } from "./ATN";
-import { ATNStateType } from "./ATNStateType";
-import { IntervalSet } from "../misc/IntervalSet";
-import { Transition } from "./Transition";
+import { ATN } from "./ATN.js";
+import { ATNStateType } from "./ATNStateType.js";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { Transition } from "./Transition.js";
 /**
  * The following images show the relation of states and
  * {@link ATNState#transitions} for various grammar constructs.

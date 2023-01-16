@@ -11,29 +11,63 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Interval } from "./misc/Interval";
-import { NotNull, Override } from "./Decorators";
-import { Token } from "./Token";
+import { Interval } from "./misc/Interval.js";
+import { NotNull, Override } from "./Decorators.js";
+import { Token } from "./Token.js";
 let CommonToken = class CommonToken {
+    /**
+     * An empty {@link Tuple2} which is used as the default value of
+     * {@link #source} for tokens that do not have a source.
+     */
+    static EMPTY_SOURCE = { source: undefined, stream: undefined };
+    /**
+     * This is the backing field for `type`.
+     */
+    _type;
+    /**
+     * This is the backing field for {@link #getLine} and {@link #setLine}.
+     */
+    _line = 0;
+    /**
+     * This is the backing field for {@link #getCharPositionInLine} and
+     * {@link #setCharPositionInLine}.
+     */
+    _charPositionInLine = -1; // set to invalid position
+    /**
+     * This is the backing field for {@link #getChannel} and
+     * {@link #setChannel}.
+     */
+    _channel = Token.DEFAULT_CHANNEL;
+    /**
+     * This is the backing field for {@link #getTokenSource} and
+     * {@link #getInputStream}.
+     *
+     * These properties share a field to reduce the memory footprint of
+     * {@link CommonToken}. Tokens created by a {@link CommonTokenFactory} from
+     * the same source and input stream share a reference to the same
+     * {@link Tuple2} containing these values.
+     */
+    source;
+    /**
+     * This is the backing field for {@link #getText} when the token text is
+     * explicitly set in the constructor or via {@link #setText}.
+     *
+     * @see `text`
+     */
+    _text;
+    /**
+     * This is the backing field for `tokenIndex`.
+     */
+    index = -1;
+    /**
+     * This is the backing field for `startIndex`.
+     */
+    start;
+    /**
+     * This is the backing field for `stopIndex`.
+     */
+    stop;
     constructor(type, text, source = CommonToken.EMPTY_SOURCE, channel = Token.DEFAULT_CHANNEL, start = 0, stop = 0) {
-        /**
-         * This is the backing field for {@link #getLine} and {@link #setLine}.
-         */
-        this._line = 0;
-        /**
-         * This is the backing field for {@link #getCharPositionInLine} and
-         * {@link #setCharPositionInLine}.
-         */
-        this._charPositionInLine = -1; // set to invalid position
-        /**
-         * This is the backing field for {@link #getChannel} and
-         * {@link #setChannel}.
-         */
-        this._channel = Token.DEFAULT_CHANNEL;
-        /**
-         * This is the backing field for `tokenIndex`.
-         */
-        this.index = -1;
         this._text = text;
         this._type = type;
         this.source = source;
@@ -175,11 +209,6 @@ let CommonToken = class CommonToken {
         return "[@" + this.tokenIndex + "," + this.start + ":" + this.stop + "='" + txt + "',<" + typeString + ">" + channelStr + "," + this._line + ":" + this.charPositionInLine + "]";
     }
 };
-/**
- * An empty {@link Tuple2} which is used as the default value of
- * {@link #source} for tokens that do not have a source.
- */
-CommonToken.EMPTY_SOURCE = { source: undefined, stream: undefined };
 __decorate([
     NotNull
 ], CommonToken.prototype, "source", void 0);

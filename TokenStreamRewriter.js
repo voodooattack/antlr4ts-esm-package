@@ -9,9 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:58.1768850-07:00
-import { Interval } from "./misc/Interval";
-import { Override } from "./Decorators";
-import { Token } from "./Token";
+import { Interval } from "./misc/Interval.js";
+import { Override } from "./Decorators.js";
+import { Token } from "./Token.js";
 /**
  * Useful for rewriting out a buffered input token stream after doing some
  * augmentation or other manipulations on it.
@@ -81,6 +81,18 @@ import { Token } from "./Token";
  * first example shows.
  */
 export class TokenStreamRewriter {
+    static DEFAULT_PROGRAM_NAME = "default";
+    static PROGRAM_INIT_SIZE = 100;
+    static MIN_TOKEN_INDEX = 0;
+    /** Our source stream */
+    tokens;
+    /** You may have multiple, named streams of rewrite operations.
+     *  I'm calling these things "programs."
+     *  Maps String (name) &rarr; rewrite (List)
+     */
+    programs;
+    /** Map String (program name) &rarr; Integer index */
+    lastRewriteTokenIndexes;
     constructor(tokens) {
         this.tokens = tokens;
         this.programs = new Map();
@@ -418,11 +430,14 @@ export class TokenStreamRewriter {
         return ops;
     }
 }
-TokenStreamRewriter.DEFAULT_PROGRAM_NAME = "default";
-TokenStreamRewriter.PROGRAM_INIT_SIZE = 100;
-TokenStreamRewriter.MIN_TOKEN_INDEX = 0;
 // Define the rewrite operation hierarchy
 export class RewriteOperation {
+    tokens;
+    /** What index into rewrites List are we? */
+    instructionIndex;
+    /** Token buffer index. */
+    index;
+    text;
     constructor(tokens, index, instructionIndex, text) {
         this.tokens = tokens;
         this.instructionIndex = instructionIndex;
@@ -474,6 +489,7 @@ class InsertAfterOp extends InsertBeforeOp {
  *  instructions.
  */
 class ReplaceOp extends RewriteOperation {
+    lastIndex;
     constructor(tokens, from, to, instructionIndex, text) {
         super(tokens, from, instructionIndex, text);
         this.lastIndex = to;

@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { TokenSource } from "./TokenSource";
+import { CharStream } from "./CharStream.js";
+import { TokenSource } from "./TokenSource.js";
 /** A token has properties: text, type, line, character position in the line
  *  (so we can ignore tabs), token channel, index, and source from which
  *  we obtained this token.

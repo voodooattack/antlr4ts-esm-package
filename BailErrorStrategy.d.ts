@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { DefaultErrorStrategy } from "./DefaultErrorStrategy";
-import { Parser } from "./Parser";
-import { RecognitionException } from "./RecognitionException";
-import { Token } from "./Token";
+import { DefaultErrorStrategy } from "./DefaultErrorStrategy.js";
+import { Parser } from "./Parser.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { Token } from "./Token.js";
 /**
  * This implementation of {@link ANTLRErrorStrategy} responds to syntax errors
  * by immediately canceling the parse operation with a

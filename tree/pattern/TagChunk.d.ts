@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Chunk } from "./Chunk";
+import { Chunk } from "./Chunk.js";
 /**
  * Represents a placeholder tag in a tree pattern. A tag can have any of the
  * following forms.

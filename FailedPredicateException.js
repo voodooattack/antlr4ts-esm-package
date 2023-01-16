@@ -11,15 +11,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { RecognitionException } from "./RecognitionException";
-import { NotNull } from "./Decorators";
-import { PredicateTransition } from "./atn/PredicateTransition";
+import { RecognitionException } from "./RecognitionException.js";
+import { NotNull } from "./Decorators.js";
+import { PredicateTransition } from "./atn/PredicateTransition.js";
 /** A semantic predicate failed during validation.  Validation of predicates
  *  occurs when normally parsing the alternative just like matching a token.
  *  Disambiguating predicate evaluation occurs when we test a predicate during
  *  prediction.
  */
 let FailedPredicateException = class FailedPredicateException extends RecognitionException {
+    //private static serialVersionUID: number =  5379330841495778709L;
+    _ruleIndex;
+    _predicateIndex;
+    _predicate;
     constructor(recognizer, predicate, message) {
         super(recognizer, recognizer.inputStream, recognizer.context, FailedPredicateException.formatMessage(predicate, message));
         let s = recognizer.interpreter.atn.states[recognizer.state];

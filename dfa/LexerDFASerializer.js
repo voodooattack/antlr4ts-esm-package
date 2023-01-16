@@ -11,9 +11,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { DFASerializer } from "./DFASerializer";
-import { NotNull, Override } from "../Decorators";
-import { VocabularyImpl } from "../VocabularyImpl";
+import { DFASerializer } from "./DFASerializer.js";
+import { NotNull, Override } from "../Decorators.js";
+import { VocabularyImpl } from "../VocabularyImpl.js";
 let LexerDFASerializer = class LexerDFASerializer extends DFASerializer {
     constructor(dfa) {
         super(dfa, VocabularyImpl.EMPTY_VOCABULARY);

@@ -2,30 +2,30 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ActionTransition } from "./ActionTransition";
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ATN } from "./ATN";
-import { ATNConfig } from "./ATNConfig";
-import { ATNConfigSet } from "./ATNConfigSet";
-import { ATNSimulator } from "./ATNSimulator";
-import { ATNState } from "./ATNState";
-import { BitSet } from "../misc/BitSet";
-import { DFA } from "../dfa/DFA";
-import { DFAState } from "../dfa/DFAState";
-import { IntegerList } from "../misc/IntegerList";
-import { NoViableAltException } from "../NoViableAltException";
-import { Parser } from "../Parser";
-import { ParserRuleContext } from "../ParserRuleContext";
-import { PrecedencePredicateTransition } from "./PrecedencePredicateTransition";
-import { PredicateTransition } from "./PredicateTransition";
-import { PredictionContextCache } from "./PredictionContextCache";
-import { PredictionMode } from "./PredictionMode";
-import { RuleContext } from "../RuleContext";
-import { RuleTransition } from "./RuleTransition";
-import { SemanticContext } from "./SemanticContext";
-import { SimulatorState } from "./SimulatorState";
-import { TokenStream } from "../TokenStream";
-import { Transition } from "./Transition";
+import { ActionTransition } from "./ActionTransition.js";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ATN } from "./ATN.js";
+import { ATNConfig } from "./ATNConfig.js";
+import { ATNConfigSet } from "./ATNConfigSet.js";
+import { ATNSimulator } from "./ATNSimulator.js";
+import { ATNState } from "./ATNState.js";
+import { BitSet } from "../misc/BitSet.js";
+import { DFA } from "../dfa/DFA.js";
+import { DFAState } from "../dfa/DFAState.js";
+import { IntegerList } from "../misc/IntegerList.js";
+import { NoViableAltException } from "../NoViableAltException.js";
+import { Parser } from "../Parser.js";
+import { ParserRuleContext } from "../ParserRuleContext.js";
+import { PrecedencePredicateTransition } from "./PrecedencePredicateTransition.js";
+import { PredicateTransition } from "./PredicateTransition.js";
+import { PredictionContextCache } from "./PredictionContextCache.js";
+import { PredictionMode } from "./PredictionMode.js";
+import { RuleContext } from "../RuleContext.js";
+import { RuleTransition } from "./RuleTransition.js";
+import { SemanticContext } from "./SemanticContext.js";
+import { SimulatorState } from "./SimulatorState.js";
+import { TokenStream } from "../TokenStream.js";
+import { Transition } from "./Transition.js";
 /**
  * The embodiment of the adaptive LL(*), ALL(*), parsing strategy.
  *

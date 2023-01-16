@@ -2,8 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Array2DHashSet } from "./Array2DHashSet";
+import { Array2DHashSet } from "./Array2DHashSet.js";
 class MapKeyEqualityComparator {
+    keyComparator;
     constructor(keyComparator) {
         this.keyComparator = keyComparator;
     }
@@ -15,6 +16,7 @@ class MapKeyEqualityComparator {
     }
 }
 export class Array2DHashMap {
+    backingStore;
     constructor(keyComparer) {
         if (keyComparer instanceof Array2DHashMap) {
             this.backingStore = new Array2DHashSet(keyComparer.backingStore);

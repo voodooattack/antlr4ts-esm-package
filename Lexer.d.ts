@@ -2,15 +2,15 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { IntegerStack } from "./misc/IntegerStack";
-import { LexerATNSimulator } from "./atn/LexerATNSimulator";
-import { LexerNoViableAltException } from "./LexerNoViableAltException";
-import { RecognitionException } from "./RecognitionException";
-import { Recognizer } from "./Recognizer";
-import { Token } from "./Token";
-import { TokenFactory } from "./TokenFactory";
-import { TokenSource } from "./TokenSource";
+import { CharStream } from "./CharStream.js";
+import { IntegerStack } from "./misc/IntegerStack.js";
+import { LexerATNSimulator } from "./atn/LexerATNSimulator.js";
+import { LexerNoViableAltException } from "./LexerNoViableAltException.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { Recognizer } from "./Recognizer.js";
+import { Token } from "./Token.js";
+import { TokenFactory } from "./TokenFactory.js";
+import { TokenSource } from "./TokenSource.js";
 /** A lexer is recognizer that draws input symbols from a character stream.
  *  lexer grammars result in a subclass of this object. A Lexer object
  *  uses simplified match() and error recovery mechanisms in the interest

@@ -12,13 +12,17 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:46.2521448-07:00
-import { Chunk } from "./Chunk";
-import { NotNull, Override } from "../../Decorators";
+import { Chunk } from "./Chunk.js";
+import { NotNull, Override } from "../../Decorators.js";
 /**
  * Represents a span of raw text (concrete syntax) between tags in a tree
  * pattern string.
  */
 let TextChunk = class TextChunk extends Chunk {
+    /**
+     * This is the backing field for {@link #getText}.
+     */
+    _text;
     /**
      * Constructs a new instance of {@link TextChunk} with the specified text.
      *

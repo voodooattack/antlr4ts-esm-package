@@ -9,10 +9,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:48.1433686-07:00
-import { Interval } from "../misc/Interval";
-import { Override } from "../Decorators";
-import { Token } from "../Token";
+import { Interval } from "../misc/Interval.js";
+import { Override } from "../Decorators.js";
+import { Token } from "../Token.js";
 export class TerminalNode {
+    _symbol;
+    _parent;
     constructor(symbol) {
         this._symbol = symbol;
     }

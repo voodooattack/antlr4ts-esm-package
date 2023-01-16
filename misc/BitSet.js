@@ -3,7 +3,7 @@
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
 import * as util from "util";
-import { MurmurHash } from "./MurmurHash";
+import { MurmurHash } from "./MurmurHash.js";
 /**
  * Private empty array used to construct empty BitSets
  */
@@ -74,6 +74,7 @@ for (let i = 0; i < 16; i++) {
     }
 }
 export class BitSet {
+    data;
     /*
     ** constructor implementation
     */
@@ -644,10 +645,11 @@ export class BitSet {
     }
 }
 class BitSetIterator {
+    data;
+    index = 0;
+    mask = 0xFFFF;
     constructor(data) {
         this.data = data;
-        this.index = 0;
-        this.mask = 0xFFFF;
     }
     next() {
         while (this.index < this.data.length) {

@@ -12,9 +12,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:35.2826960-07:00
-import { AbstractPredicateTransition } from "./AbstractPredicateTransition";
-import { NotNull, Override } from "../Decorators";
-import { SemanticContext } from "./SemanticContext";
+import { AbstractPredicateTransition } from "./AbstractPredicateTransition.js";
+import { NotNull, Override } from "../Decorators.js";
+import { SemanticContext } from "./SemanticContext.js";
 /** TODO: this is old comment:
  *  A tree of semantic predicates from the grammar AST if label==SEMPRED.
  *  In the ATN, labels will always be exactly one predicate, but the DFA
@@ -22,6 +22,9 @@ import { SemanticContext } from "./SemanticContext";
  *  multiple ATN configurations into a single DFA state.
  */
 let PredicateTransition = class PredicateTransition extends AbstractPredicateTransition {
+    ruleIndex;
+    predIndex;
+    isCtxDependent; // e.g., $i ref in pred
     constructor(target, ruleIndex, predIndex, isCtxDependent) {
         super(target);
         this.ruleIndex = ruleIndex;

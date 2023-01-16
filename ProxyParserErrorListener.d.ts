@@ -2,14 +2,14 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNConfigSet } from "./atn/ATNConfigSet";
-import { BitSet } from "./misc/BitSet";
-import { DFA } from "./dfa/DFA";
-import { Parser } from "./Parser";
-import { ProxyErrorListener } from "./ProxyErrorListener";
-import { ParserErrorListener } from "./ParserErrorListener";
-import { SimulatorState } from "./atn/SimulatorState";
-import { Token } from "./Token";
+import { ATNConfigSet } from "./atn/ATNConfigSet.js";
+import { BitSet } from "./misc/BitSet.js";
+import { DFA } from "./dfa/DFA.js";
+import { Parser } from "./Parser.js";
+import { ProxyErrorListener } from "./ProxyErrorListener.js";
+import { ParserErrorListener } from "./ParserErrorListener.js";
+import { SimulatorState } from "./atn/SimulatorState.js";
+import { Token } from "./Token.js";
 /**
  * @author Sam Harwell
  */

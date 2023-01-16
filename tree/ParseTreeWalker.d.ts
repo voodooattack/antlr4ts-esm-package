@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ParseTree } from "./ParseTree";
-import { ParseTreeListener } from "./ParseTreeListener";
-import { RuleNode } from "./RuleNode";
+import { ParseTree } from "./ParseTree.js";
+import { ParseTreeListener } from "./ParseTreeListener.js";
+import { RuleNode } from "./RuleNode.js";
 export declare class ParseTreeWalker {
     /**
      * Performs a walk on the given parse tree starting at the root and going down recursively

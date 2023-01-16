@@ -12,25 +12,25 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // CONVERSTION complete, Burt Harris 10/14/2016
-import { BailErrorStrategy } from "../../BailErrorStrategy";
-import { CharStreams } from "../../CharStreams";
-import { CommonTokenStream } from "../../CommonTokenStream";
-import { ListTokenSource } from "../../ListTokenSource";
-import { MultiMap } from "../../misc/MultiMap";
-import { NotNull } from "../../Decorators";
-import { ParseCancellationException } from "../../misc/ParseCancellationException";
-import { ParserInterpreter } from "../../ParserInterpreter";
-import { ParserRuleContext } from "../../ParserRuleContext";
-import { ParseTreeMatch } from "./ParseTreeMatch";
-import { ParseTreePattern } from "./ParseTreePattern";
-import { RecognitionException } from "../../RecognitionException";
-import { RuleNode } from "../RuleNode";
-import { RuleTagToken } from "./RuleTagToken";
-import { TagChunk } from "./TagChunk";
-import { TerminalNode } from "../TerminalNode";
-import { TextChunk } from "./TextChunk";
-import { Token } from "../../Token";
-import { TokenTagToken } from "./TokenTagToken";
+import { BailErrorStrategy } from "../../BailErrorStrategy.js";
+import { CharStreams } from "../../CharStreams.js";
+import { CommonTokenStream } from "../../CommonTokenStream.js";
+import { ListTokenSource } from "../../ListTokenSource.js";
+import { MultiMap } from "../../misc/MultiMap.js";
+import { NotNull } from "../../Decorators.js";
+import { ParseCancellationException } from "../../misc/ParseCancellationException.js";
+import { ParserInterpreter } from "../../ParserInterpreter.js";
+import { ParserRuleContext } from "../../ParserRuleContext.js";
+import { ParseTreeMatch } from "./ParseTreeMatch.js";
+import { ParseTreePattern } from "./ParseTreePattern.js";
+import { RecognitionException } from "../../RecognitionException.js";
+import { RuleNode } from "../RuleNode.js";
+import { RuleTagToken } from "./RuleTagToken.js";
+import { TagChunk } from "./TagChunk.js";
+import { TerminalNode } from "../TerminalNode.js";
+import { TextChunk } from "./TextChunk.js";
+import { Token } from "../../Token.js";
+import { TokenTagToken } from "./TokenTagToken.js";
 /**
  * A tree pattern matching mechanism for ANTLR {@link ParseTree}s.
  *
@@ -92,19 +92,27 @@ import { TokenTagToken } from "./TokenTagToken";
  */
 export class ParseTreePatternMatcher {
     /**
+     * This is the backing field for `lexer`.
+     */
+    _lexer;
+    /**
+     * This is the backing field for `parser`.
+     */
+    _parser;
+    start = "<";
+    stop = ">";
+    escape = "\\"; // e.g., \< and \> must escape BOTH!
+    /**
+     * Regular expression corresponding to escape, for global replace
+     */
+    escapeRE = /\\/g;
+    /**
      * Constructs a {@link ParseTreePatternMatcher} or from a {@link Lexer} and
      * {@link Parser} object. The lexer input stream is altered for tokenizing
      * the tree patterns. The parser is used as a convenient mechanism to get
      * the grammar name, plus token, rule names.
      */
     constructor(lexer, parser) {
-        this.start = "<";
-        this.stop = ">";
-        this.escape = "\\"; // e.g., \< and \> must escape BOTH!
-        /**
-         * Regular expression corresponding to escape, for global replace
-         */
-        this.escapeRE = /\\/g;
         this._lexer = lexer;
         this._parser = parser;
     }
@@ -455,6 +463,7 @@ __decorate([
 ], ParseTreePatternMatcher.prototype, "matchImpl", null);
 (function (ParseTreePatternMatcher) {
     class CannotInvokeStartRule extends Error {
+        error;
         constructor(error) {
             super(`CannotInvokeStartRule: ${error}`);
             this.error = error;

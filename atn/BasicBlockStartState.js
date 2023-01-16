@@ -9,9 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:27.7669801-07:00
-import { ATNStateType } from "./ATNStateType";
-import { BlockStartState } from "./BlockStartState";
-import { Override } from "../Decorators";
+import { ATNStateType } from "./ATNStateType.js";
+import { BlockStartState } from "./BlockStartState.js";
+import { Override } from "../Decorators.js";
 /**
  *
  * @author Sam Harwell

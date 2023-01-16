@@ -2,16 +2,16 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATN } from "./ATN";
-import { ATNDeserializationOptions } from "./ATNDeserializationOptions";
-import { ATNState } from "./ATNState";
-import { ATNStateType } from "./ATNStateType";
-import { IntervalSet } from "../misc/IntervalSet";
-import { LexerAction } from "./LexerAction";
-import { LexerActionType } from "./LexerActionType";
-import { Transition } from "./Transition";
-import { TransitionType } from "./TransitionType";
-import { UUID } from "../misc/UUID";
+import { ATN } from "./ATN.js";
+import { ATNDeserializationOptions } from "./ATNDeserializationOptions.js";
+import { ATNState } from "./ATNState.js";
+import { ATNStateType } from "./ATNStateType.js";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { LexerAction } from "./LexerAction.js";
+import { LexerActionType } from "./LexerActionType.js";
+import { Transition } from "./Transition.js";
+import { TransitionType } from "./TransitionType.js";
+import { UUID } from "../misc/UUID.js";
 /**
  *
  * @author Sam Harwell

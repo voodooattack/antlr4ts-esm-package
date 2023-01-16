@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATN } from "./ATN";
-import { DFAState } from "../dfa/DFAState";
+import { ATN } from "./ATN.js";
+import { DFAState } from "../dfa/DFAState.js";
 export declare abstract class ATNSimulator {
     /** Must distinguish between missing edge and edge we know leads nowhere */
     private static _ERROR;

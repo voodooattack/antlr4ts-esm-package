@@ -11,9 +11,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { CommonTokenFactory } from "./CommonTokenFactory";
-import { NotNull, Override } from "./Decorators";
-import { Token } from "./Token";
+import { CommonTokenFactory } from "./CommonTokenFactory.js";
+import { NotNull, Override } from "./Decorators.js";
+import { Token } from "./Token.js";
 /**
  * Provides an implementation of {@link TokenSource} as a wrapper around a list
  * of {@link Token} objects.
@@ -23,6 +23,32 @@ import { Token } from "./Token";
  * list is reached. Otherwise, an EOF token will be created.
  */
 let ListTokenSource = class ListTokenSource {
+    /**
+     * The wrapped collection of {@link Token} objects to return.
+     */
+    tokens;
+    /**
+     * The name of the input source. If this value is `undefined`, a call to
+     * {@link #getSourceName} should return the source name used to create the
+     * the next token in {@link #tokens} (or the previous token if the end of
+     * the input has been reached).
+     */
+    _sourceName;
+    /**
+     * The index into {@link #tokens} of token to return by the next call to
+     * {@link #nextToken}. The end of the input is indicated by this value
+     * being greater than or equal to the number of items in {@link #tokens}.
+     */
+    i = 0;
+    /**
+     * This field caches the EOF token for the token source.
+     */
+    eofToken;
+    /**
+     * This is the backing field for {@link #getTokenFactory} and
+     * {@link setTokenFactory}.
+     */
+    _factory = CommonTokenFactory.DEFAULT;
     /**
      * Constructs a new {@link ListTokenSource} instance from the specified
      * collection of {@link Token} objects and source name.
@@ -37,17 +63,6 @@ let ListTokenSource = class ListTokenSource {
      * @exception NullPointerException if `tokens` is `undefined`
      */
     constructor(tokens, sourceName) {
-        /**
-         * The index into {@link #tokens} of token to return by the next call to
-         * {@link #nextToken}. The end of the input is indicated by this value
-         * being greater than or equal to the number of items in {@link #tokens}.
-         */
-        this.i = 0;
-        /**
-         * This is the backing field for {@link #getTokenFactory} and
-         * {@link setTokenFactory}.
-         */
-        this._factory = CommonTokenFactory.DEFAULT;
         if (tokens == null) {
             throw new Error("tokens cannot be null");
         }

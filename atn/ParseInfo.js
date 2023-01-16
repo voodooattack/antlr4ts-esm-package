@@ -11,7 +11,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { NotNull } from "../Decorators";
+import { NotNull } from "../Decorators.js";
 /**
  * This class provides access to specific and aggregate statistics gathered
  * during profiling of a parser.
@@ -19,6 +19,7 @@ import { NotNull } from "../Decorators";
  * @since 4.3
  */
 let ParseInfo = class ParseInfo {
+    atnSimulator;
     constructor(atnSimulator) {
         this.atnSimulator = atnSimulator;
     }

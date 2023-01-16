@@ -12,40 +12,44 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:36.4188352-07:00
-import { AmbiguityInfo } from "./AmbiguityInfo";
-import { ATN } from "./ATN";
-import { ATNSimulator } from "./ATNSimulator";
-import { ContextSensitivityInfo } from "./ContextSensitivityInfo";
-import { DecisionInfo } from "./DecisionInfo";
-import { ErrorInfo } from "./ErrorInfo";
-import { NotNull, Override } from "../Decorators";
-import { LookaheadEventInfo } from "./LookaheadEventInfo";
-import { ParserATNSimulator } from "./ParserATNSimulator";
-import { PredicateEvalInfo } from "./PredicateEvalInfo";
-import { SemanticContext } from "./SemanticContext";
-import { SimulatorState } from "./SimulatorState";
+import { AmbiguityInfo } from "./AmbiguityInfo.js";
+import { ATN } from "./ATN.js";
+import { ATNSimulator } from "./ATNSimulator.js";
+import { ContextSensitivityInfo } from "./ContextSensitivityInfo.js";
+import { DecisionInfo } from "./DecisionInfo.js";
+import { ErrorInfo } from "./ErrorInfo.js";
+import { NotNull, Override } from "../Decorators.js";
+import { LookaheadEventInfo } from "./LookaheadEventInfo.js";
+import { ParserATNSimulator } from "./ParserATNSimulator.js";
+import { PredicateEvalInfo } from "./PredicateEvalInfo.js";
+import { SemanticContext } from "./SemanticContext.js";
+import { SimulatorState } from "./SimulatorState.js";
 /**
  * @since 4.3
  */
 export class ProfilingATNSimulator extends ParserATNSimulator {
+    decisions;
+    numDecisions;
+    _input;
+    _startIndex = 0;
+    _sllStopIndex = 0;
+    _llStopIndex = 0;
+    currentDecision = 0;
+    currentState;
+    /** At the point of LL failover, we record how SLL would resolve the conflict so that
+     *  we can determine whether or not a decision / input pair is context-sensitive.
+     *  If LL gives a different result than SLL's predicted alternative, we have a
+     *  context sensitivity for sure. The converse is not necessarily true, however.
+     *  It's possible that after conflict resolution chooses minimum alternatives,
+     *  SLL could get the same answer as LL. Regardless of whether or not the result indicates
+     *  an ambiguity, it is not treated as a context sensitivity because LL prediction
+     *  was not required in order to produce a correct prediction for this decision and input sequence.
+     *  It may in fact still be a context sensitivity but we don't know by looking at the
+     *  minimum alternatives for the current input.
+     */
+    conflictingAltResolvedBySLL = 0;
     constructor(parser) {
         super(parser.interpreter.atn, parser);
-        this._startIndex = 0;
-        this._sllStopIndex = 0;
-        this._llStopIndex = 0;
-        this.currentDecision = 0;
-        /** At the point of LL failover, we record how SLL would resolve the conflict so that
-         *  we can determine whether or not a decision / input pair is context-sensitive.
-         *  If LL gives a different result than SLL's predicted alternative, we have a
-         *  context sensitivity for sure. The converse is not necessarily true, however.
-         *  It's possible that after conflict resolution chooses minimum alternatives,
-         *  SLL could get the same answer as LL. Regardless of whether or not the result indicates
-         *  an ambiguity, it is not treated as a context sensitivity because LL prediction
-         *  was not required in order to produce a correct prediction for this decision and input sequence.
-         *  It may in fact still be a context sensitivity but we don't know by looking at the
-         *  minimum alternatives for the current input.
-         */
-        this.conflictingAltResolvedBySLL = 0;
         this.optimize_ll1 = false;
         this.reportAmbiguities = true;
         this.numDecisions = this.atn.decisionToState.length;

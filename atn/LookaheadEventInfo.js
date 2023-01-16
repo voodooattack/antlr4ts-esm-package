@@ -12,8 +12,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:30.6852565-07:00
-import { DecisionEventInfo } from "./DecisionEventInfo";
-import { NotNull } from "../Decorators";
+import { DecisionEventInfo } from "./DecisionEventInfo.js";
+import { NotNull } from "../Decorators.js";
 /**
  * This class represents profiling event information for tracking the lookahead
  * depth required in order to make a prediction.
@@ -21,6 +21,12 @@ import { NotNull } from "../Decorators";
  * @since 4.3
  */
 let LookaheadEventInfo = class LookaheadEventInfo extends DecisionEventInfo {
+    /** The alternative chosen by adaptivePredict(), not necessarily
+     *  the outermost alt shown for a rule; left-recursive rules have
+     *  user-level alts that differ from the rewritten rule with a (...) block
+     *  and a (..)* loop.
+     */
+    predictedAlt;
     /**
      * Constructs a new instance of the {@link LookaheadEventInfo} class with
      * the specified detailed lookahead information.

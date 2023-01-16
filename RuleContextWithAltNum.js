@@ -9,9 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:57.4741196-07:00
-import { ATN } from "./atn/ATN";
-import { Override } from "./Decorators";
-import { ParserRuleContext } from "./ParserRuleContext";
+import { ATN } from "./atn/ATN.js";
+import { Override } from "./Decorators.js";
+import { ParserRuleContext } from "./ParserRuleContext.js";
 /** A handy class for use with
  *
  *  options {contextSuperClass=org.antlr.v4.runtime.RuleContextWithAltNum;}
@@ -23,6 +23,7 @@ import { ParserRuleContext } from "./ParserRuleContext";
  *  will really every use this.
  */
 export class RuleContextWithAltNum extends ParserRuleContext {
+    _altNumber;
     constructor(parent, invokingStateNumber) {
         if (invokingStateNumber !== undefined) {
             super(parent, invokingStateNumber);

@@ -2,13 +2,13 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ATN } from "../atn/ATN";
-import { ATNState } from "../atn/ATNState";
-import { DecisionState } from "../atn/DecisionState";
-import { DFAState } from "./DFAState";
-import { TokensStartState } from "../atn/TokensStartState";
-import { Vocabulary } from "../Vocabulary";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ATN } from "../atn/ATN.js";
+import { ATNState } from "../atn/ATNState.js";
+import { DecisionState } from "../atn/DecisionState.js";
+import { DFAState } from "./DFAState.js";
+import { TokensStartState } from "../atn/TokensStartState.js";
+import { Vocabulary } from "../Vocabulary.js";
 export declare class DFA {
     /**
      * A set of all states in the `DFA`.

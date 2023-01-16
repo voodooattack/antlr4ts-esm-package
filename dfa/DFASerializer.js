@@ -8,13 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { ATNSimulator } from "../atn/ATNSimulator";
-import { NotNull, Override } from "../Decorators";
-import { PredictionContext } from "../atn/PredictionContext";
-import { Recognizer } from "../Recognizer";
-import { VocabularyImpl } from "../VocabularyImpl";
+import { ATNSimulator } from "../atn/ATNSimulator.js";
+import { NotNull, Override } from "../Decorators.js";
+import { PredictionContext } from "../atn/PredictionContext.js";
+import { Recognizer } from "../Recognizer.js";
+import { VocabularyImpl } from "../VocabularyImpl.js";
 /** A DFA walker that knows how to dump them to serialized strings. */
 export class DFASerializer {
+    dfa;
+    vocabulary;
+    ruleNames;
+    atn;
     constructor(dfa, vocabulary, ruleNames, atn) {
         if (vocabulary instanceof Recognizer) {
             ruleNames = vocabulary.ruleNames;

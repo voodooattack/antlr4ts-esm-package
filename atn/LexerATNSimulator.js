@@ -12,41 +12,42 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:29.1083066-07:00
-import { AcceptStateInfo } from "../dfa/AcceptStateInfo";
-import { ATN } from "./ATN";
-import { ATNConfig } from "./ATNConfig";
-import { ATNConfigSet } from "./ATNConfigSet";
-import { ATNSimulator } from "./ATNSimulator";
-import { DFAState } from "../dfa/DFAState";
-import { Interval } from "../misc/Interval";
-import { IntStream } from "../IntStream";
-import { Lexer } from "../Lexer";
-import { LexerActionExecutor } from "./LexerActionExecutor";
-import { LexerNoViableAltException } from "../LexerNoViableAltException";
-import { NotNull, Override } from "../Decorators";
-import { OrderedATNConfigSet } from "./OrderedATNConfigSet";
-import { PredictionContext } from "./PredictionContext";
-import { RuleStopState } from "./RuleStopState";
-import { Token } from "../Token";
+import { AcceptStateInfo } from "../dfa/AcceptStateInfo.js";
+import { ATN } from "./ATN.js";
+import { ATNConfig } from "./ATNConfig.js";
+import { ATNConfigSet } from "./ATNConfigSet.js";
+import { ATNSimulator } from "./ATNSimulator.js";
+import { DFAState } from "../dfa/DFAState.js";
+import { Interval } from "../misc/Interval.js";
+import { IntStream } from "../IntStream.js";
+import { Lexer } from "../Lexer.js";
+import { LexerActionExecutor } from "./LexerActionExecutor.js";
+import { LexerNoViableAltException } from "../LexerNoViableAltException.js";
+import { NotNull, Override } from "../Decorators.js";
+import { OrderedATNConfigSet } from "./OrderedATNConfigSet.js";
+import { PredictionContext } from "./PredictionContext.js";
+import { RuleStopState } from "./RuleStopState.js";
+import { Token } from "../Token.js";
 import * as assert from "assert";
 /** "dup" of ParserInterpreter */
 let LexerATNSimulator = class LexerATNSimulator extends ATNSimulator {
+    optimize_tail_calls = true;
+    recog;
+    /** The current token's starting index into the character stream.
+     *  Shared across DFA to ATN simulation in case the ATN fails and the
+     *  DFA did not have a previous accept state. In this case, we use the
+     *  ATN-generated exception object.
+     */
+    startIndex = -1;
+    /** line number 1..n within the input */
+    _line = 1;
+    /** The index of the character relative to the beginning of the line 0..n-1 */
+    _charPositionInLine = 0;
+    mode = Lexer.DEFAULT_MODE;
+    /** Used during DFA/ATN exec to record the most recent accept configuration info */
+    prevAccept = new LexerATNSimulator.SimState();
     constructor(atn, recog) {
         super(atn);
-        this.optimize_tail_calls = true;
-        /** The current token's starting index into the character stream.
-         *  Shared across DFA to ATN simulation in case the ATN fails and the
-         *  DFA did not have a previous accept state. In this case, we use the
-         *  ATN-generated exception object.
-         */
-        this.startIndex = -1;
-        /** line number 1..n within the input */
-        this._line = 1;
-        /** The index of the character relative to the beginning of the line 0..n-1 */
-        this._charPositionInLine = 0;
-        this.mode = Lexer.DEFAULT_MODE;
-        /** Used during DFA/ATN exec to record the most recent accept configuration info */
-        this.prevAccept = new LexerATNSimulator.SimState();
         this.recog = recog;
     }
     copyState(simulator) {
@@ -701,11 +702,10 @@ export { LexerATNSimulator };
      *  can simply return the predicted token type.
      */
     class SimState {
-        constructor() {
-            this.index = -1;
-            this.line = 0;
-            this.charPos = -1;
-        }
+        index = -1;
+        line = 0;
+        charPos = -1;
+        dfaState;
         reset() {
             this.index = -1;
             this.line = 0;

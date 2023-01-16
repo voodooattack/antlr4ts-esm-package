@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { CommonToken } from "./CommonToken";
-import { TokenFactory } from "./TokenFactory";
-import { TokenSource } from "./TokenSource";
+import { CharStream } from "./CharStream.js";
+import { CommonToken } from "./CommonToken.js";
+import { TokenFactory } from "./TokenFactory.js";
+import { TokenSource } from "./TokenSource.js";
 /**
  * This default implementation of {@link TokenFactory} creates
  * {@link CommonToken} objects.

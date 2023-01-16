@@ -2,25 +2,25 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ANTLRErrorStrategy } from "./ANTLRErrorStrategy";
-import { ATN } from "./atn/ATN";
-import { ErrorNode } from "./tree/ErrorNode";
-import { IntegerStack } from "./misc/IntegerStack";
-import { IntervalSet } from "./misc/IntervalSet";
-import { Lexer } from "./Lexer";
-import { ParseInfo } from "./atn/ParseInfo";
-import { ParserATNSimulator } from "./atn/ParserATNSimulator";
-import { ParserErrorListener } from "./ParserErrorListener";
-import { ParserRuleContext } from "./ParserRuleContext";
-import { ParseTreeListener } from "./tree/ParseTreeListener";
-import { ParseTreePattern } from "./tree/pattern/ParseTreePattern";
-import { RecognitionException } from "./RecognitionException";
-import { Recognizer } from "./Recognizer";
-import { RuleContext } from "./RuleContext";
-import { TerminalNode } from "./tree/TerminalNode";
-import { Token } from "./Token";
-import { TokenFactory } from "./TokenFactory";
-import { TokenStream } from "./TokenStream";
+import { ANTLRErrorStrategy } from "./ANTLRErrorStrategy.js";
+import { ATN } from "./atn/ATN.js";
+import { ErrorNode } from "./tree/ErrorNode.js";
+import { IntegerStack } from "./misc/IntegerStack.js";
+import { IntervalSet } from "./misc/IntervalSet.js";
+import { Lexer } from "./Lexer.js";
+import { ParseInfo } from "./atn/ParseInfo.js";
+import { ParserATNSimulator } from "./atn/ParserATNSimulator.js";
+import { ParserErrorListener } from "./ParserErrorListener.js";
+import { ParserRuleContext } from "./ParserRuleContext.js";
+import { ParseTreeListener } from "./tree/ParseTreeListener.js";
+import { ParseTreePattern } from "./tree/pattern/ParseTreePattern.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { Recognizer } from "./Recognizer.js";
+import { RuleContext } from "./RuleContext.js";
+import { TerminalNode } from "./tree/TerminalNode.js";
+import { Token } from "./Token.js";
+import { TokenFactory } from "./TokenFactory.js";
+import { TokenStream } from "./TokenStream.js";
 /** This is all the parsing support code essentially; most of it is error recovery stuff. */
 export declare abstract class Parser extends Recognizer<Token, ParserATNSimulator> {
     /**

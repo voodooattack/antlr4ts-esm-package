@@ -12,8 +12,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:35.1914305-07:00
-import { DecisionEventInfo } from "./DecisionEventInfo";
-import { NotNull } from "../Decorators";
+import { DecisionEventInfo } from "./DecisionEventInfo.js";
+import { NotNull } from "../Decorators.js";
 /**
  * This class represents profiling event information for semantic predicate
  * evaluations which occur during prediction.
@@ -23,6 +23,21 @@ import { NotNull } from "../Decorators";
  * @since 4.3
  */
 let PredicateEvalInfo = class PredicateEvalInfo extends DecisionEventInfo {
+    /**
+     * The semantic context which was evaluated.
+     */
+    semctx;
+    /**
+     * The alternative number for the decision which is guarded by the semantic
+     * context {@link #semctx}. Note that other ATN
+     * configurations may predict the same alternative which are guarded by
+     * other semantic contexts and/or {@link SemanticContext#NONE}.
+     */
+    predictedAlt;
+    /**
+     * The result of evaluating the semantic context {@link #semctx}.
+     */
+    evalResult;
     /**
      * Constructs a new instance of the {@link PredicateEvalInfo} class with the
      * specified detailed predicate evaluation information.

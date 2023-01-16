@@ -19,6 +19,7 @@
  * in your event methods.
  */
 export class ParseTreeProperty {
+    _symbol;
     constructor(name = "ParseTreeProperty") {
         this._symbol = Symbol(name);
     }

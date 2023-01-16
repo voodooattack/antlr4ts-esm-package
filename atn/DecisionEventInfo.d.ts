@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { SimulatorState } from "./SimulatorState";
-import { TokenStream } from "../TokenStream";
+import { SimulatorState } from "./SimulatorState.js";
+import { TokenStream } from "../TokenStream.js";
 /**
  * This is the base class for gathering detailed information about prediction
  * events which occur during parsing.

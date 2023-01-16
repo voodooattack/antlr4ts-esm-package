@@ -12,38 +12,38 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:31.1989835-07:00
-import { AcceptStateInfo } from "../dfa/AcceptStateInfo";
-import { ActionTransition } from "./ActionTransition";
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { Arrays } from "../misc/Arrays";
-import { ATN } from "./ATN";
-import { ATNConfig } from "./ATNConfig";
-import { ATNConfigSet } from "./ATNConfigSet";
-import { ATNSimulator } from "./ATNSimulator";
-import { ATNStateType } from "./ATNStateType";
-import { AtomTransition } from "./AtomTransition";
-import { BitSet } from "../misc/BitSet";
-import { ConflictInfo } from "./ConflictInfo";
-import { DecisionState } from "./DecisionState";
-import { DFAState } from "../dfa/DFAState";
-import { IntegerList } from "../misc/IntegerList";
-import { Interval } from "../misc/Interval";
-import { IntStream } from "../IntStream";
-import { NotNull, Nullable, Override } from "../Decorators";
-import { NotSetTransition } from "./NotSetTransition";
-import { NoViableAltException } from "../NoViableAltException";
-import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator";
-import { ParserRuleContext } from "../ParserRuleContext";
-import { PredictionContext } from "./PredictionContext";
-import { PredictionContextCache } from "./PredictionContextCache";
-import { PredictionMode } from "./PredictionMode";
-import { RuleStopState } from "./RuleStopState";
-import { RuleTransition } from "./RuleTransition";
-import { SemanticContext } from "./SemanticContext";
-import { SetTransition } from "./SetTransition";
-import { SimulatorState } from "./SimulatorState";
-import { Token } from "../Token";
-import { VocabularyImpl } from "../VocabularyImpl";
+import { AcceptStateInfo } from "../dfa/AcceptStateInfo.js";
+import { ActionTransition } from "./ActionTransition.js";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { Arrays } from "../misc/Arrays.js";
+import { ATN } from "./ATN.js";
+import { ATNConfig } from "./ATNConfig.js";
+import { ATNConfigSet } from "./ATNConfigSet.js";
+import { ATNSimulator } from "./ATNSimulator.js";
+import { ATNStateType } from "./ATNStateType.js";
+import { AtomTransition } from "./AtomTransition.js";
+import { BitSet } from "../misc/BitSet.js";
+import { ConflictInfo } from "./ConflictInfo.js";
+import { DecisionState } from "./DecisionState.js";
+import { DFAState } from "../dfa/DFAState.js";
+import { IntegerList } from "../misc/IntegerList.js";
+import { Interval } from "../misc/Interval.js";
+import { IntStream } from "../IntStream.js";
+import { NotNull, Nullable, Override } from "../Decorators.js";
+import { NotSetTransition } from "./NotSetTransition.js";
+import { NoViableAltException } from "../NoViableAltException.js";
+import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
+import { ParserRuleContext } from "../ParserRuleContext.js";
+import { PredictionContext } from "./PredictionContext.js";
+import { PredictionContextCache } from "./PredictionContextCache.js";
+import { PredictionMode } from "./PredictionMode.js";
+import { RuleStopState } from "./RuleStopState.js";
+import { RuleTransition } from "./RuleTransition.js";
+import { SemanticContext } from "./SemanticContext.js";
+import { SetTransition } from "./SetTransition.js";
+import { SimulatorState } from "./SimulatorState.js";
+import { Token } from "../Token.js";
+import { VocabularyImpl } from "../VocabularyImpl.js";
 import * as assert from "assert";
 const MAX_SHORT_VALUE = 0xFFFF;
 const MIN_INTEGER_VALUE = -((1 << 31) >>> 0);
@@ -247,47 +247,52 @@ const MIN_INTEGER_VALUE = -((1 << 31) >>> 0);
  * the input.
  */
 let ParserATNSimulator = class ParserATNSimulator extends ATNSimulator {
+    static debug = false;
+    static dfa_debug = false;
+    static retry_debug = false;
+    predictionMode = PredictionMode.LL;
+    force_global_context = false;
+    always_try_local_context = true;
+    /**
+     * Determines whether the DFA is used for full-context predictions. When
+     * `true`, the DFA stores transition information for both full-context
+     * and SLL parsing; otherwise, the DFA only stores SLL transition
+     * information.
+     *
+     * For some grammars, enabling the full-context DFA can result in a
+     * substantial performance improvement. However, this improvement typically
+     * comes at the expense of memory used for storing the cached DFA states,
+     * configuration sets, and prediction contexts.
+     *
+     * The default value is `false`.
+     */
+    enable_global_context_dfa = false;
+    optimize_unique_closure = true;
+    optimize_ll1 = true;
+    optimize_tail_calls = true;
+    tail_call_preserves_sll = true;
+    treat_sllk1_conflict_as_ambiguity = false;
+    _parser;
+    /**
+     * When `true`, ambiguous alternatives are reported when they are
+     * encountered within {@link #execATN}. When `false`, these messages
+     * are suppressed. The default is `false`.
+     *
+     * When messages about ambiguous alternatives are not required, setting this
+     * to `false` enables additional internal optimizations which may lose
+     * this information.
+     */
+    reportAmbiguities = false;
+    /** By default we do full context-sensitive LL(*) parsing not
+     *  Strong LL(*) parsing. If we fail with Strong LL(*) we
+     *  try full LL(*). That means we rewind and use context information
+     *  when closure operations fall off the end of the rule that
+     *  holds the decision were evaluating.
+     */
+    userWantsCtxSensitive = true;
+    dfa;
     constructor(atn, parser) {
         super(atn);
-        this.predictionMode = PredictionMode.LL;
-        this.force_global_context = false;
-        this.always_try_local_context = true;
-        /**
-         * Determines whether the DFA is used for full-context predictions. When
-         * `true`, the DFA stores transition information for both full-context
-         * and SLL parsing; otherwise, the DFA only stores SLL transition
-         * information.
-         *
-         * For some grammars, enabling the full-context DFA can result in a
-         * substantial performance improvement. However, this improvement typically
-         * comes at the expense of memory used for storing the cached DFA states,
-         * configuration sets, and prediction contexts.
-         *
-         * The default value is `false`.
-         */
-        this.enable_global_context_dfa = false;
-        this.optimize_unique_closure = true;
-        this.optimize_ll1 = true;
-        this.optimize_tail_calls = true;
-        this.tail_call_preserves_sll = true;
-        this.treat_sllk1_conflict_as_ambiguity = false;
-        /**
-         * When `true`, ambiguous alternatives are reported when they are
-         * encountered within {@link #execATN}. When `false`, these messages
-         * are suppressed. The default is `false`.
-         *
-         * When messages about ambiguous alternatives are not required, setting this
-         * to `false` enables additional internal optimizations which may lose
-         * this information.
-         */
-        this.reportAmbiguities = false;
-        /** By default we do full context-sensitive LL(*) parsing not
-         *  Strong LL(*) parsing. If we fail with Strong LL(*) we
-         *  try full LL(*). That means we rewind and use context information
-         *  when closure operations fall off the end of the rule that
-         *  holds the decision were evaluating.
-         */
-        this.userWantsCtxSensitive = true;
         this._parser = parser;
     }
     getPredictionMode() {
@@ -1724,6 +1729,17 @@ let ParserATNSimulator = class ParserATNSimulator extends ATNSimulator {
         }
         return config.transform(t.target, false, newContext);
     }
+    static STATE_ALT_SORT_COMPARATOR = (o1, o2) => {
+        let diff = o1.state.nonStopStateNumber - o2.state.nonStopStateNumber;
+        if (diff !== 0) {
+            return diff;
+        }
+        diff = o1.alt - o2.alt;
+        if (diff !== 0) {
+            return diff;
+        }
+        return 0;
+    };
     isConflicted(configset, contextCache) {
         if (configset.uniqueAlt !== ATN.INVALID_ALT_NUMBER || configset.size <= 1) {
             return undefined;
@@ -2095,20 +2111,6 @@ let ParserATNSimulator = class ParserATNSimulator extends ATNSimulator {
     get parser() {
         return this._parser;
     }
-};
-ParserATNSimulator.debug = false;
-ParserATNSimulator.dfa_debug = false;
-ParserATNSimulator.retry_debug = false;
-ParserATNSimulator.STATE_ALT_SORT_COMPARATOR = (o1, o2) => {
-    let diff = o1.state.nonStopStateNumber - o2.state.nonStopStateNumber;
-    if (diff !== 0) {
-        return diff;
-    }
-    diff = o1.alt - o2.alt;
-    if (diff !== 0) {
-        return diff;
-    }
-    return 0;
 };
 __decorate([
     NotNull

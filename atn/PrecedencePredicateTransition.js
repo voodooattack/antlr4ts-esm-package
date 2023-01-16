@@ -12,14 +12,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:35.0994191-07:00
-import { AbstractPredicateTransition } from "./AbstractPredicateTransition";
-import { NotNull, Override } from "../Decorators";
-import { SemanticContext } from "./SemanticContext";
+import { AbstractPredicateTransition } from "./AbstractPredicateTransition.js";
+import { NotNull, Override } from "../Decorators.js";
+import { SemanticContext } from "./SemanticContext.js";
 /**
  *
  * @author Sam Harwell
  */
 let PrecedencePredicateTransition = class PrecedencePredicateTransition extends AbstractPredicateTransition {
+    precedence;
     constructor(target, precedence) {
         super(target);
         this.precedence = precedence;

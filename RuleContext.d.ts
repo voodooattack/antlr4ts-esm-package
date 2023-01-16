@@ -2,12 +2,12 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Parser } from "./Parser";
-import { Recognizer } from "./Recognizer";
-import { RuleNode } from "./tree/RuleNode";
-import { ParseTree } from "./tree/ParseTree";
-import { Interval } from "./misc/Interval";
-import { ParseTreeVisitor } from "./tree/ParseTreeVisitor";
+import { Parser } from "./Parser.js";
+import { Recognizer } from "./Recognizer.js";
+import { RuleNode } from "./tree/RuleNode.js";
+import { ParseTree } from "./tree/ParseTree.js";
+import { Interval } from "./misc/Interval.js";
+import { ParseTreeVisitor } from "./tree/ParseTreeVisitor.js";
 /** A rule context is a record of a single rule invocation.
  *
  *  We form a stack of these context objects using the parent

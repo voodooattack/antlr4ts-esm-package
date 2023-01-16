@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { DecisionInfo } from "./DecisionInfo";
-import { ProfilingATNSimulator } from "./ProfilingATNSimulator";
+import { DecisionInfo } from "./DecisionInfo.js";
+import { ProfilingATNSimulator } from "./ProfilingATNSimulator.js";
 /**
  * This class provides access to specific and aggregate statistics gathered
  * during profiling of a parser.

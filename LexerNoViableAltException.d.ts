@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNConfigSet } from "./atn/ATNConfigSet";
-import { RecognitionException } from "./RecognitionException";
-import { Lexer } from "./Lexer";
-import { CharStream } from "./CharStream";
+import { ATNConfigSet } from "./atn/ATNConfigSet.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { Lexer } from "./Lexer.js";
+import { CharStream } from "./CharStream.js";
 export declare class LexerNoViableAltException extends RecognitionException {
     /** Matching attempted at what input index? */
     private _startIndex;

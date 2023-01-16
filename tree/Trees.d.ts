@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Parser } from "../Parser";
-import { ParserRuleContext } from "../ParserRuleContext";
-import { ParseTree } from "./ParseTree";
-import { Tree } from "./Tree";
+import { Parser } from "../Parser.js";
+import { ParserRuleContext } from "../ParserRuleContext.js";
+import { ParseTree } from "./ParseTree.js";
+import { Tree } from "./Tree.js";
 /** A set of utility routines useful for all kinds of ANTLR trees. */
 export declare class Trees {
     /** Print out a whole tree in LISP form. {@link #getNodeText} is used on the

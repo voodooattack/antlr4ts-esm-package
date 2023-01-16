@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { IntStream } from "./IntStream";
+import { IntStream } from "./IntStream.js";
 export var Token;
 (function (Token) {
     Token.INVALID_TYPE = 0;

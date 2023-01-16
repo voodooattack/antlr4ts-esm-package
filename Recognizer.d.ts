@@ -2,14 +2,14 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ANTLRErrorListener } from "./ANTLRErrorListener";
-import { ATN } from "./atn/ATN";
-import { ATNSimulator } from "./atn/ATNSimulator";
-import { IntStream } from "./IntStream";
-import { ParseInfo } from "./atn/ParseInfo";
-import { RecognitionException } from "./RecognitionException";
-import { RuleContext } from "./RuleContext";
-import { Vocabulary } from "./Vocabulary";
+import { ANTLRErrorListener } from "./ANTLRErrorListener.js";
+import { ATN } from "./atn/ATN.js";
+import { ATNSimulator } from "./atn/ATNSimulator.js";
+import { IntStream } from "./IntStream.js";
+import { ParseInfo } from "./atn/ParseInfo.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { RuleContext } from "./RuleContext.js";
+import { Vocabulary } from "./Vocabulary.js";
 export declare abstract class Recognizer<TSymbol, ATNInterpreter extends ATNSimulator> {
     static readonly EOF: number;
     private static tokenTypeMapCache;

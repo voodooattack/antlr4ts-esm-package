@@ -2,13 +2,13 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Array2DHashMap } from "../misc/Array2DHashMap";
-import { ATN } from "./ATN";
-import { EqualityComparator } from "../misc/EqualityComparator";
-import { Equatable } from "../misc/Stubs";
-import { PredictionContextCache } from "./PredictionContextCache";
-import { Recognizer } from "../Recognizer";
-import { RuleContext } from "../RuleContext";
+import { Array2DHashMap } from "../misc/Array2DHashMap.js";
+import { ATN } from "./ATN.js";
+import { EqualityComparator } from "../misc/EqualityComparator.js";
+import { Equatable } from "../misc/Stubs.js";
+import { PredictionContextCache } from "./PredictionContextCache.js";
+import { Recognizer } from "../Recognizer.js";
+import { RuleContext } from "../RuleContext.js";
 export declare abstract class PredictionContext implements Equatable {
     /**
      * Stores the computed hash code of this {@link PredictionContext}. The hash

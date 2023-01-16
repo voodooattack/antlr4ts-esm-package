@@ -12,20 +12,25 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:30.4445360-07:00
-import { AbstractPredicateTransition } from "./AbstractPredicateTransition";
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ATNConfig } from "./ATNConfig";
-import { BitSet } from "../misc/BitSet";
-import { IntervalSet } from "../misc/IntervalSet";
-import { NotNull } from "../Decorators";
-import { NotSetTransition } from "./NotSetTransition";
-import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator";
-import { PredictionContext } from "./PredictionContext";
-import { RuleStopState } from "./RuleStopState";
-import { RuleTransition } from "./RuleTransition";
-import { Token } from "../Token";
-import { WildcardTransition } from "./WildcardTransition";
+import { AbstractPredicateTransition } from "./AbstractPredicateTransition.js";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ATNConfig } from "./ATNConfig.js";
+import { BitSet } from "../misc/BitSet.js";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { NotNull } from "../Decorators.js";
+import { NotSetTransition } from "./NotSetTransition.js";
+import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
+import { PredictionContext } from "./PredictionContext.js";
+import { RuleStopState } from "./RuleStopState.js";
+import { RuleTransition } from "./RuleTransition.js";
+import { Token } from "../Token.js";
+import { WildcardTransition } from "./WildcardTransition.js";
 let LL1Analyzer = class LL1Analyzer {
+    /** Special value added to the lookahead sets to indicate that we hit
+     *  a predicate during analysis if `seeThruPreds==false`.
+     */
+    static HIT_PRED = Token.INVALID_TYPE;
+    atn;
     constructor(atn) { this.atn = atn; }
     /**
      * Calculates the SLL(1) expected lookahead set for each outgoing transition
@@ -193,10 +198,6 @@ let LL1Analyzer = class LL1Analyzer {
         }
     }
 };
-/** Special value added to the lookahead sets to indicate that we hit
- *  a predicate during analysis if `seeThruPreds==false`.
- */
-LL1Analyzer.HIT_PRED = Token.INVALID_TYPE;
 __decorate([
     NotNull
 ], LL1Analyzer.prototype, "atn", void 0);

@@ -2,13 +2,13 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ATN } from "./ATN";
-import { ATNConfig } from "./ATNConfig";
-import { ATNState } from "./ATNState";
-import { BitSet } from "../misc/BitSet";
-import { IntervalSet } from "../misc/IntervalSet";
-import { PredictionContext } from "./PredictionContext";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ATN } from "./ATN.js";
+import { ATNConfig } from "./ATNConfig.js";
+import { ATNState } from "./ATNState.js";
+import { BitSet } from "../misc/BitSet.js";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { PredictionContext } from "./PredictionContext.js";
 export declare class LL1Analyzer {
     /** Special value added to the lookahead sets to indicate that we hit
      *  a predicate during analysis if `seeThruPreds==false`.

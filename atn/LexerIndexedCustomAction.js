@@ -11,8 +11,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
 /**
  * This implementation of {@link LexerAction} is used for tracking input offsets
  * for position-dependent actions within a {@link LexerActionExecutor}.
@@ -27,6 +27,8 @@ import { NotNull, Override } from "../Decorators";
  * @since 4.2
  */
 let LexerIndexedCustomAction = class LexerIndexedCustomAction {
+    _offset;
+    _action;
     /**
      * Constructs a new indexed custom action by associating a character offset
      * with a {@link LexerAction}.

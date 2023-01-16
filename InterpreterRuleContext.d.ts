@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ParserRuleContext } from "./ParserRuleContext";
+import { ParserRuleContext } from "./ParserRuleContext.js";
 /**
  * This class extends {@link ParserRuleContext} by allowing the value of
  * {@link #getRuleIndex} to be explicitly set for the context.

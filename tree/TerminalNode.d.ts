@@ -2,13 +2,13 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Interval } from "../misc/Interval";
-import { Parser } from "../Parser";
-import { ParseTree } from "./ParseTree";
-import { ParseTreeVisitor } from "./ParseTreeVisitor";
-import { RuleContext } from "../RuleContext";
-import { RuleNode } from "./RuleNode";
-import { Token } from "../Token";
+import { Interval } from "../misc/Interval.js";
+import { Parser } from "../Parser.js";
+import { ParseTree } from "./ParseTree.js";
+import { ParseTreeVisitor } from "./ParseTreeVisitor.js";
+import { RuleContext } from "../RuleContext.js";
+import { RuleNode } from "./RuleNode.js";
+import { Token } from "../Token.js";
 export declare class TerminalNode implements ParseTree {
     _symbol: Token;
     _parent: RuleNode | undefined;

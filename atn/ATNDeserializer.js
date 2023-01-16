@@ -12,50 +12,50 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:25.9683447-07:00
-import { ActionTransition } from "./ActionTransition";
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ATN } from "./ATN";
-import { ATNDeserializationOptions } from "./ATNDeserializationOptions";
-import { ATNStateType } from "./ATNStateType";
-import { AtomTransition } from "./AtomTransition";
-import { BasicBlockStartState } from "./BasicBlockStartState";
-import { BasicState } from "./BasicState";
-import { BitSet } from "../misc/BitSet";
-import { BlockEndState } from "./BlockEndState";
-import { BlockStartState } from "./BlockStartState";
-import { DecisionState } from "./DecisionState";
-import { DFA } from "../dfa/DFA";
-import { EpsilonTransition } from "./EpsilonTransition";
-import { IntervalSet } from "../misc/IntervalSet";
-import { InvalidState } from "./InvalidState";
-import { LexerChannelAction } from "./LexerChannelAction";
-import { LexerCustomAction } from "./LexerCustomAction";
-import { LexerModeAction } from "./LexerModeAction";
-import { LexerMoreAction } from "./LexerMoreAction";
-import { LexerPopModeAction } from "./LexerPopModeAction";
-import { LexerPushModeAction } from "./LexerPushModeAction";
-import { LexerSkipAction } from "./LexerSkipAction";
-import { LexerTypeAction } from "./LexerTypeAction";
-import { LoopEndState } from "./LoopEndState";
-import { NotNull } from "../Decorators";
-import { NotSetTransition } from "./NotSetTransition";
-import { ParserATNSimulator } from "./ParserATNSimulator";
-import { PlusBlockStartState } from "./PlusBlockStartState";
-import { PlusLoopbackState } from "./PlusLoopbackState";
-import { PrecedencePredicateTransition } from "./PrecedencePredicateTransition";
-import { PredicateTransition } from "./PredicateTransition";
-import { RangeTransition } from "./RangeTransition";
-import { RuleStartState } from "./RuleStartState";
-import { RuleStopState } from "./RuleStopState";
-import { RuleTransition } from "./RuleTransition";
-import { SetTransition } from "./SetTransition";
-import { StarBlockStartState } from "./StarBlockStartState";
-import { StarLoopbackState } from "./StarLoopbackState";
-import { StarLoopEntryState } from "./StarLoopEntryState";
-import { Token } from "../Token";
-import { TokensStartState } from "./TokensStartState";
-import { UUID } from "../misc/UUID";
-import { WildcardTransition } from "./WildcardTransition";
+import { ActionTransition } from "./ActionTransition.js";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ATN } from "./ATN.js";
+import { ATNDeserializationOptions } from "./ATNDeserializationOptions.js";
+import { ATNStateType } from "./ATNStateType.js";
+import { AtomTransition } from "./AtomTransition.js";
+import { BasicBlockStartState } from "./BasicBlockStartState.js";
+import { BasicState } from "./BasicState.js";
+import { BitSet } from "../misc/BitSet.js";
+import { BlockEndState } from "./BlockEndState.js";
+import { BlockStartState } from "./BlockStartState.js";
+import { DecisionState } from "./DecisionState.js";
+import { DFA } from "../dfa/DFA.js";
+import { EpsilonTransition } from "./EpsilonTransition.js";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { InvalidState } from "./InvalidState.js";
+import { LexerChannelAction } from "./LexerChannelAction.js";
+import { LexerCustomAction } from "./LexerCustomAction.js";
+import { LexerModeAction } from "./LexerModeAction.js";
+import { LexerMoreAction } from "./LexerMoreAction.js";
+import { LexerPopModeAction } from "./LexerPopModeAction.js";
+import { LexerPushModeAction } from "./LexerPushModeAction.js";
+import { LexerSkipAction } from "./LexerSkipAction.js";
+import { LexerTypeAction } from "./LexerTypeAction.js";
+import { LoopEndState } from "./LoopEndState.js";
+import { NotNull } from "../Decorators.js";
+import { NotSetTransition } from "./NotSetTransition.js";
+import { ParserATNSimulator } from "./ParserATNSimulator.js";
+import { PlusBlockStartState } from "./PlusBlockStartState.js";
+import { PlusLoopbackState } from "./PlusLoopbackState.js";
+import { PrecedencePredicateTransition } from "./PrecedencePredicateTransition.js";
+import { PredicateTransition } from "./PredicateTransition.js";
+import { RangeTransition } from "./RangeTransition.js";
+import { RuleStartState } from "./RuleStartState.js";
+import { RuleStopState } from "./RuleStopState.js";
+import { RuleTransition } from "./RuleTransition.js";
+import { SetTransition } from "./SetTransition.js";
+import { StarBlockStartState } from "./StarBlockStartState.js";
+import { StarLoopbackState } from "./StarLoopbackState.js";
+import { StarLoopEntryState } from "./StarLoopEntryState.js";
+import { Token } from "../Token.js";
+import { TokensStartState } from "./TokensStartState.js";
+import { UUID } from "../misc/UUID.js";
+import { WildcardTransition } from "./WildcardTransition.js";
 var UnicodeDeserializingMode;
 (function (UnicodeDeserializingMode) {
     UnicodeDeserializingMode[UnicodeDeserializingMode["UNICODE_BMP"] = 0] = "UNICODE_BMP";
@@ -72,6 +72,39 @@ export class ATNDeserializer {
          */
         return 3;
     }
+    /* WARNING: DO NOT MERGE THESE LINES. If UUIDs differ during a merge,
+     * resolve the conflict by generating a new ID!
+     */
+    /**
+     * This is the earliest supported serialized UUID.
+     */
+    static BASE_SERIALIZED_UUID = UUID.fromString("E4178468-DF95-44D0-AD87-F22A5D5FB6D3");
+    /**
+     * This UUID indicates an extension of {@link #ADDED_PRECEDENCE_TRANSITIONS}
+     * for the addition of lexer actions encoded as a sequence of
+     * {@link LexerAction} instances.
+     */
+    static ADDED_LEXER_ACTIONS = UUID.fromString("AB35191A-1603-487E-B75A-479B831EAF6D");
+    /**
+     * This UUID indicates the serialized ATN contains two sets of
+     * IntervalSets, where the second set's values are encoded as
+     * 32-bit integers to support the full Unicode SMP range up to U+10FFFF.
+     */
+    static ADDED_UNICODE_SMP = UUID.fromString("C23FEA89-0605-4f51-AFB8-058BCAB8C91B");
+    /**
+     * This list contains all of the currently supported UUIDs, ordered by when
+     * the feature first appeared in this branch.
+     */
+    static SUPPORTED_UUIDS = [
+        ATNDeserializer.BASE_SERIALIZED_UUID,
+        ATNDeserializer.ADDED_LEXER_ACTIONS,
+        ATNDeserializer.ADDED_UNICODE_SMP,
+    ];
+    /**
+     * This is the current serialized UUID.
+     */
+    static SERIALIZED_UUID = ATNDeserializer.ADDED_UNICODE_SMP;
+    deserializationOptions;
     constructor(deserializationOptions) {
         if (deserializationOptions === undefined) {
             deserializationOptions = ATNDeserializationOptions.defaultOptions;
@@ -1034,38 +1067,6 @@ export class ATNDeserializer {
         }
     }
 }
-/* WARNING: DO NOT MERGE THESE LINES. If UUIDs differ during a merge,
- * resolve the conflict by generating a new ID!
- */
-/**
- * This is the earliest supported serialized UUID.
- */
-ATNDeserializer.BASE_SERIALIZED_UUID = UUID.fromString("E4178468-DF95-44D0-AD87-F22A5D5FB6D3");
-/**
- * This UUID indicates an extension of {@link #ADDED_PRECEDENCE_TRANSITIONS}
- * for the addition of lexer actions encoded as a sequence of
- * {@link LexerAction} instances.
- */
-ATNDeserializer.ADDED_LEXER_ACTIONS = UUID.fromString("AB35191A-1603-487E-B75A-479B831EAF6D");
-/**
- * This UUID indicates the serialized ATN contains two sets of
- * IntervalSets, where the second set's values are encoded as
- * 32-bit integers to support the full Unicode SMP range up to U+10FFFF.
- */
-ATNDeserializer.ADDED_UNICODE_SMP = UUID.fromString("C23FEA89-0605-4f51-AFB8-058BCAB8C91B");
-/**
- * This list contains all of the currently supported UUIDs, ordered by when
- * the feature first appeared in this branch.
- */
-ATNDeserializer.SUPPORTED_UUIDS = [
-    ATNDeserializer.BASE_SERIALIZED_UUID,
-    ATNDeserializer.ADDED_LEXER_ACTIONS,
-    ATNDeserializer.ADDED_UNICODE_SMP,
-];
-/**
- * This is the current serialized UUID.
- */
-ATNDeserializer.SERIALIZED_UUID = ATNDeserializer.ADDED_UNICODE_SMP;
 __decorate([
     NotNull
 ], ATNDeserializer.prototype, "deserializationOptions", void 0);

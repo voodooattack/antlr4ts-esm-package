@@ -11,20 +11,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { ATNState } from "./atn/ATNState";
-import { ATNStateType } from "./atn/ATNStateType";
-import { BitSet } from "./misc/BitSet";
-import { FailedPredicateException } from "./FailedPredicateException";
-import { InputMismatchException } from "./InputMismatchException";
-import { InterpreterRuleContext } from "./InterpreterRuleContext";
-import { LoopEndState } from "./atn/LoopEndState";
-import { NotNull } from "./Decorators";
-import { Override } from "./Decorators";
-import { Parser } from "./Parser";
-import { ParserATNSimulator } from "./atn/ParserATNSimulator";
-import { RecognitionException } from "./RecognitionException";
-import { StarLoopEntryState } from "./atn/StarLoopEntryState";
-import { Token } from "./Token";
+import { ATNState } from "./atn/ATNState.js";
+import { ATNStateType } from "./atn/ATNStateType.js";
+import { BitSet } from "./misc/BitSet.js";
+import { FailedPredicateException } from "./FailedPredicateException.js";
+import { InputMismatchException } from "./InputMismatchException.js";
+import { InterpreterRuleContext } from "./InterpreterRuleContext.js";
+import { LoopEndState } from "./atn/LoopEndState.js";
+import { NotNull } from "./Decorators.js";
+import { Override } from "./Decorators.js";
+import { Parser } from "./Parser.js";
+import { ParserATNSimulator } from "./atn/ParserATNSimulator.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { StarLoopEntryState } from "./atn/StarLoopEntryState.js";
+import { Token } from "./Token.js";
 /** A parser simulator that mimics what ANTLR's generated
  *  parser code does. A ParserATNSimulator is used to make
  *  predictions via adaptivePredict but this class moves a pointer through the
@@ -39,34 +39,43 @@ import { Token } from "./Token";
  *  See TestParserInterpreter for examples.
  */
 let ParserInterpreter = class ParserInterpreter extends Parser {
+    _grammarFileName;
+    _atn;
+    /** This identifies StarLoopEntryState's that begin the (...)*
+     *  precedence loops of left recursive rules.
+     */
+    pushRecursionContextStates;
+    _ruleNames;
+    _vocabulary;
+    /** This stack corresponds to the _parentctx, _parentState pair of locals
+     *  that would exist on call stack frames with a recursive descent parser;
+     *  in the generated function for a left-recursive rule you'd see:
+     *
+     *  private EContext e(int _p) {
+     *      ParserRuleContext _parentctx = _ctx;    // Pair.a
+     *      int _parentState = state;          // Pair.b
+     *      ...
+     *  }
+     *
+     *  Those values are used to create new recursive rule invocation contexts
+     *  associated with left operand of an alt like "expr '*' expr".
+     */
+    _parentContextStack = [];
+    /** We need a map from (decision,inputIndex)->forced alt for computing ambiguous
+     *  parse trees. For now, we allow exactly one override.
+     */
+    overrideDecision = -1;
+    overrideDecisionInputIndex = -1;
+    overrideDecisionAlt = -1;
+    overrideDecisionReached = false; // latch and only override once; error might trigger infinite loop
+    /** What is the current context when we override a decisions?  This tells
+     *  us what the root of the parse tree is when using override
+     *  for an ambiguity/lookahead check.
+     */
+    _overrideDecisionRoot = undefined;
+    _rootContext;
     constructor(grammarFileName, vocabulary, ruleNames, atn, input) {
         super(grammarFileName instanceof ParserInterpreter ? grammarFileName.inputStream : input);
-        /** This stack corresponds to the _parentctx, _parentState pair of locals
-         *  that would exist on call stack frames with a recursive descent parser;
-         *  in the generated function for a left-recursive rule you'd see:
-         *
-         *  private EContext e(int _p) {
-         *      ParserRuleContext _parentctx = _ctx;    // Pair.a
-         *      int _parentState = state;          // Pair.b
-         *      ...
-         *  }
-         *
-         *  Those values are used to create new recursive rule invocation contexts
-         *  associated with left operand of an alt like "expr '*' expr".
-         */
-        this._parentContextStack = [];
-        /** We need a map from (decision,inputIndex)->forced alt for computing ambiguous
-         *  parse trees. For now, we allow exactly one override.
-         */
-        this.overrideDecision = -1;
-        this.overrideDecisionInputIndex = -1;
-        this.overrideDecisionAlt = -1;
-        this.overrideDecisionReached = false; // latch and only override once; error might trigger infinite loop
-        /** What is the current context when we override a decisions?  This tells
-         *  us what the root of the parse tree is when using override
-         *  for an ambiguity/lookahead check.
-         */
-        this._overrideDecisionRoot = undefined;
         if (grammarFileName instanceof ParserInterpreter) {
             let old = grammarFileName;
             this._grammarFileName = old._grammarFileName;

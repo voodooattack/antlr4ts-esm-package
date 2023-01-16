@@ -12,9 +12,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:50.3953157-07:00
-import { BufferedTokenStream } from "./BufferedTokenStream";
-import { NotNull, Override } from "./Decorators";
-import { Token } from "./Token";
+import { BufferedTokenStream } from "./BufferedTokenStream.js";
+import { NotNull, Override } from "./Decorators.js";
+import { Token } from "./Token.js";
 /**
  * This class extends {@link BufferedTokenStream} with functionality to filter
  * token streams to tokens on a particular channel (tokens where
@@ -36,6 +36,13 @@ import { Token } from "./Token";
  * channel.
  */
 let CommonTokenStream = class CommonTokenStream extends BufferedTokenStream {
+    /**
+     * Specifies the channel to use for filtering tokens.
+     *
+     * The default value is {@link Token#DEFAULT_CHANNEL}, which matches the
+     * default channel assigned to tokens created by the lexer.
+     */
+    channel;
     /**
      * Constructs a new {@link CommonTokenStream} using the specified token
      * source and filtering tokens to the specified channel. Only tokens whose

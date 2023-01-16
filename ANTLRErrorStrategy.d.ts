@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Parser } from "./Parser";
-import { Token } from "./Token";
-import { RecognitionException } from "./RecognitionException";
+import { Parser } from "./Parser.js";
+import { Token } from "./Token.js";
+import { RecognitionException } from "./RecognitionException.js";
 /**
  * The interface for defining strategies to deal with syntax errors encountered
  * during a parse by ANTLR-generated parsers. We distinguish between three

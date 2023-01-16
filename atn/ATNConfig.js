@@ -12,13 +12,13 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:25.2796692-07:00
-import { Array2DHashMap } from "../misc/Array2DHashMap";
-import { DecisionState } from "./DecisionState";
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
-import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator";
-import { PredictionContext } from "./PredictionContext";
-import { SemanticContext } from "./SemanticContext";
+import { Array2DHashMap } from "../misc/Array2DHashMap.js";
+import { DecisionState } from "./DecisionState.js";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
+import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
+import { PredictionContext } from "./PredictionContext.js";
+import { SemanticContext } from "./SemanticContext.js";
 import * as assert from "assert";
 /**
  * This field stores the bit mask for implementing the
@@ -56,6 +56,21 @@ const SUPPRESS_PRECEDENCE_FILTER = 0x80000000;
  * representing the unique information for any given `ATNConfig`.
  */
 let ATNConfig = class ATNConfig {
+    /** The ATN state associated with this configuration */
+    _state;
+    /**
+     * This is a bit-field currently containing the following values.
+     *
+     * * 0x00FFFFFF: Alternative
+     * * 0x7F000000: Outer context depth
+     * * 0x80000000: Suppress precedence filter
+     */
+    altAndOuterContextDepth;
+    /** The stack of invoking states leading to the rule/states associated
+     *  with this config.  We track only those contexts pushed during
+     *  execution of the ATN simulator.
+     */
+    _context;
     constructor(state, altOrConfig, context) {
         if (typeof altOrConfig === "number") {
             assert((altOrConfig & 0xFFFFFF) === altOrConfig);
@@ -428,6 +443,7 @@ export { ATNConfig };
  * types.
  */
 let SemanticContextATNConfig = class SemanticContextATNConfig extends ATNConfig {
+    _semanticContext;
     constructor(semanticContext, state, altOrConfig, context) {
         if (typeof altOrConfig === "number") {
             super(state, altOrConfig, context);
@@ -459,6 +475,8 @@ SemanticContextATNConfig = __decorate([
  * types.
  */
 let ActionATNConfig = class ActionATNConfig extends ATNConfig {
+    _lexerActionExecutor;
+    passedThroughNonGreedyDecision;
     constructor(lexerActionExecutor, state, altOrConfig, context, passedThroughNonGreedyDecision) {
         if (typeof altOrConfig === "number") {
             super(state, altOrConfig, context);
@@ -497,6 +515,8 @@ ActionATNConfig = __decorate([
  * types.
  */
 let ActionSemanticContextATNConfig = class ActionSemanticContextATNConfig extends SemanticContextATNConfig {
+    _lexerActionExecutor;
+    passedThroughNonGreedyDecision;
     constructor(lexerActionExecutor, semanticContext, state, altOrConfig, context, passedThroughNonGreedyDecision) {
         if (typeof altOrConfig === "number") {
             super(semanticContext, state, altOrConfig, context);

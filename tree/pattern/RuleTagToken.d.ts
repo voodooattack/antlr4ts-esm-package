@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "../../CharStream";
-import { Token } from "../../Token";
-import { TokenSource } from "../../TokenSource";
+import { CharStream } from "../../CharStream.js";
+import { Token } from "../../Token.js";
+import { TokenSource } from "../../TokenSource.js";
 /**
  * A {@link Token} object representing an entire subtree matched by a parser
  * rule; e.g., `<expr>`. These tokens are created for {@link TagChunk}

@@ -2,13 +2,13 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNState } from "./ATNState";
-import { Equatable } from "../misc/Stubs";
-import { LexerActionExecutor } from "./LexerActionExecutor";
-import { PredictionContext } from "./PredictionContext";
-import { PredictionContextCache } from "./PredictionContextCache";
-import { Recognizer } from "../Recognizer";
-import { SemanticContext } from "./SemanticContext";
+import { ATNState } from "./ATNState.js";
+import { Equatable } from "../misc/Stubs.js";
+import { LexerActionExecutor } from "./LexerActionExecutor.js";
+import { PredictionContext } from "./PredictionContext.js";
+import { PredictionContextCache } from "./PredictionContextCache.js";
+import { Recognizer } from "../Recognizer.js";
+import { SemanticContext } from "./SemanticContext.js";
 /**
  * Represents a location with context in an ATN. The location is identified by the following values:
  *

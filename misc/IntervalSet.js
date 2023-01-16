@@ -12,13 +12,13 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:40.8683480-07:00
-import { ArrayEqualityComparator } from "./ArrayEqualityComparator";
-import { IntegerList } from "./IntegerList";
-import { Interval } from "./Interval";
-import { Lexer } from "../Lexer";
-import { MurmurHash } from "./MurmurHash";
-import { Override, NotNull } from "../Decorators";
-import { Token } from "../Token";
+import { ArrayEqualityComparator } from "./ArrayEqualityComparator.js";
+import { IntegerList } from "./IntegerList.js";
+import { Interval } from "./Interval.js";
+import { Lexer } from "../Lexer.js";
+import { MurmurHash } from "./MurmurHash.js";
+import { Override, NotNull } from "../Decorators.js";
+import { Token } from "../Token.js";
 /**
  * This class implements the {@link IntSet} backed by a sorted array of
  * non-overlapping intervals. It is particularly efficient for representing
@@ -31,6 +31,7 @@ import { Token } from "../Token";
  * (inclusive).
  */
 export class IntervalSet {
+    static _COMPLETE_CHAR_SET;
     static get COMPLETE_CHAR_SET() {
         if (IntervalSet._COMPLETE_CHAR_SET === undefined) {
             IntervalSet._COMPLETE_CHAR_SET = IntervalSet.of(Lexer.MIN_CHAR_VALUE, Lexer.MAX_CHAR_VALUE);
@@ -38,6 +39,7 @@ export class IntervalSet {
         }
         return IntervalSet._COMPLETE_CHAR_SET;
     }
+    static _EMPTY_SET;
     static get EMPTY_SET() {
         if (IntervalSet._EMPTY_SET == null) {
             IntervalSet._EMPTY_SET = new IntervalSet();
@@ -45,8 +47,10 @@ export class IntervalSet {
         }
         return IntervalSet._EMPTY_SET;
     }
+    /** The list of sorted, disjoint intervals. */
+    _intervals;
+    readonly = false;
     constructor(intervals) {
-        this.readonly = false;
         if (intervals != null) {
             this._intervals = intervals.slice(0);
         }

@@ -9,9 +9,20 @@
  *  and what kind of problem occurred.
  */
 export class RecognitionException extends Error {
+    // private static serialVersionUID: number =  -3861826954750022374L;
+    /** The {@link Recognizer} where this exception originated. */
+    _recognizer;
+    ctx;
+    input;
+    /**
+     * The current {@link Token} when an error occurred. Since not all streams
+     * support accessing symbols by index, we have to track the {@link Token}
+     * instance itself.
+     */
+    offendingToken;
+    _offendingState = -1;
     constructor(recognizer, input, ctx, message) {
         super(message);
-        this._offendingState = -1;
         this._recognizer = recognizer;
         this.input = input;
         this.ctx = ctx;

@@ -2,17 +2,17 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATN } from "./atn/ATN";
-import { ATNState } from "./atn/ATNState";
-import { BitSet } from "./misc/BitSet";
-import { DecisionState } from "./atn/DecisionState";
-import { InterpreterRuleContext } from "./InterpreterRuleContext";
-import { Parser } from "./Parser";
-import { ParserRuleContext } from "./ParserRuleContext";
-import { RecognitionException } from "./RecognitionException";
-import { Token } from "./Token";
-import { TokenStream } from "./TokenStream";
-import { Vocabulary } from "./Vocabulary";
+import { ATN } from "./atn/ATN.js";
+import { ATNState } from "./atn/ATNState.js";
+import { BitSet } from "./misc/BitSet.js";
+import { DecisionState } from "./atn/DecisionState.js";
+import { InterpreterRuleContext } from "./InterpreterRuleContext.js";
+import { Parser } from "./Parser.js";
+import { ParserRuleContext } from "./ParserRuleContext.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { Token } from "./Token.js";
+import { TokenStream } from "./TokenStream.js";
+import { Vocabulary } from "./Vocabulary.js";
 /** A parser simulator that mimics what ANTLR's generated
  *  parser code does. A ParserATNSimulator is used to make
  *  predictions via adaptivePredict but this class moves a pointer through the

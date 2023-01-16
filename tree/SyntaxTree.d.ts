@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Tree } from "./Tree";
-import { Interval } from "../misc/Interval";
+import { Tree } from "./Tree.js";
+import { Interval } from "../misc/Interval.js";
 /** A tree that knows about an interval in a token stream
  *  is some kind of syntax tree. Subinterfaces distinguish
  *  between parse trees and other kinds of syntax trees we might want to create.

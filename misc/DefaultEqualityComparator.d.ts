@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { EqualityComparator } from "./EqualityComparator";
+import { EqualityComparator } from "./EqualityComparator.js";
 /**
  * This default implementation of {@link EqualityComparator} uses object equality
  * for comparisons by calling {@link Object#hashCode} and {@link Object#equals}.

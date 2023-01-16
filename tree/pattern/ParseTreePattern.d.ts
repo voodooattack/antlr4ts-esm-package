@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ParseTree } from "../ParseTree";
-import { ParseTreeMatch } from "./ParseTreeMatch";
-import { ParseTreePatternMatcher } from "./ParseTreePatternMatcher";
+import { ParseTree } from "../ParseTree.js";
+import { ParseTreeMatch } from "./ParseTreeMatch.js";
+import { ParseTreePatternMatcher } from "./ParseTreePatternMatcher.js";
 /**
  * A pattern like `<ID> = <expr>;` converted to a {@link ParseTree} by
  * {@link ParseTreePatternMatcher#compile(String, int)}.

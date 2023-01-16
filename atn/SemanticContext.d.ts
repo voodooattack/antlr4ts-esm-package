@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Comparable } from "../misc/Stubs";
-import { Equatable } from "../misc/Stubs";
-import { Recognizer } from "../Recognizer";
-import { RuleContext } from "../RuleContext";
+import { Comparable } from "../misc/Stubs.js";
+import { Equatable } from "../misc/Stubs.js";
+import { Recognizer } from "../Recognizer.js";
+import { RuleContext } from "../RuleContext.js";
 /** A tree structure used to record the semantic context in which
  *  an ATN configuration is valid.  It's either a single predicate,
  *  a conjunction `p1&&p2`, or a sum of products `p1||p2`.

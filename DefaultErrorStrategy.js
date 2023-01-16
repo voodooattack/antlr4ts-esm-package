@@ -11,41 +11,49 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { ATNState } from "./atn/ATNState";
-import { ATNStateType } from "./atn/ATNStateType";
-import { FailedPredicateException } from "./FailedPredicateException";
-import { InputMismatchException } from "./InputMismatchException";
-import { IntervalSet } from "./misc/IntervalSet";
-import { NoViableAltException } from "./NoViableAltException";
-import { PredictionContext } from "./atn/PredictionContext";
-import { Token } from "./Token";
-import { Override, NotNull } from "./Decorators";
+import { ATNState } from "./atn/ATNState.js";
+import { ATNStateType } from "./atn/ATNStateType.js";
+import { FailedPredicateException } from "./FailedPredicateException.js";
+import { InputMismatchException } from "./InputMismatchException.js";
+import { IntervalSet } from "./misc/IntervalSet.js";
+import { NoViableAltException } from "./NoViableAltException.js";
+import { PredictionContext } from "./atn/PredictionContext.js";
+import { Token } from "./Token.js";
+import { Override, NotNull } from "./Decorators.js";
 /**
  * This is the default implementation of {@link ANTLRErrorStrategy} used for
  * error reporting and recovery in ANTLR parsers.
  */
 export class DefaultErrorStrategy {
-    constructor() {
-        /**
-         * Indicates whether the error strategy is currently "recovering from an
-         * error". This is used to suppress reporting multiple error messages while
-         * attempting to recover from a detected syntax error.
-         *
-         * @see #inErrorRecoveryMode
-         */
-        this.errorRecoveryMode = false;
-        /** The index into the input stream where the last error occurred.
-         * 	This is used to prevent infinite loops where an error is found
-         *  but no token is consumed during recovery...another error is found,
-         *  ad nauseum.  This is a failsafe mechanism to guarantee that at least
-         *  one token/tree node is consumed for two errors.
-         */
-        this.lastErrorIndex = -1;
-        /**
-         * @see #nextTokensContext
-         */
-        this.nextTokensState = ATNState.INVALID_STATE_NUMBER;
-    }
+    /**
+     * Indicates whether the error strategy is currently "recovering from an
+     * error". This is used to suppress reporting multiple error messages while
+     * attempting to recover from a detected syntax error.
+     *
+     * @see #inErrorRecoveryMode
+     */
+    errorRecoveryMode = false;
+    /** The index into the input stream where the last error occurred.
+     * 	This is used to prevent infinite loops where an error is found
+     *  but no token is consumed during recovery...another error is found,
+     *  ad nauseum.  This is a failsafe mechanism to guarantee that at least
+     *  one token/tree node is consumed for two errors.
+     */
+    lastErrorIndex = -1;
+    lastErrorStates;
+    /**
+     * This field is used to propagate information about the lookahead following
+     * the previous match. Since prediction prefers completing the current rule
+     * to error recovery efforts, error reporting may occur later than the
+     * original point where it was discoverable. The original context is used to
+     * compute the true expected sets as though the reporting occurred as early
+     * as possible.
+     */
+    nextTokensContext;
+    /**
+     * @see #nextTokensContext
+     */
+    nextTokensState = ATNState.INVALID_STATE_NUMBER;
     /**
      * {@inheritDoc}
      *

@@ -8,50 +8,70 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { CommonTokenFactory } from "./CommonTokenFactory";
-import { IntegerStack } from "./misc/IntegerStack";
-import { Interval } from "./misc/Interval";
-import { IntStream } from "./IntStream";
-import { LexerATNSimulator } from "./atn/LexerATNSimulator";
-import { LexerNoViableAltException } from "./LexerNoViableAltException";
-import { Override } from "./Decorators";
-import { Recognizer } from "./Recognizer";
-import { Token } from "./Token";
+import { CommonTokenFactory } from "./CommonTokenFactory.js";
+import { IntegerStack } from "./misc/IntegerStack.js";
+import { Interval } from "./misc/Interval.js";
+import { IntStream } from "./IntStream.js";
+import { LexerATNSimulator } from "./atn/LexerATNSimulator.js";
+import { LexerNoViableAltException } from "./LexerNoViableAltException.js";
+import { Override } from "./Decorators.js";
+import { Recognizer } from "./Recognizer.js";
+import { Token } from "./Token.js";
 /** A lexer is recognizer that draws input symbols from a character stream.
  *  lexer grammars result in a subclass of this object. A Lexer object
  *  uses simplified match() and error recovery mechanisms in the interest
  *  of speed.
  */
 export class Lexer extends Recognizer {
+    static DEFAULT_MODE = 0;
+    static MORE = -2;
+    static SKIP = -3;
     static get DEFAULT_TOKEN_CHANNEL() {
         return Token.DEFAULT_CHANNEL;
     }
     static get HIDDEN() {
         return Token.HIDDEN_CHANNEL;
     }
+    static MIN_CHAR_VALUE = 0x0000;
+    static MAX_CHAR_VALUE = 0x10FFFF;
+    _input;
+    _tokenFactorySourcePair;
+    /** How to create token objects */
+    _factory = CommonTokenFactory.DEFAULT;
+    /** The goal of all lexer rules/methods is to create a token object.
+     *  This is an instance variable as multiple rules may collaborate to
+     *  create a single token.  nextToken will return this object after
+     *  matching lexer rule(s).  If you subclass to allow multiple token
+     *  emissions, then set this to the last token to be matched or
+     *  something non-undefined so that the auto token emit mechanism will not
+     *  emit another token.
+     */
+    _token;
+    /** What character index in the stream did the current token start at?
+     *  Needed, for example, to get the text for current token.  Set at
+     *  the start of nextToken.
+     */
+    _tokenStartCharIndex = -1;
+    /** The line on which the first character of the token resides */
+    _tokenStartLine = 0;
+    /** The character position of first character within the line */
+    _tokenStartCharPositionInLine = 0;
+    /** Once we see EOF on char stream, next token will be EOF.
+     *  If you have DONE : EOF ; then you see DONE EOF.
+     */
+    _hitEOF = false;
+    /** The channel number for the current token */
+    _channel = 0;
+    /** The token type for the current token */
+    _type = 0;
+    _modeStack = new IntegerStack();
+    _mode = Lexer.DEFAULT_MODE;
+    /** You can set the text for the current token to override what is in
+     *  the input char buffer.  Set `text` or can set this instance var.
+     */
+    _text;
     constructor(input) {
         super();
-        /** How to create token objects */
-        this._factory = CommonTokenFactory.DEFAULT;
-        /** What character index in the stream did the current token start at?
-         *  Needed, for example, to get the text for current token.  Set at
-         *  the start of nextToken.
-         */
-        this._tokenStartCharIndex = -1;
-        /** The line on which the first character of the token resides */
-        this._tokenStartLine = 0;
-        /** The character position of first character within the line */
-        this._tokenStartCharPositionInLine = 0;
-        /** Once we see EOF on char stream, next token will be EOF.
-         *  If you have DONE : EOF ; then you see DONE EOF.
-         */
-        this._hitEOF = false;
-        /** The channel number for the current token */
-        this._channel = 0;
-        /** The token type for the current token */
-        this._type = 0;
-        this._modeStack = new IntegerStack();
-        this._mode = Lexer.DEFAULT_MODE;
         this._input = input;
         this._tokenFactorySourcePair = { source: this, stream: input };
     }
@@ -305,11 +325,6 @@ export class Lexer extends Recognizer {
         }
     }
 }
-Lexer.DEFAULT_MODE = 0;
-Lexer.MORE = -2;
-Lexer.SKIP = -3;
-Lexer.MIN_CHAR_VALUE = 0x0000;
-Lexer.MAX_CHAR_VALUE = 0x10FFFF;
 __decorate([
     Override
 ], Lexer.prototype, "nextToken", null);

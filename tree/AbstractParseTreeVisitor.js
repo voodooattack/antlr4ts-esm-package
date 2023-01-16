@@ -11,7 +11,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { NotNull, Override } from "../Decorators";
+import { NotNull, Override } from "../Decorators.js";
 export class AbstractParseTreeVisitor {
     /**
      * {@inheritDoc}

@@ -9,8 +9,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:59.5829654-07:00
-import { NotNull, Override } from "./Decorators";
-import { Token } from "./Token";
+import { NotNull, Override } from "./Decorators.js";
+import { Token } from "./Token.js";
 /**
  * This class provides a default implementation of the {@link Vocabulary}
  * interface.
@@ -18,6 +18,18 @@ import { Token } from "./Token";
  * @author Sam Harwell
  */
 export class VocabularyImpl {
+    /**
+     * Gets an empty {@link Vocabulary} instance.
+     *
+     * No literal or symbol names are assigned to token types, so
+     * {@link #getDisplayName(int)} returns the numeric value for all tokens
+     * except {@link Token#EOF}.
+     */
+    static EMPTY_VOCABULARY = new VocabularyImpl([], [], []);
+    literalNames;
+    symbolicNames;
+    displayNames;
+    _maxTokenType;
     /**
      * Constructs a new instance of {@link VocabularyImpl} from the specified
      * literal, symbolic, and display token names.
@@ -79,14 +91,6 @@ export class VocabularyImpl {
         return String(tokenType);
     }
 }
-/**
- * Gets an empty {@link Vocabulary} instance.
- *
- * No literal or symbol names are assigned to token types, so
- * {@link #getDisplayName(int)} returns the numeric value for all tokens
- * except {@link Token#EOF}.
- */
-VocabularyImpl.EMPTY_VOCABULARY = new VocabularyImpl([], [], []);
 __decorate([
     NotNull
 ], VocabularyImpl.prototype, "literalNames", void 0);

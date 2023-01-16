@@ -9,8 +9,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // CONVERSTION complete, Burt Harris 10/14/2016
-import { Override } from "../../Decorators";
+import { Override } from "../../Decorators.js";
 export class XPathElement {
+    nodeName;
+    invert;
     /** Construct element like `/ID` or `ID` or `/*` etc...
      *  op is null if just node
      */

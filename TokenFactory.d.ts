@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { Token } from "./Token";
-import { TokenSource } from "./TokenSource";
+import { CharStream } from "./CharStream.js";
+import { Token } from "./Token.js";
+import { TokenSource } from "./TokenSource.js";
 /** The default mechanism for creating tokens. It's used by default in Lexer and
  *  the error handling strategy (to create missing tokens).  Notifying the parser
  *  of a new factory means that it notifies its token source and error strategy.

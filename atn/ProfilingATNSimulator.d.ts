@@ -2,18 +2,18 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNConfigSet } from "./ATNConfigSet";
-import { BitSet } from "../misc/BitSet";
-import { DecisionInfo } from "./DecisionInfo";
-import { DFA } from "../dfa/DFA";
-import { DFAState } from "../dfa/DFAState";
-import { Parser } from "../Parser";
-import { ParserATNSimulator } from "./ParserATNSimulator";
-import { ParserRuleContext } from "../ParserRuleContext";
-import { PredictionContextCache } from "./PredictionContextCache";
-import { SemanticContext } from "./SemanticContext";
-import { SimulatorState } from "./SimulatorState";
-import { TokenStream } from "../TokenStream";
+import { ATNConfigSet } from "./ATNConfigSet.js";
+import { BitSet } from "../misc/BitSet.js";
+import { DecisionInfo } from "./DecisionInfo.js";
+import { DFA } from "../dfa/DFA.js";
+import { DFAState } from "../dfa/DFAState.js";
+import { Parser } from "../Parser.js";
+import { ParserATNSimulator } from "./ParserATNSimulator.js";
+import { ParserRuleContext } from "../ParserRuleContext.js";
+import { PredictionContextCache } from "./PredictionContextCache.js";
+import { SemanticContext } from "./SemanticContext.js";
+import { SimulatorState } from "./SimulatorState.js";
+import { TokenStream } from "../TokenStream.js";
 /**
  * @since 4.3
  */

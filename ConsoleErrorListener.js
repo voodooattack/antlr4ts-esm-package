@@ -8,6 +8,10 @@
  */
 export class ConsoleErrorListener {
     /**
+     * Provides a default instance of {@link ConsoleErrorListener}.
+     */
+    static INSTANCE = new ConsoleErrorListener();
+    /**
      * {@inheritDoc}
      *
      * This implementation prints messages to {@link System#err} containing the
@@ -22,8 +26,4 @@ export class ConsoleErrorListener {
         console.error(`line ${line}:${charPositionInLine} ${msg}`);
     }
 }
-/**
- * Provides a default instance of {@link ConsoleErrorListener}.
- */
-ConsoleErrorListener.INSTANCE = new ConsoleErrorListener();
 //# sourceMappingURL=ConsoleErrorListener.js.map

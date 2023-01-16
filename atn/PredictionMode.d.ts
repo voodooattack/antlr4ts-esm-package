@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNConfigSet } from "./ATNConfigSet";
+import { ATNConfigSet } from "./ATNConfigSet.js";
 /**
  * This enumeration defines the prediction modes available in ANTLR 4 along with
  * utility methods for analyzing configuration sets for conflicts and/or

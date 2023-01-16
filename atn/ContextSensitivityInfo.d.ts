@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { DecisionEventInfo } from "./DecisionEventInfo";
-import { SimulatorState } from "./SimulatorState";
-import { TokenStream } from "../TokenStream";
+import { DecisionEventInfo } from "./DecisionEventInfo.js";
+import { SimulatorState } from "./SimulatorState.js";
+import { TokenStream } from "../TokenStream.js";
 /**
  * This class represents profiling event information for a context sensitivity.
  * Context sensitivities are decisions where a particular input resulted in an

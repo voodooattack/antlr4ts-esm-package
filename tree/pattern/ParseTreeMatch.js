@@ -11,11 +11,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { NotNull, Override } from "../../Decorators";
+import { NotNull, Override } from "../../Decorators.js";
 /**
  * Represents the result of matching a {@link ParseTree} against a tree pattern.
  */
 let ParseTreeMatch = class ParseTreeMatch {
+    /**
+     * This is the backing field for `tree`.
+     */
+    _tree;
+    /**
+     * This is the backing field for `pattern`.
+     */
+    _pattern;
+    /**
+     * This is the backing field for `labels`.
+     */
+    _labels;
+    /**
+     * This is the backing field for `mismatchedNode`.
+     */
+    _mismatchedNode;
     /**
      * Constructs a new instance of {@link ParseTreeMatch} from the specified
      * parse tree and pattern.

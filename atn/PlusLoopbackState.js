@@ -9,9 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:35.0257730-07:00
-import { ATNStateType } from "./ATNStateType";
-import { DecisionState } from "./DecisionState";
-import { Override } from "../Decorators";
+import { ATNStateType } from "./ATNStateType.js";
+import { DecisionState } from "./DecisionState.js";
+import { Override } from "../Decorators.js";
 /** Decision state for `A+` and `(A|B)+`.  It has two transitions:
  *  one to the loop back to start of the block and one to exit.
  */

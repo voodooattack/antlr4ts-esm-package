@@ -8,14 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Override } from "../Decorators";
-import * as Utils from "../misc/Utils";
+import { Override } from "../Decorators.js";
+import * as Utils from "../misc/Utils.js";
 /**
  * This class stores information about a configuration conflict.
  *
  * @author Sam Harwell
  */
 export class ConflictInfo {
+    _conflictedAlts;
+    exact;
     constructor(conflictedAlts, exact) {
         this._conflictedAlts = conflictedAlts;
         this.exact = exact;

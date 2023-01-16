@@ -12,15 +12,37 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:35.3812636-07:00
-import { Array2DHashMap } from "../misc/Array2DHashMap";
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { Arrays } from "../misc/Arrays";
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
-import { PredictionContextCache } from "./PredictionContextCache";
+import { Array2DHashMap } from "../misc/Array2DHashMap.js";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { Arrays } from "../misc/Arrays.js";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
+import { PredictionContextCache } from "./PredictionContextCache.js";
 import * as assert from "assert";
 const INITIAL_HASH = 1;
 export class PredictionContext {
+    /**
+     * Stores the computed hash code of this {@link PredictionContext}. The hash
+     * code is computed in parts to match the following reference algorithm.
+     *
+     * ```
+     * private int referenceHashCode() {
+     *   int hash = {@link MurmurHash#initialize MurmurHash.initialize}({@link #INITIAL_HASH});
+     *
+     *   for (int i = 0; i &lt; this.size; i++) {
+     *     hash = {@link MurmurHash#update MurmurHash.update}(hash, {@link #getParent getParent}(i));
+     *   }
+     *
+     *   for (int i = 0; i &lt; this.size; i++) {
+     *     hash = {@link MurmurHash#update MurmurHash.update}(hash, {@link #getReturnState getReturnState}(i));
+     *   }
+     *
+     *   hash = {@link MurmurHash#finish MurmurHash.finish}(hash, 2 * this.size);
+     *   return hash;
+     * }
+     * ```
+     */
+    cachedHashCode;
     constructor(cachedHashCode) {
         this.cachedHashCode = cachedHashCode;
     }
@@ -289,6 +311,7 @@ __decorate([
     __param(2, NotNull)
 ], PredictionContext, "getCachedContext", null);
 class EmptyPredictionContext extends PredictionContext {
+    fullContext;
     constructor(fullContext) {
         super(PredictionContext.calculateEmptyHashCode());
         this.fullContext = fullContext;
@@ -370,6 +393,8 @@ __decorate([
     Override
 ], EmptyPredictionContext.prototype, "toStrings", null);
 let ArrayPredictionContext = class ArrayPredictionContext extends PredictionContext {
+    parents;
+    returnStates;
     constructor(parents, returnStates, hashCode) {
         super(hashCode || PredictionContext.calculateHashCode(parents, returnStates));
         assert(parents.length === returnStates.length);
@@ -565,6 +590,8 @@ ArrayPredictionContext = __decorate([
     __param(0, NotNull)
 ], ArrayPredictionContext);
 let SingletonPredictionContext = class SingletonPredictionContext extends PredictionContext {
+    parent;
+    returnState;
     constructor(parent, returnState) {
         super(PredictionContext.calculateSingleHashCode(parent, returnState));
         // assert(returnState != PredictionContext.EMPTY_FULL_STATE_KEY && returnState != PredictionContext.EMPTY_LOCAL_STATE_KEY);
@@ -666,6 +693,7 @@ export { SingletonPredictionContext };
     }
     PredictionContext.IdentityHashMap = IdentityHashMap;
     class IdentityEqualityComparator {
+        static INSTANCE = new IdentityEqualityComparator();
         IdentityEqualityComparator() {
             // intentionally empty
         }
@@ -676,7 +704,6 @@ export { SingletonPredictionContext };
             return a === b;
         }
     }
-    IdentityEqualityComparator.INSTANCE = new IdentityEqualityComparator();
     __decorate([
         Override
     ], IdentityEqualityComparator.prototype, "hashCode", null);

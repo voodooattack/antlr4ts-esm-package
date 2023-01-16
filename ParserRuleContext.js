@@ -9,11 +9,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:56.6285494-07:00
-import { ErrorNode } from "./tree/ErrorNode";
-import { Interval } from "./misc/Interval";
-import { Override } from "./Decorators";
-import { RuleContext } from "./RuleContext";
-import { TerminalNode } from "./tree/TerminalNode";
+import { ErrorNode } from "./tree/ErrorNode.js";
+import { Interval } from "./misc/Interval.js";
+import { Override } from "./Decorators.js";
+import { RuleContext } from "./RuleContext.js";
+import { TerminalNode } from "./tree/TerminalNode.js";
 /** A rule invocation record for parsing.
  *
  *  Contains all of the information about the current rule not stored in the
@@ -37,6 +37,40 @@ import { TerminalNode } from "./tree/TerminalNode";
  *  satisfy the superclass interface.
  */
 export class ParserRuleContext extends RuleContext {
+    static EMPTY = new ParserRuleContext();
+    /** If we are debugging or building a parse tree for a visitor,
+     *  we need to track all of the tokens and rule invocations associated
+     *  with this rule's context. This is empty for parsing w/o tree constr.
+     *  operation because we don't the need to track the details about
+     *  how we parse this rule.
+     */
+    children;
+    /** For debugging/tracing purposes, we want to track all of the nodes in
+     *  the ATN traversed by the parser for a particular rule.
+     *  This list indicates the sequence of ATN nodes used to match
+     *  the elements of the children list. This list does not include
+     *  ATN nodes and other rules used to match rule invocations. It
+     *  traces the rule invocation node itself but nothing inside that
+     *  other rule's ATN submachine.
+     *
+     *  There is NOT a one-to-one correspondence between the children and
+     *  states list. There are typically many nodes in the ATN traversed
+     *  for each element in the children list. For example, for a rule
+     *  invocation there is the invoking state and the following state.
+     *
+     *  The parser state property updates field s and adds it to this list
+     *  if we are debugging/tracing.
+     *
+     *  This does not trace states visited during prediction.
+     */
+    //	public Array<number> states;
+    _start;
+    _stop;
+    /**
+     * The exception that forced this rule to return. If the rule successfully
+     * completed, this is `undefined`.
+     */
+    exception;
     constructor(parent, invokingStateNumber) {
         if (invokingStateNumber == null) {
             super();
@@ -283,7 +317,6 @@ export class ParserRuleContext extends RuleContext {
             "}";
     }
 }
-ParserRuleContext.EMPTY = new ParserRuleContext();
 __decorate([
     Override
     /** Override to make type more specific */

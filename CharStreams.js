@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CodePointBuffer } from "./CodePointBuffer";
-import { CodePointCharStream } from "./CodePointCharStream";
-import { IntStream } from "./IntStream";
+import { CodePointBuffer } from "./CodePointBuffer.js";
+import { CodePointCharStream } from "./CodePointCharStream.js";
+import { IntStream } from "./IntStream.js";
 // const DEFAULT_BUFFER_SIZE: number = 4096;
 /** This class represents the primary interface for creating {@link CharStream}s
  *  from a variety of sources as of 4.7.  The motivation was to support

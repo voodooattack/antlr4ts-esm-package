@@ -12,14 +12,22 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:46.3281988-07:00
-import { CommonToken } from "../../CommonToken";
-import { NotNull, Override } from "../../Decorators";
+import { CommonToken } from "../../CommonToken.js";
+import { NotNull, Override } from "../../Decorators.js";
 /**
  * A {@link Token} object representing a token of a particular type; e.g.,
  * `<ID>`. These tokens are created for {@link TagChunk} chunks where the
  * tag corresponds to a lexer rule or token type.
  */
 let TokenTagToken = class TokenTagToken extends CommonToken {
+    /**
+     * This is the backing field for `tokenName`.
+     */
+    _tokenName;
+    /**
+     * This is the backing field for `label`.
+     */
+    _label;
     /**
      * Constructs a new instance of {@link TokenTagToken} with the specified
      * token name, type, and label.

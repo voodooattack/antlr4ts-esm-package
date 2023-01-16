@@ -11,13 +11,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { NotNull } from "../Decorators";
-import { ParserRuleContext } from "../ParserRuleContext";
+import { NotNull } from "../Decorators.js";
+import { ParserRuleContext } from "../ParserRuleContext.js";
 /**
  *
  * @author Sam Harwell
  */
 let SimulatorState = class SimulatorState {
+    outerContext;
+    s0;
+    useContext;
+    remainingOuterContext;
     constructor(outerContext, s0, useContext, remainingOuterContext) {
         this.outerContext = outerContext != null ? outerContext : ParserRuleContext.emptyContext();
         this.s0 = s0;

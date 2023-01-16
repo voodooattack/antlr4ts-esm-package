@@ -11,8 +11,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
 /**
  * Implements the `pushMode` lexer action by calling
  * {@link Lexer#pushMode} with the assigned mode.
@@ -21,6 +21,7 @@ import { NotNull, Override } from "../Decorators";
  * @since 4.2
  */
 export class LexerPushModeAction {
+    _mode;
     /**
      * Constructs a new `pushMode` action with the specified mode value.
      * @param mode The mode value to pass to {@link Lexer#pushMode}.

@@ -9,8 +9,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:40.5099429-07:00
-import { Arrays } from "./Arrays";
-import { NotNull, Override } from "../Decorators";
+import { Arrays } from "./Arrays.js";
+import { NotNull, Override } from "../Decorators.js";
 const EMPTY_DATA = new Int32Array(0);
 const INITIAL_SIZE = 4;
 const MAX_ARRAY_SIZE = (((1 << 31) >>> 0) - 1) - 8;
@@ -19,6 +19,8 @@ const MAX_ARRAY_SIZE = (((1 << 31) >>> 0) - 1) - 8;
  * @author Sam Harwell
  */
 export class IntegerList {
+    _data;
+    _size;
     constructor(arg) {
         if (!arg) {
             this._data = EMPTY_DATA;

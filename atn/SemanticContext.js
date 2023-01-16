@@ -12,12 +12,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:36.9521478-07:00
-import { Array2DHashSet } from "../misc/Array2DHashSet";
-import { ArrayEqualityComparator } from "../misc/ArrayEqualityComparator";
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
-import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator";
-import * as Utils from "../misc/Utils";
+import { Array2DHashSet } from "../misc/Array2DHashSet.js";
+import { ArrayEqualityComparator } from "../misc/ArrayEqualityComparator.js";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
+import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
+import * as Utils from "../misc/Utils.js";
 function max(items) {
     let result;
     for (let current of items) {
@@ -54,6 +54,7 @@ function min(items) {
  *  {@link SemanticContext} within the scope of this outer class.
  */
 export class SemanticContext {
+    static _NONE;
     /**
      * The default {@link SemanticContext}, which is semantically equivalent to
      * a predicate of the form `{true}?`.
@@ -138,6 +139,9 @@ export class SemanticContext {
         return result;
     }
     class Predicate extends SemanticContext {
+        ruleIndex;
+        predIndex;
+        isCtxDependent; // e.g., $i ref in pred
         constructor(ruleIndex = -1, predIndex = -1, isCtxDependent = false) {
             super();
             this.ruleIndex = ruleIndex;
@@ -185,6 +189,7 @@ export class SemanticContext {
     ], Predicate.prototype, "toString", null);
     SemanticContext.Predicate = Predicate;
     class PrecedencePredicate extends SemanticContext {
+        precedence;
         constructor(precedence) {
             super();
             this.precedence = precedence;
@@ -255,6 +260,7 @@ export class SemanticContext {
      * is false.
      */
     let AND = class AND extends Operator {
+        opnds;
         constructor(a, b) {
             super();
             let operands = new Array2DHashSet(ObjectEqualityComparator.INSTANCE);
@@ -367,6 +373,7 @@ export class SemanticContext {
      * contexts is true.
      */
     let OR = class OR extends Operator {
+        opnds;
         constructor(a, b) {
             super();
             let operands = new Array2DHashSet(ObjectEqualityComparator.INSTANCE);

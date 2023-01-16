@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Interval } from "./misc/Interval";
-import { IntStream } from "./IntStream";
+import { Interval } from "./misc/Interval.js";
+import { IntStream } from "./IntStream.js";
 /** A source of characters for an ANTLR lexer. */
 export interface CharStream extends IntStream {
     /**

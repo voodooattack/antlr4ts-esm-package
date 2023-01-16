@@ -2,15 +2,15 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ErrorNode } from "./tree/ErrorNode";
-import { Interval } from "./misc/Interval";
-import { Parser } from "./Parser";
-import { ParseTree } from "./tree/ParseTree";
-import { ParseTreeListener } from "./tree/ParseTreeListener";
-import { RecognitionException } from "./RecognitionException";
-import { RuleContext } from "./RuleContext";
-import { TerminalNode } from "./tree/TerminalNode";
-import { Token } from "./Token";
+import { ErrorNode } from "./tree/ErrorNode.js";
+import { Interval } from "./misc/Interval.js";
+import { Parser } from "./Parser.js";
+import { ParseTree } from "./tree/ParseTree.js";
+import { ParseTreeListener } from "./tree/ParseTreeListener.js";
+import { RecognitionException } from "./RecognitionException.js";
+import { RuleContext } from "./RuleContext.js";
+import { TerminalNode } from "./tree/TerminalNode.js";
+import { Token } from "./Token.js";
 /** A rule invocation record for parsing.
  *
  *  Contains all of the information about the current rule not stored in the

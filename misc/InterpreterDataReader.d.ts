@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATN } from "../atn/ATN";
-import { Vocabulary } from "../Vocabulary";
+import { ATN } from "../atn/ATN.js";
+import { Vocabulary } from "../Vocabulary.js";
 export declare namespace InterpreterDataReader {
     /**
      * The structure of the data file is very simple. Everything is line based with empty lines

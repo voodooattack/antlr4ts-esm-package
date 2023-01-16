@@ -12,8 +12,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:51.5187682-07:00
-import { RecognitionException } from "./RecognitionException";
-import { NotNull } from "./Decorators";
+import { RecognitionException } from "./RecognitionException.js";
+import { NotNull } from "./Decorators.js";
 /** This signifies any kind of mismatched input exceptions such as
  *  when the current input does not match the expected token.
  */

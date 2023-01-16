@@ -3,11 +3,14 @@
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
 import * as assert from "assert";
-import * as Character from "./misc/Character";
+import * as Character from "./misc/Character.js";
 /**
  * Wrapper for `Uint8Array` / `Uint16Array` / `Int32Array`.
  */
 export class CodePointBuffer {
+    buffer;
+    _position;
+    _size;
     constructor(buffer, size) {
         this.buffer = buffer;
         this._position = 0;
@@ -46,6 +49,10 @@ export class CodePointBuffer {
         Type[Type["INT"] = 2] = "INT";
     })(Type || (Type = {}));
     class Builder {
+        type;
+        buffer;
+        prevHighSurrogate;
+        position;
         constructor(initialBufferSize) {
             this.type = 0 /* Type.BYTE */;
             this.buffer = new Uint8Array(initialBufferSize);

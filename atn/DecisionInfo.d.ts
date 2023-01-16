@@ -2,11 +2,11 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { AmbiguityInfo } from "./AmbiguityInfo";
-import { ContextSensitivityInfo } from "./ContextSensitivityInfo";
-import { ErrorInfo } from "./ErrorInfo";
-import { LookaheadEventInfo } from "./LookaheadEventInfo";
-import { PredicateEvalInfo } from "./PredicateEvalInfo";
+import { AmbiguityInfo } from "./AmbiguityInfo.js";
+import { ContextSensitivityInfo } from "./ContextSensitivityInfo.js";
+import { ErrorInfo } from "./ErrorInfo.js";
+import { LookaheadEventInfo } from "./LookaheadEventInfo.js";
+import { PredicateEvalInfo } from "./PredicateEvalInfo.js";
 /**
  * This class contains profiling gathered for a particular decision.
  *

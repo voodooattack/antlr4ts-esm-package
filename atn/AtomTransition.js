@@ -11,11 +11,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { IntervalSet } from "../misc/IntervalSet";
-import { Override, NotNull } from "../Decorators";
-import { Transition } from "./Transition";
+import { IntervalSet } from "../misc/IntervalSet.js";
+import { Override, NotNull } from "../Decorators.js";
+import { Transition } from "./Transition.js";
 /** TODO: make all transitions sets? no, should remove set edges */
 let AtomTransition = class AtomTransition extends Transition {
+    /** The token type or character value; or, signifies special label. */
+    _label;
     constructor(target, label) {
         super(target);
         this._label = label;

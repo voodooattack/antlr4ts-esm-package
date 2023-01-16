@@ -12,8 +12,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:28.7213647-07:00
-import { DecisionEventInfo } from "./DecisionEventInfo";
-import { NotNull } from "../Decorators";
+import { DecisionEventInfo } from "./DecisionEventInfo.js";
+import { NotNull } from "../Decorators.js";
 /**
  * This class represents profiling event information for a syntax error
  * identified during prediction. Syntax errors occur when the prediction

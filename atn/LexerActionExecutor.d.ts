@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "../CharStream";
-import { Lexer } from "../Lexer";
-import { LexerAction } from "./LexerAction";
+import { CharStream } from "../CharStream.js";
+import { Lexer } from "../Lexer.js";
+import { LexerAction } from "./LexerAction.js";
 /**
  * Represents an executor for a sequence of lexer actions which traversed during
  * the matching operation of a lexer rule (token).

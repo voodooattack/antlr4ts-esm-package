@@ -11,30 +11,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import * as Utils from "./misc/Utils";
-import { ATNDeserializationOptions } from "./atn/ATNDeserializationOptions";
-import { ATNDeserializer } from "./atn/ATNDeserializer";
-import { DefaultErrorStrategy } from "./DefaultErrorStrategy";
-import { ErrorNode } from "./tree/ErrorNode";
-import { IntegerStack } from "./misc/IntegerStack";
-import { Lexer } from "./Lexer";
-import { Override, NotNull, Nullable } from "./Decorators";
-import { ParseInfo } from "./atn/ParseInfo";
-import { ParserATNSimulator } from "./atn/ParserATNSimulator";
-import { ProxyParserErrorListener } from "./ProxyParserErrorListener";
-import { Recognizer } from "./Recognizer";
-import { TerminalNode } from "./tree/TerminalNode";
-import { Token } from "./Token";
+import * as Utils from "./misc/Utils.js";
+import { ATNDeserializationOptions } from "./atn/ATNDeserializationOptions.js";
+import { ATNDeserializer } from "./atn/ATNDeserializer.js";
+import { DefaultErrorStrategy } from "./DefaultErrorStrategy.js";
+import { ErrorNode } from "./tree/ErrorNode.js";
+import { IntegerStack } from "./misc/IntegerStack.js";
+import { Lexer } from "./Lexer.js";
+import { Override, NotNull, Nullable } from "./Decorators.js";
+import { ParseInfo } from "./atn/ParseInfo.js";
+import { ParserATNSimulator } from "./atn/ParserATNSimulator.js";
+import { ProxyParserErrorListener } from "./ProxyParserErrorListener.js";
+import { Recognizer } from "./Recognizer.js";
+import { TerminalNode } from "./tree/TerminalNode.js";
+import { Token } from "./Token.js";
 class TraceListener {
+    ruleNames;
+    tokenStream;
     constructor(ruleNames, tokenStream) {
         this.ruleNames = ruleNames;
         this.tokenStream = tokenStream;
@@ -70,38 +63,66 @@ __decorate([
 ], TraceListener.prototype, "visitTerminal", null);
 /** This is all the parsing support code essentially; most of it is error recovery stuff. */
 export class Parser extends Recognizer {
+    /**
+     * This field maps from the serialized ATN string to the deserialized {@link ATN} with
+     * bypass alternatives.
+     *
+     * @see ATNDeserializationOptions.isGenerateRuleBypassTransitions
+     */
+    static bypassAltsAtnCache = new Map();
+    /**
+     * The error handling strategy for the parser. The default value is a new
+     * instance of {@link DefaultErrorStrategy}.
+     *
+     * @see #getErrorHandler
+     * @see #setErrorHandler
+     */
+    _errHandler = new DefaultErrorStrategy();
+    /**
+     * The input stream.
+     *
+     * @see #getInputStream
+     * @see #setInputStream
+     */
+    _input;
+    _precedenceStack = new IntegerStack();
+    /**
+     * The {@link ParserRuleContext} object for the currently executing rule.
+     *
+     * This is always non-undefined during the parsing process.
+     */
+    _ctx;
+    /**
+     * Specifies whether or not the parser should construct a parse tree during
+     * the parsing process. The default value is `true`.
+     *
+     * @see `buildParseTree`
+     */
+    _buildParseTrees = true;
+    /**
+     * When {@link #setTrace}`(true)` is called, a reference to the
+     * {@link TraceListener} is stored here so it can be easily removed in a
+     * later call to {@link #setTrace}`(false)`. The listener itself is
+     * implemented as a parser listener so this field is not directly used by
+     * other parser methods.
+     */
+    _tracer;
+    /**
+     * The list of {@link ParseTreeListener} listeners registered to receive
+     * events during the parse.
+     *
+     * @see #addParseListener
+     */
+    _parseListeners = [];
+    /**
+     * The number of syntax errors reported during parsing. This value is
+     * incremented each time {@link #notifyErrorListeners} is called.
+     */
+    _syntaxErrors = 0;
+    /** Indicates parser has match()ed EOF token. See {@link #exitRule()}. */
+    matchedEOF = false;
     constructor(input) {
         super();
-        /**
-         * The error handling strategy for the parser. The default value is a new
-         * instance of {@link DefaultErrorStrategy}.
-         *
-         * @see #getErrorHandler
-         * @see #setErrorHandler
-         */
-        this._errHandler = new DefaultErrorStrategy();
-        this._precedenceStack = new IntegerStack();
-        /**
-         * Specifies whether or not the parser should construct a parse tree during
-         * the parsing process. The default value is `true`.
-         *
-         * @see `buildParseTree`
-         */
-        this._buildParseTrees = true;
-        /**
-         * The list of {@link ParseTreeListener} listeners registered to receive
-         * events during the parse.
-         *
-         * @see #addParseListener
-         */
-        this._parseListeners = [];
-        /**
-         * The number of syntax errors reported during parsing. This value is
-         * incremented each time {@link #notifyErrorListeners} is called.
-         */
-        this._syntaxErrors = 0;
-        /** Indicates parser has match()ed EOF token. See {@link #exitRule()}. */
-        this.matchedEOF = false;
         this._precedenceStack.push(0);
         this.inputStream = input;
     }
@@ -343,24 +364,22 @@ export class Parser extends Recognizer {
         }
         return result;
     }
-    compileParseTreePattern(pattern, patternRuleIndex, lexer) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (!lexer) {
-                if (this.inputStream) {
-                    let tokenSource = this.inputStream.tokenSource;
-                    if (tokenSource instanceof Lexer) {
-                        lexer = tokenSource;
-                    }
-                }
-                if (!lexer) {
-                    throw new Error("Parser can't discover a lexer to use");
+    async compileParseTreePattern(pattern, patternRuleIndex, lexer) {
+        if (!lexer) {
+            if (this.inputStream) {
+                let tokenSource = this.inputStream.tokenSource;
+                if (tokenSource instanceof Lexer) {
+                    lexer = tokenSource;
                 }
             }
-            let currentLexer = lexer;
-            let m = yield import("./tree/pattern/ParseTreePatternMatcher.js");
-            let matcher = new m.ParseTreePatternMatcher(currentLexer, this);
-            return matcher.compile(pattern, patternRuleIndex);
-        });
+            if (!lexer) {
+                throw new Error("Parser can't discover a lexer to use");
+            }
+        }
+        let currentLexer = lexer;
+        let m = await import("./tree/pattern/ParseTreePatternMatcher.js");
+        let matcher = new m.ParseTreePatternMatcher(currentLexer, this);
+        return matcher.compile(pattern, patternRuleIndex);
     }
     get errorHandler() {
         return this._errHandler;
@@ -739,20 +758,18 @@ export class Parser extends Recognizer {
     /**
      * @since 4.3
      */
-    setProfile(profile) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let m = yield import("./atn/ProfilingATNSimulator.js");
-            let interp = this.interpreter;
-            if (profile) {
-                if (!(interp instanceof m.ProfilingATNSimulator)) {
-                    this.interpreter = new m.ProfilingATNSimulator(this);
-                }
+    async setProfile(profile) {
+        let m = await import("./atn/ProfilingATNSimulator.js");
+        let interp = this.interpreter;
+        if (profile) {
+            if (!(interp instanceof m.ProfilingATNSimulator)) {
+                this.interpreter = new m.ProfilingATNSimulator(this);
             }
-            else if (interp instanceof m.ProfilingATNSimulator) {
-                this.interpreter = new ParserATNSimulator(this.atn, this);
-            }
-            this.interpreter.setPredictionMode(interp.getPredictionMode());
-        });
+        }
+        else if (interp instanceof m.ProfilingATNSimulator) {
+            this.interpreter = new ParserATNSimulator(this.atn, this);
+        }
+        this.interpreter.setPredictionMode(interp.getPredictionMode());
     }
     /** During a parse is sometimes useful to listen in on the rule entry and exit
      *  events as well as token matches. This is for quick and dirty debugging.
@@ -782,13 +799,6 @@ export class Parser extends Recognizer {
         return this._tracer != null;
     }
 }
-/**
- * This field maps from the serialized ATN string to the deserialized {@link ATN} with
- * bypass alternatives.
- *
- * @see ATNDeserializationOptions.isGenerateRuleBypassTransitions
- */
-Parser.bypassAltsAtnCache = new Map();
 __decorate([
     NotNull
 ], Parser.prototype, "_errHandler", void 0);

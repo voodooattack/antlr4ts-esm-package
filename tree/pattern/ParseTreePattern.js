@@ -12,13 +12,29 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // CONVERSTION complete, Burt Harris 10/14/2016
-import { NotNull } from "../../Decorators";
-import { XPath } from "../xpath/XPath";
+import { NotNull } from "../../Decorators.js";
+import { XPath } from "../xpath/XPath.js";
 /**
  * A pattern like `<ID> = <expr>;` converted to a {@link ParseTree} by
  * {@link ParseTreePatternMatcher#compile(String, int)}.
  */
 let ParseTreePattern = class ParseTreePattern {
+    /**
+     * This is the backing field for `patternRuleIndex`.
+     */
+    _patternRuleIndex;
+    /**
+     * This is the backing field for `pattern`.
+     */
+    _pattern;
+    /**
+     * This is the backing field for `patternTree`.
+     */
+    _patternTree;
+    /**
+     * This is the backing field for `matcher`.
+     */
+    _matcher;
     /**
      * Construct a new instance of the {@link ParseTreePattern} class.
      *

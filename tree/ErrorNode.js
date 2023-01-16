@@ -9,8 +9,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:47.4646355-07:00
-import { Override } from "../Decorators";
-import { TerminalNode } from "./TerminalNode";
+import { Override } from "../Decorators.js";
+import { TerminalNode } from "./TerminalNode.js";
 /** Represents a token that was consumed during resynchronization
  *  rather than during a valid match operation. For example,
  *  we will create this kind of a node during single token insertion

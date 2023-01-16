@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { EqualityComparator } from "./EqualityComparator";
-import { JavaMap } from "./Stubs";
+import { EqualityComparator } from "./EqualityComparator.js";
+import { JavaMap } from "./Stubs.js";
 export declare class Array2DHashMap<K, V> implements JavaMap<K, V> {
     private backingStore;
     constructor(keyComparer: EqualityComparator<K>);

@@ -11,14 +11,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { NotNull, Override } from "../../Decorators";
-import { Token } from "../../Token";
+import { NotNull, Override } from "../../Decorators.js";
+import { Token } from "../../Token.js";
 /**
  * A {@link Token} object representing an entire subtree matched by a parser
  * rule; e.g., `<expr>`. These tokens are created for {@link TagChunk}
  * chunks where the tag corresponds to a parser rule.
  */
 let RuleTagToken = class RuleTagToken {
+    /**
+     * This is the backing field for `ruleName`.
+     */
+    _ruleName;
+    /**
+     * The token type for the current token. This is the token type assigned to
+     * the bypass alternative for the rule during ATN deserialization.
+     */
+    bypassTokenType;
+    /**
+     * This is the backing field for `label`.
+     */
+    _label;
     /**
      * Constructs a new instance of {@link RuleTagToken} with the specified rule
      * name, bypass token type, and label.

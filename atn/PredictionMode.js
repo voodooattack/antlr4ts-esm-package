@@ -9,10 +9,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:36.2673893-07:00
-import { Array2DHashMap } from "../misc/Array2DHashMap";
-import { MurmurHash } from "../misc/MurmurHash";
-import { Override } from "../Decorators";
-import { RuleStopState } from "./RuleStopState";
+import { Array2DHashMap } from "../misc/Array2DHashMap.js";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { Override } from "../Decorators.js";
+import { RuleStopState } from "./RuleStopState.js";
 /**
  * This enumeration defines the prediction modes available in ANTLR 4 along with
  * utility methods for analyzing configuration sets for conflicts and/or
@@ -83,6 +83,7 @@ export var PredictionMode;
         }
     }
     class AltAndContextConfigEqualityComparator {
+        static INSTANCE = new AltAndContextConfigEqualityComparator();
         AltAndContextConfigEqualityComparator() {
             // intentionally empty
         }
@@ -108,7 +109,6 @@ export var PredictionMode;
                 && a.context.equals(b.context);
         }
     }
-    AltAndContextConfigEqualityComparator.INSTANCE = new AltAndContextConfigEqualityComparator();
     __decorate([
         Override
     ], AltAndContextConfigEqualityComparator.prototype, "hashCode", null);

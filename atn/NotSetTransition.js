@@ -11,8 +11,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Override, NotNull, Nullable } from "../Decorators";
-import { SetTransition } from "./SetTransition";
+import { Override, NotNull, Nullable } from "../Decorators.js";
+import { SetTransition } from "./SetTransition.js";
 let NotSetTransition = class NotSetTransition extends SetTransition {
     constructor(target, set) {
         super(target, set);

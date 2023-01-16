@@ -9,10 +9,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:35.6390614-07:00
-import { Array2DHashMap } from "../misc/Array2DHashMap";
-import { Override } from "../Decorators";
-import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator";
-import { PredictionContext } from "./PredictionContext";
+import { Array2DHashMap } from "../misc/Array2DHashMap.js";
+import { Override } from "../Decorators.js";
+import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
+import { PredictionContext } from "./PredictionContext.js";
 import * as assert from "assert";
 /** Used to cache {@link PredictionContext} objects. Its used for the shared
  *  context cash associated with contexts in DFA states. This cache
@@ -21,10 +21,12 @@ import * as assert from "assert";
  * @author Sam Harwell
  */
 export class PredictionContextCache {
+    static UNCACHED = new PredictionContextCache(false);
+    contexts = new Array2DHashMap(ObjectEqualityComparator.INSTANCE);
+    childContexts = new Array2DHashMap(ObjectEqualityComparator.INSTANCE);
+    joinContexts = new Array2DHashMap(ObjectEqualityComparator.INSTANCE);
+    enableCache;
     constructor(enableCache = true) {
-        this.contexts = new Array2DHashMap(ObjectEqualityComparator.INSTANCE);
-        this.childContexts = new Array2DHashMap(ObjectEqualityComparator.INSTANCE);
-        this.joinContexts = new Array2DHashMap(ObjectEqualityComparator.INSTANCE);
         this.enableCache = enableCache;
     }
     getAsCached(context) {
@@ -66,9 +68,10 @@ export class PredictionContextCache {
         return result;
     }
 }
-PredictionContextCache.UNCACHED = new PredictionContextCache(false);
 (function (PredictionContextCache) {
     class PredictionContextAndInt {
+        obj;
+        value;
         constructor(obj, value) {
             this.obj = obj;
             this.value = value;
@@ -99,6 +102,8 @@ PredictionContextCache.UNCACHED = new PredictionContextCache(false);
     ], PredictionContextAndInt.prototype, "hashCode", null);
     PredictionContextCache.PredictionContextAndInt = PredictionContextAndInt;
     class IdentityCommutativePredictionContextOperands {
+        _x;
+        _y;
         constructor(x, y) {
             assert(x != null);
             assert(y != null);

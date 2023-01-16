@@ -11,16 +11,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { ATN } from "../atn/ATN";
-import { CommonToken } from "../CommonToken";
-import { ErrorNode } from "./ErrorNode";
-import { NotNull } from "../Decorators";
-import { Parser } from "../Parser";
-import { ParserRuleContext } from "../ParserRuleContext";
-import { RuleNode } from "./RuleNode";
-import { TerminalNode } from "./TerminalNode";
-import { Token } from "../Token";
-import * as Utils from "../misc/Utils";
+import { ATN } from "../atn/ATN.js";
+import { CommonToken } from "../CommonToken.js";
+import { ErrorNode } from "./ErrorNode.js";
+import { NotNull } from "../Decorators.js";
+import { Parser } from "../Parser.js";
+import { ParserRuleContext } from "../ParserRuleContext.js";
+import { RuleNode } from "./RuleNode.js";
+import { TerminalNode } from "./TerminalNode.js";
+import { Token } from "../Token.js";
+import * as Utils from "../misc/Utils.js";
 /** A set of utility routines useful for all kinds of ANTLR trees. */
 export class Trees {
     static toStringTree(t, arg2) {

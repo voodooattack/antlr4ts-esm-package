@@ -11,8 +11,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { MurmurHash } from "../misc/MurmurHash";
-import { NotNull, Override } from "../Decorators";
+import { MurmurHash } from "../misc/MurmurHash.js";
+import { NotNull, Override } from "../Decorators.js";
 /**
  * Implements the `type` lexer action by setting `Lexer.type`
  * with the assigned type.
@@ -21,6 +21,7 @@ import { NotNull, Override } from "../Decorators";
  * @since 4.2
  */
 export class LexerTypeAction {
+    _type;
     /**
      * Constructs a new `type` action with the specified token type value.
      * @param type The type to assign to the token using `Lexer.type`.

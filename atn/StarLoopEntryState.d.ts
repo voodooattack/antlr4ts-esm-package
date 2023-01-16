@@ -2,10 +2,10 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNStateType } from "./ATNStateType";
-import { BitSet } from "../misc/BitSet";
-import { DecisionState } from "./DecisionState";
-import { StarLoopbackState } from "./StarLoopbackState";
+import { ATNStateType } from "./ATNStateType.js";
+import { BitSet } from "../misc/BitSet.js";
+import { DecisionState } from "./DecisionState.js";
+import { StarLoopbackState } from "./StarLoopbackState.js";
 export declare class StarLoopEntryState extends DecisionState {
     loopBackState: StarLoopbackState;
     /**

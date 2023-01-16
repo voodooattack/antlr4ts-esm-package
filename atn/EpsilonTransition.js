@@ -11,9 +11,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Override, NotNull } from "../Decorators";
-import { Transition } from "./Transition";
+import { Override, NotNull } from "../Decorators.js";
+import { Transition } from "./Transition.js";
 let EpsilonTransition = class EpsilonTransition extends Transition {
+    _outermostPrecedenceReturn;
     constructor(target, outermostPrecedenceReturn = -1) {
         super(target);
         this._outermostPrecedenceReturn = outermostPrecedenceReturn;

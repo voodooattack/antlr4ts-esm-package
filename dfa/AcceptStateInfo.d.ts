@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { LexerActionExecutor } from "../atn/LexerActionExecutor";
+import { LexerActionExecutor } from "../atn/LexerActionExecutor.js";
 /**
  * Stores information about a {@link DFAState} which is an accept state under
  * some condition. Certain settings, such as

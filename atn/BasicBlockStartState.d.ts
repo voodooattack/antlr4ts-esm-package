@@ -2,8 +2,8 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { ATNStateType } from "./ATNStateType";
-import { BlockStartState } from "./BlockStartState";
+import { ATNStateType } from "./ATNStateType.js";
+import { BlockStartState } from "./BlockStartState.js";
 /**
  *
  * @author Sam Harwell

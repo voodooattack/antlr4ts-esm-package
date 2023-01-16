@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { Vocabulary } from "./Vocabulary";
+import { Vocabulary } from "./Vocabulary.js";
 /**
  * This class provides a default implementation of the {@link Vocabulary}
  * interface.

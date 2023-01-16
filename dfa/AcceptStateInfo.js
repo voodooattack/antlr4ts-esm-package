@@ -12,6 +12,8 @@
  * @author Sam Harwell
  */
 export class AcceptStateInfo {
+    _prediction;
+    _lexerActionExecutor;
     constructor(prediction, lexerActionExecutor) {
         this._prediction = prediction;
         this._lexerActionExecutor = lexerActionExecutor;

@@ -9,13 +9,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // ConvertTo-TS run at 2016-10-04T11:26:57.3490837-07:00
-import { ATN } from "./atn/ATN";
-import { Recognizer } from "./Recognizer";
-import { RuleNode } from "./tree/RuleNode";
-import { Interval } from "./misc/Interval";
-import { Override } from "./Decorators";
-import { Trees } from "./tree/Trees";
-import { ParserRuleContext } from "./ParserRuleContext";
+import { ATN } from "./atn/ATN.js";
+import { Recognizer } from "./Recognizer.js";
+import { RuleNode } from "./tree/RuleNode.js";
+import { Interval } from "./misc/Interval.js";
+import { Override } from "./Decorators.js";
+import { Trees } from "./tree/Trees.js";
+import { ParserRuleContext } from "./ParserRuleContext.js";
 /** A rule context is a record of a single rule invocation.
  *
  *  We form a stack of these context objects using the parent
@@ -67,6 +67,8 @@ import { ParserRuleContext } from "./ParserRuleContext";
  *  @see ParserRuleContext
  */
 export class RuleContext extends RuleNode {
+    _parent;
+    invokingState;
     constructor(parent, invokingState) {
         super();
         this._parent = parent;

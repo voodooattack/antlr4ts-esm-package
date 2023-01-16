@@ -2,9 +2,9 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import { CharStream } from "./CharStream";
-import { Token } from "./Token";
-import { TokenFactory } from "./TokenFactory";
+import { CharStream } from "./CharStream.js";
+import { Token } from "./Token.js";
+import { TokenFactory } from "./TokenFactory.js";
 /**
  * A source of tokens must provide a sequence of tokens via {@link #nextToken()}
  * and also must reveal it's source of characters; {@link CommonToken}'s text is

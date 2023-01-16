@@ -1,9 +1,9 @@
 // Generated from XPathLexer.g4 by ANTLR 4.9.0-SNAPSHOT
-import { ATNDeserializer } from "../../atn/ATNDeserializer";
-import { Lexer } from "../../Lexer";
-import { LexerATNSimulator } from "../../atn/LexerATNSimulator";
-import { VocabularyImpl } from "../../VocabularyImpl";
-import * as Utils from "../../misc/Utils";
+import { ATNDeserializer } from "../../atn/ATNDeserializer.js";
+import { Lexer } from "../../Lexer.js";
+import { LexerATNSimulator } from "../../atn/LexerATNSimulator.js";
+import { VocabularyImpl } from "../../VocabularyImpl.js";
+import * as Utils from "../../misc/Utils.js";
 export class XPathLexer extends Lexer {
     static TOKEN_REF = 1;
     static RULE_REF = 2;

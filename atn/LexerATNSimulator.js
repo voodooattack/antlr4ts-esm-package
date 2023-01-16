@@ -28,7 +28,7 @@ import { OrderedATNConfigSet } from "./OrderedATNConfigSet.js";
 import { PredictionContext } from "./PredictionContext.js";
 import { RuleStopState } from "./RuleStopState.js";
 import { Token } from "../Token.js";
-import * as assert from "assert";
+import { strict as assert } from 'assert';
 /** "dup" of ParserInterpreter */
 let LexerATNSimulator = class LexerATNSimulator extends ATNSimulator {
     optimize_tail_calls = true;

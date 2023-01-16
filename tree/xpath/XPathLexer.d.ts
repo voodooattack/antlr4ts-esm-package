@@ -1,8 +1,8 @@
-import { ATN } from "../../atn/ATN";
-import { CharStream } from "../../CharStream";
-import { Lexer } from "../../Lexer";
-import { RuleContext } from "../../RuleContext";
-import { Vocabulary } from "../../Vocabulary";
+import { ATN } from "../../atn/ATN.js";
+import { CharStream } from "../../CharStream.js";
+import { Lexer } from "../../Lexer.js";
+import { RuleContext } from "../../RuleContext.js";
+import { Vocabulary } from "../../Vocabulary.js";
 export declare class XPathLexer extends Lexer {
     static readonly TOKEN_REF = 1;
     static readonly RULE_REF = 2;

@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 // ConvertTo-TS run at 2016-10-04T11:26:49.6074365-07:00
-import * as assert from "assert";
+import { strict as assert } from 'assert';
 import { CommonToken } from "./CommonToken.js";
 import { Interval } from "./misc/Interval.js";
 import { Lexer } from "./Lexer.js";

@@ -2,7 +2,7 @@
  * Copyright 2016 The ANTLR Project. All rights reserved.
  * Licensed under the BSD-3-Clause license. See LICENSE file in the project root for license information.
  */
-import * as assert from "assert";
+import { strict as assert } from 'assert';
 import * as Character from "./misc/Character.js";
 /**
  * Wrapper for `Uint8Array` / `Uint16Array` / `Int32Array`.

@@ -19,7 +19,7 @@ import { NotNull, Override } from "../Decorators.js";
 import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
 import { PredictionContext } from "./PredictionContext.js";
 import { SemanticContext } from "./SemanticContext.js";
-import * as assert from "assert";
+import { strict as assert } from 'assert';
 /**
  * This field stores the bit mask for implementing the
  * {@link #isPrecedenceFilterSuppressed} property as a bit within the

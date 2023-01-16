@@ -18,7 +18,7 @@ import { Arrays } from "../misc/Arrays.js";
 import { MurmurHash } from "../misc/MurmurHash.js";
 import { NotNull, Override } from "../Decorators.js";
 import { PredictionContextCache } from "./PredictionContextCache.js";
-import * as assert from "assert";
+import { strict as assert } from 'assert';
 const INITIAL_HASH = 1;
 export class PredictionContext {
     /**

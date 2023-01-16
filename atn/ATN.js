@@ -21,7 +21,7 @@ import { NotNull } from "../Decorators.js";
 import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
 import { PredictionContext } from "./PredictionContext.js";
 import { Token } from "../Token.js";
-import * as assert from "assert";
+import { strict as assert } from 'assert';
 /** */
 let ATN = class ATN {
     states = [];

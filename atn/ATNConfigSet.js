@@ -21,7 +21,7 @@ import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
 import { PredictionContext } from "./PredictionContext.js";
 import { PredictionContextCache } from "./PredictionContextCache.js";
 import { SemanticContext } from "./SemanticContext.js";
-import * as assert from "assert";
+import { strict as assert } from 'assert';
 import * as Utils from "../misc/Utils.js";
 class KeyTypeEqualityComparer {
     hashCode(key) {

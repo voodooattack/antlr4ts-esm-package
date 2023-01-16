@@ -13,7 +13,7 @@ import { Array2DHashMap } from "../misc/Array2DHashMap.js";
 import { Override } from "../Decorators.js";
 import { ObjectEqualityComparator } from "../misc/ObjectEqualityComparator.js";
 import { PredictionContext } from "./PredictionContext.js";
-import * as assert from "assert";
+import { strict as assert } from 'assert';
 /** Used to cache {@link PredictionContext} objects. Its used for the shared
  *  context cash associated with contexts in DFA states. This cache
  *  can be used for both lexers and parsers.
